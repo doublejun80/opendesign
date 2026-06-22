@@ -90,7 +90,15 @@ url = "https://api.mobbin.com/mcp"
 startup_timeout_sec = 20
 ```
 
-이 세션의 `tool_search`에서는 Lazyweb/Mobbin 호출 도구가 노출되지 않았습니다. 따라서 이 워크스페이스는 두 MCP 결과를 받을 수 있는 입력 구조와 프롬프트를 제공하고, 실제 호출은 MCP가 Codex 도구로 노출된 환경에서 수행합니다.
+Codex 도구 목록에 Lazyweb/Mobbin 호출 도구가 노출되면, 먼저 MCP 원시 응답을 JSON으로 저장한 뒤 브리프에 병합합니다.
+
+```bash
+npm run references:apply -- <brief.json> <lazyweb-results.json> <merged-brief.json> --source lazyweb
+npm run references:apply -- <merged-brief.json> <mobbin-results.json> <merged-brief.json> --source mobbin
+node scripts/create-report.mjs <merged-brief.json> reports/<report-slug>
+```
+
+`scripts/apply-reference-results.mjs`는 `results`, `items`, `data` 배열과 `imageUrl`, `image_url`, `images[].url`을 받아 `references[].images[]`로 정규화합니다. 브리프에 `visual-hero` 장표가 있으면 이미지 URL을 장표 `visuals`에도 최대 4개까지 채웁니다.
 
 Lazyweb 설치 예시는 다음과 같습니다.
 

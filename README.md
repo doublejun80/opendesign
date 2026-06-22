@@ -23,6 +23,7 @@ npm run validate
 npm test
 npm run sample
 npm run sample:premium
+npm run references:apply -- examples/sample-report-brief.json examples/lazyweb-reference-results.json /tmp/lazyweb-brief.json --source lazyweb
 npm run export:sample -- --dry-run --check-overflow
 ```
 
@@ -54,9 +55,11 @@ reports/sample-executive-report/slides.json
 | `prompts/02_refine_report.md` | 생성물 수정 프롬프트입니다. |
 | `prompts/05_lazyweb_mobbin_reference_workflow.md` | Lazyweb/Mobbin 레퍼런스를 보고서 입력으로 정리하는 프롬프트입니다. |
 | `scripts/create-report.mjs` | JSON 브리프를 HTML 덱으로 바꾸는 예시 스크립트입니다. |
+| `scripts/apply-reference-results.mjs` | Lazyweb/Mobbin MCP 원시 결과를 `references`와 `visuals`로 병합합니다. |
 | `scripts/report-schema.mjs` | 지원 패턴과 브리프 구조를 검증하는 스키마 도우미입니다. |
 | `scripts/export-deck.mjs` | Playwright 기반 PNG/PDF export와 overflow 점검을 수행합니다. |
 | `scripts/test-workspace.mjs` | 생성기, 검증기, export dry-run을 확인하는 회귀 테스트입니다. |
+| `examples/lazyweb-reference-results.json` | Lazyweb MCP 결과 형태를 흉내 낸 레퍼런스 병합 예시입니다. |
 | `reports/sample-executive-report/index.html` | 실제 렌더링 가능한 샘플 HTML 덱입니다. |
 | `reports/open-design-premium-report/index.html` | Open Design 템플릿/스킬/시스템과 Mobbin 이미지 레퍼런스를 반영한 고급 샘플 덱입니다. |
 
@@ -95,6 +98,15 @@ Lazyweb과 Mobbin MCP가 연결되어 있다면 결과를 그대로 복제하지
 ```
 
 생성된 HTML은 이 정보를 하단 출처 라벨로 남깁니다. Mobbin에서 가져온 도형과 이미지는 장식이 아니라 비교, 승인 흐름, 상태, 리스크를 설명할 때만 사용합니다.
+
+Lazyweb/Mobbin MCP가 원시 JSON을 반환했다면 아래처럼 먼저 브리프에 병합합니다. `imageUrl`, `image_url`, `images[].url`은 `references[].images[]`로 보존되고, 기존 `visual-hero` 장표가 있으면 이미지 레일 `visuals`에도 자동으로 채워집니다.
+
+```bash
+npm run references:apply -- <brief.json> <lazyweb-results.json> <merged-brief.json> --source lazyweb
+node scripts/create-report.mjs <merged-brief.json> reports/<report-slug>
+```
+
+Mobbin MCP가 연결되면 같은 스크립트에 `--source mobbin`을 넣어 사용합니다.
 
 ## Open Design 스타일 적용
 

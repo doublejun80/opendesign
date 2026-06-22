@@ -1,6 +1,5 @@
 # Lazyweb / Mobbin 레퍼런스 활용 프롬프트
 
-```text
 Lazyweb MCP와 Mobbin MCP가 연결되어 있다면 아래 순서로 참고 자료를 모아줘.
 
 [보고 주제]
@@ -47,4 +46,11 @@ content.json 또는 입력 브리프에 아래 형태의 references 배열을 �
 }
 
 이후 reports/<slug>/index.html을 생성할 때 reference source label이 하단에 표시되게 하고, 이미지가 필요한 장표에는 `visual-hero` 또는 `bento-synthesis` 패턴을 사용해줘.
+
+MCP 원시 응답을 파일로 저장할 수 있으면 아래 명령으로 브리프에 먼저 병합해줘.
+
+```bash
+npm run references:apply -- <brief.json> <lazyweb-results.json> <merged-brief.json> --source lazyweb
+npm run references:apply -- <merged-brief.json> <mobbin-results.json> <merged-brief.json> --source mobbin
+node scripts/create-report.mjs <merged-brief.json> reports/<slug>
 ```

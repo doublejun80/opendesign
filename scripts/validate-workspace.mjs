@@ -10,7 +10,8 @@ const required = [
   'design-systems/korean-executive-report/tokens.css',
   'prompts/01_create_report.md',
   'examples/sample-report-brief.json',
-  'scripts/create-report.mjs'
+  'scripts/create-report.mjs',
+  'scripts/apply-reference-results.mjs'
 ];
 
 const args = process.argv.slice(2);

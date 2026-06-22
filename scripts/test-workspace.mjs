@@ -128,6 +128,70 @@ assertIncludes(generatedHtml, 'class="appendix-grid', 'appendix pattern should r
 assertIncludes(generatedHtml, 'source-label source-lazyweb', 'Lazyweb references should be preserved as source labels');
 assertIncludes(generatedHtml, 'source-label source-mobbin', 'Mobbin references should be preserved as source labels');
 
+const lazywebRawPath = path.join(tmpRoot, 'lazyweb-results.json');
+writeJson(lazywebRawPath, {
+  query: 'AI 구매 자동화 도입 검토',
+  results: [
+    {
+      title: 'AI procurement automation examples',
+      url: 'https://example.com/procurement-ai',
+      summary: '구매 요청, 공급사 비교, 승인 흐름을 한 번에 묶어 검토하는 사례입니다.',
+      imageUrl: 'https://example.com/procurement-flow.png',
+      takeaways: ['승인 단계와 책임자를 같이 보여줌', '비교 근거를 하단 출처로 분리']
+    },
+    {
+      name: 'Supplier risk review pattern',
+      link: 'https://example.com/supplier-risk',
+      description: '공급사 리스크와 통제 방안을 같은 행에서 비교합니다.',
+      images: [
+        { title: 'Supplier risk grid', url: 'https://example.com/supplier-risk.png' }
+      ]
+    }
+  ]
+});
+
+const lazywebBaseBriefPath = path.join(tmpRoot, 'lazyweb-base-brief.json');
+writeJson(lazywebBaseBriefPath, {
+  title: 'Lazyweb 레퍼런스 적용 검증',
+  slides: [
+    {
+      title: '외부 레퍼런스는 구조화된 근거로만 사용합니다',
+      pattern: 'visual-hero',
+      points: ['맥락은 Lazyweb에서 확인', '이미지는 근거 레일로만 배치', '결론은 제목에 유지'],
+      visuals: []
+    }
+  ]
+});
+
+const lazywebMergedBriefPath = path.join(tmpRoot, 'lazyweb-merged-brief.json');
+const lazywebApplyResult = run([
+  'scripts/apply-reference-results.mjs',
+  lazywebBaseBriefPath,
+  lazywebRawPath,
+  lazywebMergedBriefPath,
+  '--source',
+  'lazyweb'
+]);
+assert.equal(lazywebApplyResult.status, 0, lazywebApplyResult.stderr || lazywebApplyResult.stdout);
+
+const lazywebMergedBrief = JSON.parse(fs.readFileSync(lazywebMergedBriefPath, 'utf-8'));
+assert.equal(lazywebMergedBrief.references.length, 2, 'Lazyweb results should become report references');
+assert.equal(lazywebMergedBrief.references[0].source, 'lazyweb', 'references should preserve the Lazyweb source');
+assert.equal(lazywebMergedBrief.references[0].images[0].url, 'https://example.com/procurement-flow.png', 'imageUrl should be normalized into reference images');
+assert.equal(lazywebMergedBrief.references[1].images[0].url, 'https://example.com/supplier-risk.png', 'nested images should be preserved');
+assert.equal(lazywebMergedBrief.slides[0].visuals.length, 2, 'Lazyweb images should populate an existing visual-hero rail');
+assert.equal(lazywebMergedBrief.slides[0].visuals[0].source, 'lazyweb', 'visual rail entries should keep their source label');
+
+const lazywebValidateResult = run(['scripts/validate-workspace.mjs', '--brief', lazywebMergedBriefPath]);
+assert.equal(lazywebValidateResult.status, 0, lazywebValidateResult.stderr || lazywebValidateResult.stdout);
+
+const referenceAdapter = await import('./apply-reference-results.mjs');
+assert.deepEqual(
+  referenceAdapter.normalizeReferenceResults({ results: [{ title: 'Import-safe reference' }] }, { source: 'lazyweb' }),
+  [{ source: 'lazyweb', title: 'Import-safe reference', takeaways: [] }],
+  'reference adapter should be importable without running the CLI'
+);
+
 const invalidBriefPath = path.join(tmpRoot, 'invalid-brief.json');
 writeJson(invalidBriefPath, {
   title: '잘못된 브리프',

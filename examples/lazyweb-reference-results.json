@@ -1,0 +1,26 @@
+{
+  "query": "AI 구매 자동화 도입 검토",
+  "results": [
+    {
+      "title": "AI procurement automation examples",
+      "url": "https://example.com/procurement-ai",
+      "summary": "구매 요청, 공급사 비교, 승인 흐름을 한 번에 묶어 검토하는 사례입니다.",
+      "imageUrl": "https://example.com/procurement-flow.png",
+      "takeaways": [
+        "승인 단계와 책임자를 같이 보여줄 때 이해가 빠름",
+        "비교 근거는 본문보다 하단 출처 라벨로 분리"
+      ]
+    },
+    {
+      "name": "Supplier risk review pattern",
+      "link": "https://example.com/supplier-risk",
+      "description": "공급사 리스크와 통제 방안을 같은 행에서 비교합니다.",
+      "images": [
+        {
+          "title": "Supplier risk grid",
+          "url": "https://example.com/supplier-risk.png"
+        }
+      ]
+    }
+  ]
+}
