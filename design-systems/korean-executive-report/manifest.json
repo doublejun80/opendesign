@@ -1,0 +1,11 @@
+{
+  "id": "korean-executive-report",
+  "name": "Korean Executive Report",
+  "version": "0.1.0",
+  "category": "presentation",
+  "description": "Design system for Korean executive/business report decks rendered as 1920x1080 HTML panels.",
+  "entry": "DESIGN.md",
+  "tokens": "tokens.css",
+  "components": "components.html",
+  "preview": "preview/index.html"
+}

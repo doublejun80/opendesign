@@ -1,0 +1,12 @@
+name: Korean Executive HTML Report
+version: 0.1.0
+description: Korean executive/business report deck skill for Codex.
+entry: SKILL.md
+ui:
+  icon: presentation
+  accent: slate
+permissions:
+  filesystem: write
+  network: optional
+suggested_models:
+  - gpt-5.5-pro

@@ -1,0 +1,107 @@
+{
+  "title": "레퍼런스 기반 보고 덱 검토",
+  "audience": "전략 담당 임원",
+  "decisionAsk": "제한 범위 PoC 승인",
+  "tone": "한국 대기업 임원보고용, 간결하고 절제된 톤",
+  "facts": [
+    "비교 검토 시간이 평균 5일 소요",
+    "대안별 판단 기준이 문서마다 다름",
+    "레퍼런스는 최종 화면 복제가 아니라 구조 추출 용도로만 사용"
+  ],
+  "references": [
+    {
+      "source": "lazyweb",
+      "title": "B2B approval workflow examples",
+      "takeaways": [
+        "승인 흐름은 단계와 책임자를 함께 보여줄 때 이해가 빠름",
+        "근거 자료는 본문보다 하단 출처 라벨로 분리"
+      ]
+    },
+    {
+      "source": "mobbin",
+      "title": "Decision matrix and status pattern",
+      "takeaways": [
+        "추천안은 비교표의 한 컬럼으로 고정해 강조",
+        "도형은 흐름, 상태, 리스크를 설명할 때만 사용"
+      ]
+    }
+  ],
+  "slides": [
+    {
+      "kicker": "EXECUTIVE ASK",
+      "title": "레퍼런스는 화면 복제가 아니라 판단 구조를 보강하는 재료입니다",
+      "subtitle": "Lazyweb은 맥락과 근거를, Mobbin은 도형과 레이아웃 구조를 참고하되 최종 장표는 한국어 임원보고 문법으로 재작성합니다.",
+      "pattern": "title"
+    },
+    {
+      "kicker": "ISSUE TREE",
+      "title": "문제는 자료 부족보다 판단 기준의 분산입니다",
+      "pattern": "issue-tree",
+      "root": "판단 지연",
+      "branches": [
+        {
+          "title": "자료 수집",
+          "items": [
+            "출처 분산",
+            "최신성 확인 지연"
+          ]
+        },
+        {
+          "title": "비교 기준",
+          "items": [
+            "항목 불일치",
+            "가중치 미정"
+          ]
+        },
+        {
+          "title": "승인 흐름",
+          "items": [
+            "책임자 확인 지연",
+            "근거 누락"
+          ]
+        }
+      ]
+    },
+    {
+      "kicker": "RISK & CONTROL",
+      "title": "PoC는 범위를 좁히고 통제 기준을 먼저 고정해야 합니다",
+      "pattern": "risk-control",
+      "risks": [
+        {
+          "risk": "레퍼런스 오해석",
+          "control": "출처와 적용 원칙을 분리 기록합니다.",
+          "owner": "전략팀"
+        },
+        {
+          "risk": "장표 과밀",
+          "control": "슬라이드당 메시지 3개 이하를 유지합니다.",
+          "owner": "작성자"
+        },
+        {
+          "risk": "이미지 장식화",
+          "control": "의사결정 흐름을 설명할 때만 사용합니다.",
+          "owner": "디자인 검토"
+        }
+      ]
+    },
+    {
+      "kicker": "APPENDIX",
+      "title": "레퍼런스는 구조 추출 근거로만 관리합니다",
+      "pattern": "appendix",
+      "notes": [
+        {
+          "label": "Lazyweb",
+          "value": "맥락, 용어, 사례, 근거 후보"
+        },
+        {
+          "label": "Mobbin",
+          "value": "카드 밀도, 도형 연결, 상태 라벨, 이미지 배치"
+        },
+        {
+          "label": "적용 원칙",
+          "value": "결론 먼저, 근거 분리, 요청 명확화"
+        }
+      ]
+    }
+  ]
+}

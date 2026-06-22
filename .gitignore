@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+exports/*.png
+exports/*.pdf
+exports/*.pptx
+exports/**/*.png
+exports/**/*.pdf
+exports/**/*.pptx
+exports/**/export-plan.json
+exports/**/export-manifest.json
+exports/**/overflow-report.json
+.env

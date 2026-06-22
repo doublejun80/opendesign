@@ -1,0 +1,54 @@
+{
+  "specVersion": "0.1",
+  "id": "korean-executive-html-report",
+  "name": "Korean Executive HTML Report",
+  "version": "0.1.0",
+  "description": "Creates Korean executive/business report decks as editable 1920x1080 HTML panels.",
+  "compat": {
+    "openDesign": ">=0.1.0",
+    "agents": [
+      "codex",
+      "claude-code",
+      "cursor"
+    ]
+  },
+  "od": {
+    "mode": "create",
+    "task": "presentation",
+    "pipeline": [
+      "brief",
+      "outline",
+      "deck",
+      "refine",
+      "export"
+    ],
+    "inputs": [
+      "brief",
+      "source_notes",
+      "data_points",
+      "optional_reference_screens",
+      "lazyweb_reference_summary",
+      "mobbin_reference_summary",
+      "reference_image_urls",
+      "open_design_template_choice",
+      "open_design_skill_choice",
+      "open_design_system_choice"
+    ],
+    "outputs": [
+      "index.html",
+      "slides.json",
+      "content.json",
+      "README.md"
+    ],
+    "capabilities": [
+      "html-deck",
+      "korean-copywriting",
+      "executive-report",
+      "infographic",
+      "reference-pattern-extraction",
+      "reference-image-rail",
+      "open-design-template-synthesis",
+      "export-ready"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "open-design-korean-report-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/test-workspace.mjs",
+    "validate": "node scripts/validate-workspace.mjs",
+    "sample": "node scripts/create-report.mjs examples/sample-report-brief.json reports/sample-executive-report",
+    "sample:reference": "node scripts/create-report.mjs examples/reference-rich-brief.json reports/reference-rich-report",
+    "sample:premium": "node scripts/create-report.mjs examples/open-design-premium-brief.json reports/open-design-premium-report",
+    "export:sample": "node scripts/export-deck.mjs reports/sample-executive-report/index.html exports/sample-executive-report",
+    "export:premium": "node scripts/export-deck.mjs reports/open-design-premium-report/index.html exports/open-design-premium-report"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.0"
+  }
+}
