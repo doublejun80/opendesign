@@ -12,9 +12,12 @@ Do not use this for consumer marketing posters unless the user asks for that ton
 
 ## Reference Sources
 
-When Lazyweb or Mobbin references are available, summarize them in the report brief under `references`.
+When Refero, official brand, user-provided, or explicitly requested references are
+available, summarize them in the report brief under `references`.
 
-- `lazyweb`: use for context, examples, terms, and evidence discovery.
-- `mobbin`: use for visual structure, shapes, labels, image placement, and UI density.
-
-Do not copy reference screens. Extract patterns and rebuild them as Korean executive-report slides.
+- `refero_master`: when the user selects one Refero sample as the desired mood, use it
+  as the deck-level visual-language master. Preserve the sample's visible taste, density,
+  typography rhythm, line/surface/spacing feel, color restraint, and memorable devices.
+Do not copy ordinary reference screens. Extract patterns and rebuild them as Korean
+executive-report slides. When a Refero master is specified, do not reduce it to patterns
+only; keep its visual taste strong while the user's scenario decides each slide layout.

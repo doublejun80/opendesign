@@ -1,1 +1,1 @@
-Use korean-executive-html-report. Create a 6-slide Korean executive report about "AI 기반 IT 구매 자동화 PoC 검토" as 1920x1080 HTML panels.
+Use korean-executive-html-report. Create a 6-slide Korean executive report about "AI 기반 IT 구매 자동화 PoC 검토" as 1920x1080 HTML panels. Use Korean executive-report fragment style, not sentence endings like 한다/이다/필요하다. Preserve Korean reading units across all text blocks, not only titles. Validate sentence endings, Korean eojeol, semantic phrases, and short final-line tails by running the Korean line-break audit before finalizing.

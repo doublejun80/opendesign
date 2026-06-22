@@ -1,4 +1,10 @@
 :root {
+  /*
+    Default Korean executive-report tokens.
+    If the user specifies a Refero master reference, treat these values as fallbacks.
+    Override palette, radius, border, shadow, spacing, and component density in the
+    report so the master reference's visual taste is not diluted by this default theme.
+  */
   --kr-font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --kr-bg: #f6f2ea;
   --kr-bg-2: #ebe4d8;
@@ -27,6 +33,23 @@
 }
 
 * { box-sizing: border-box; }
+
+:where(.slide, .slide *) {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  letter-spacing: 0;
+}
+
+.ko-keep {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ko-allow-break {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
 
 body {
   margin: 0;
@@ -57,7 +80,7 @@ body {
 
 .kicker {
   font-size: 25px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--kr-blue);
   font-weight: 800;
@@ -69,7 +92,7 @@ body {
 .title {
   font-size: 64px;
   line-height: 1.12;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   font-weight: 850;
   margin: 0;
   max-width: 1360px;
@@ -112,7 +135,7 @@ body {
   font-size: 32px;
   line-height: 1.25;
   margin: 0 0 14px;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
 }
 
 .card p, .body-text {
@@ -125,7 +148,7 @@ body {
 .metric {
   font-size: 84px;
   line-height: .95;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
   font-weight: 900;
 }
 

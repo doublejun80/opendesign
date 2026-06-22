@@ -1,5 +1,9 @@
 # Layout Patterns for Korean Report Decks
 
+These are reusable patterns, not fixed slide-number assignments. Use them only when the
+user's scenario calls for the structure. If a Refero master reference is specified, keep
+the master reference's visual taste and adapt the pattern inside that language.
+
 ## 1. Executive Summary
 
 ```text
