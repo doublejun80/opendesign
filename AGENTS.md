@@ -57,6 +57,16 @@ https://github.com/nexu-io/open-design/discussions
 
 이 레퍼런스의 핵심은 “내용을 HTML로 옮기는 것”이 아니라 템플릿, 스킬, 디자인 시스템, 레퍼런스 이미지를 조합해 조판된 덱을 만드는 것이다.
 
+공식 Open Design 플러그인 카탈로그는 로컬 스냅샷으로도 관리한다.
+
+```text
+open-design-catalog/skills.json
+open-design-catalog/templates.json
+open-design-catalog/templates-slide.json
+```
+
+보고서 덱을 만들 때는 먼저 `templates-slide.json`에서 장표/덱 템플릿 후보를 확인하고, 필요한 경우 `templates.json`에서 프로토타입·이미지·영상 템플릿까지 확장한다. 카탈로그 갱신은 `node scripts/sync-open-design-catalog.mjs`로 수행한다.
+
 ## 2-1. 사용자 조직 컨텍스트
 
 - 사용자는 SK AX 소속이다.

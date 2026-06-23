@@ -1,0 +1,1289 @@
+{
+  "source": "https://open-design.ai/ko/plugins/templates/",
+  "generatedAt": "2026-06-23T13:27:46.539Z",
+  "purpose": "Korean executive/report deck reference candidates",
+  "selectionRule": "mode === \"deck\" or mediaKind === \"슬라이드\"",
+  "totalCount": 80,
+  "templates": [
+    {
+      "index": 5,
+      "slug": "example-hps-academic-paper",
+      "title": "Academic Paper",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@lewislulu",
+      "provider": "Open Design",
+      "description": "LaTeX-paper deck theme: paper-white #fdfcf8 ground, all-serif type (Latin Modern Roman with Playfair Display fallback), ink-black body, link-blue #1a3a7a underlined citation anchors, italic kickers, zero radius and near-zero shadow, double-rule title page, numbered Figure/Table captions and booktabs three-line tables. Single-file HTML deck with keyboard navigation and hash deep links — for conference talks, thesis defenses, research reviews and journal clubs. Based on lewislulu/html-ppt-skill academic-paper.",
+      "url": "https://open-design.ai/plugins/example-hps-academic-paper/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-hps-academic-paper.bdd01f77764a319c.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-hps-academic-paper.bdd01f77764a319c.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 13,
+      "slug": "example-huashu-annual-letter",
+      "title": "Annual Letter",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Stripe-annual-letter style single-file HTML decks: cream #FBFAF8 paper with a single Stripe-purple #635BFF accent, serif prose paragraphs at a 65ch publication measure, inline data cards embedded in the running text, and oversized tabular display-number anchor pages — the 'editorial longform' letter genre, prose flow instead of bullets. Based on alchaincyf/huashu-design editorial-longform (design-styles.md 安静派 · Editorial Longform).",
+      "url": "https://open-design.ai/plugins/example-huashu-annual-letter/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-annual-letter.ec7c273332ca549a.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-annual-letter.ec7c273332ca549a.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 15,
+      "slug": "example-hps-bauhaus",
+      "title": "Bauhaus Primary",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@lewislulu",
+      "provider": "Open Design",
+      "description": "Design-history geometric deck: aged canvas #f4efe3, the red/yellow/blue primaries (#e03c27/#f4c430/#1d4eaf), a hard three-band gradient, zero border radius, 2px ink strokes, hard offset shadows, Archivo Black + Space Grotesk. Based on lewislulu/html-ppt-skill bauhaus theme — single-file HTML deck with keyboard navigation and #/N hash deep links.",
+      "url": "https://open-design.ai/plugins/example-hps-bauhaus/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-hps-bauhaus.c37aab5b19384ff1.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-hps-bauhaus.c37aab5b19384ff1.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 17,
+      "slug": "example-huashu-bento-insight",
+      "title": "Bento Insight Grid",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Apple Keynote / QBR-school bento decks: light-grey #F5F5F7 and cream pages, unequal-height rounded cards with 1px hairlines and micro shadows, one insight per card (giant Geist Mono tabular numeral, linear inline-SVG icon, or SVG sparkline), oversized display headlines with hard weight contrast, Inter/Geist typography on a fixed 1920×1080 canvas. Based on https://github.com/alchaincyf/huashu-design design-styles.md bento-grid spec (Bento便当格模块网格, neutral school, 95% fidelity), generated from the spec into a full multi-section deck.",
+      "url": "https://open-design.ai/plugins/example-huashu-bento-insight/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-bento-insight.d065d893f6c7802c.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-bento-insight.d065d893f6c7802c.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 36,
+      "slug": "example-fs-creative-voltage",
+      "title": "Creative Voltage",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@zarazhangrui",
+      "provider": "Open Design",
+      "description": "Retro-modern single-file HTML decks: electric blue x deep navy split panels, neon yellow badges, halftone dot textures, and script flourishes with Syne + Space Mono on a fixed 1920x1080 stage that scales to any viewport. Based on zarazhangrui/frontend-slides Creative Voltage preset (STYLE_PRESETS.md section 3).",
+      "url": "https://open-design.ai/plugins/example-fs-creative-voltage/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-fs-creative-voltage.e84e6abd4e82cd25.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-fs-creative-voltage.e84e6abd4e82cd25.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 53,
+      "slug": "example-fs-editorial-forest",
+      "title": "Editorial Forest",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@zarazhangrui",
+      "provider": "Open Design",
+      "description": "Quiet, literary single-file HTML decks: deep forest green #2e4a2a, dusty pink #e89cb1, and warm cream #efe7d4 paper set in Source Serif 4 with JetBrains Mono kickers, on a fixed 1920x1080 stage that scales to any viewport. Mixed light/dark scheme with an 8-slide quarterly-review rhythm. Based on zarazhangrui/beautiful-html-templates editorial-forest.",
+      "url": "https://open-design.ai/plugins/example-fs-editorial-forest/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-fs-editorial-forest.06ba7f0b1568147c.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-fs-editorial-forest.06ba7f0b1568147c.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 54,
+      "slug": "example-fs-electric-studio",
+      "title": "Electric Studio",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@zarazhangrui",
+      "provider": "Open Design",
+      "description": "Bold, clean split-panel HTML decks: white panel over cobalt #4361ee, brand marks in the corners, a dark accent bar on the panel edge, quote typography as the hero element, all-Manrope (800/400), confident restrained spacing. Fixed 1920x1080 stage scaled uniformly to any viewport, zero dependencies. Based on zarazhangrui/frontend-slides electric-studio (STYLE_PRESETS section 2).",
+      "url": "https://open-design.ai/plugins/example-fs-electric-studio/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-fs-electric-studio.c2472c3d6f64cec8.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-fs-electric-studio.c2472c3d6f64cec8.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 57,
+      "slug": "example-fs-emerald-editorial",
+      "title": "Emerald Editorial",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@zarazhangrui",
+      "provider": "Open Design",
+      "description": "Magazine-cover business decks: a saturated emerald #3CD896 canvas, deep navy #0F1A5C ink, warm paper #F1E9D6 tiles, double-rule masthead ornaments, and Bodoni Moda weight-900 display serif on a fixed 1920x1080 stage with uniform viewport scaling. Mixed emerald/navy scheme, 8-slide editorial rhythm. Based on zarazhangrui/beautiful-html-templates emerald-editorial.",
+      "url": "https://open-design.ai/plugins/example-fs-emerald-editorial/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-fs-emerald-editorial.f1a1d5a63ff650d7.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-fs-emerald-editorial.f1a1d5a63ff650d7.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 63,
+      "slug": "example-frontend-slides",
+      "title": "Frontend Slides",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@zarazhangrui",
+      "provider": "Open Design",
+      "description": "Animation-rich, zero-dependency HTML presentations on a fixed 1920x1080 stage that scales to any viewport. Distinctive typography, committed palettes, choreographed staggered reveals, keyboard navigation, and hash routing - no generic AI-slop aesthetics.",
+      "url": "https://open-design.ai/plugins/example-frontend-slides/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-frontend-slides.7fa972d451e40c93.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-frontend-slides.7fa972d451e40c93.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 73,
+      "slug": "example-huashu-golden-circle",
+      "title": "Golden Circle Diagram",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Sinek/TED-school diagrammatic minimalism decks: warm-white paper, ink, and exactly one gold accent (#E8860C) with its tints; a single geometric master figure — nested concentric WHY/HOW/WHAT circles built from pure border-radius divs — carries every page of the deck through fill, highlight, grey, and outline modes; uppercase Jost labels embedded in the figure, Manrope display headlines, inside-out arrows, zero charts and zero images. Based on https://github.com/alchaincyf/huashu-design design-styles.md diagrammatic-minimalism (单图母图概念图解), generated from the spec into a full multi-section deck.",
+      "url": "https://open-design.ai/plugins/example-huashu-golden-circle/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-golden-circle.9ebeb1ebcf960bce.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-golden-circle.9ebeb1ebcf960bce.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 74,
+      "slug": "example-deck-guizang-editorial",
+      "title": "Guizang 에디토리얼 E-Ink 덱",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "편집 매거진과 전자잉크의 만남: 10가지 레이아웃과 5가지 팔레트(잉크, 인디고 포슬린, 포레스트 잉크, 크래프트 페이퍼, 듄).",
+      "url": "https://open-design.ai/plugins/example-deck-guizang-editorial/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-deck-guizang-editorial.1f1bac31205cc15d.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-deck-guizang-editorial.1f1bac31205cc15d.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 75,
+      "slug": "example-guizang-ppt",
+      "title": "Guizang Ppt",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "전자 잡지 × 전자 잉크 스타일의 가로 스와이프 웹 프레젠테이션(단일 HTML 파일)을 생성합니다. WebGL 유체 배경, 세리프 제목 + 산세리프 본문, 챕터 표지, 데이터 시각화, 이미지 그리드 등의 템플릿을 포함하며 잡지풍 발표 자료 제작에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-guizang-ppt/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-guizang-ppt.3a265b33dfaacb4f.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-guizang-ppt.3a265b33dfaacb4f.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 79,
+      "slug": "example-html-ppt",
+      "title": "Html Ppt",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "HTML PPT Studio — 다양한 스타일, 레이아웃, 애니메이션을 제공하는 전문 정적 HTML 프레젠테이션 제작 도구. 템플릿 기반으로 프레젠테이션, PPT, 슬라이드, keynote, reveal 스타일 HTML 덱 등 키보드 탐색을 지원하는 발표 자료 제작에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt/",
+      "preview": {
+        "poster": "https://open-design.ai/previews/plugins/example-html-ppt.png",
+        "video": null
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 80,
+      "slug": "example-html-ppt-course-module",
+      "title": "Html Ppt 코스 모듈",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "온라인 강좌/워크숍 모듈 덱 — 따뜻한 종이 배경 + Playfair 세리프 폰트, 학습 목표를 표시하는 고정 좌측 사이드바, 객관식 자가 점검 페이지. 교육 모듈, 교육 자료, 워크숍 슬라이드에 사용하세요.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-course-module/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-course-module.77ad699fca5dcd82.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-course-module.77ad699fca5dcd82.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 81,
+      "slug": "example-html-ppt-graphify-dark-graph",
+      "title": "Html Ppt Graphify Dark Graph",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "다크 테마 지식 그래프 deck. #06060c→#0e1020 심야 그라데이션 + 떠다니는 blur orbs, 커버 SVG 포스 다이렉트 그래프, 레인보우 그라데이션 제목, JetBrains Mono CLI 하이라이트, glass-morphism 카드 포함. dev-tool / CLI / 지식 그래프 / 데이터 시각화 발표에 적합하며, 'AI-native + SF + 따뜻한 색감' 분위기.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-graphify-dark-graph/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-graphify-dark-graph.6d2b6583c4d81ffb.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-graphify-dark-graph.6d2b6583c4d81ffb.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 82,
+      "slug": "example-html-ppt-hermes-cyber-terminal",
+      "title": "Html Ppt Hermes 사이버 터미널",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "다크 터미널 스타일 프레젠테이션 템플릿. #0a0c10 검은 배경, 56px 사이버 그리드, CRT 비네팅, 스캔라인, 창 신호등 chrome, `$ prompt` 커맨드라인 제목, 민트그린 #7ed3a4 대형 텍스트, JetBrains Mono, 아웃라인 막대 차트, 깜빡이는 커서, 호박색/녹색/빨간색 3단계 태그, 다크 코드 블록. CLI/agent/개발 도구 리뷰에 적합(trace, diff, benchmark 포함).",
+      "url": "https://open-design.ai/plugins/example-html-ppt-hermes-cyber-terminal/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-hermes-cyber-terminal.ef0c41d19eaff81a.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-hermes-cyber-terminal.ef0c41d19eaff81a.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 83,
+      "slug": "example-html-ppt-knowledge-arch-blueprint",
+      "title": "Html Ppt 지식 아키텍처 청사진",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "크림 청사진 아키텍처 덱 — 크림 페이퍼 #F0EAE0 배경 + 단일 녹청색 #B5392A 하이라이트, 48px 청사진 그리드 마스크, 2px 검은 테두리 하드 카드, 파이프라인 단계 박스(하나 상승), 오른쪽 녹청색 인사이트 콜아웃, Playfair 세리프 대형 글자, SVG 점선 피드백 루프. 그라데이션 없음, 소프트 섀도우 없음, 진지하고 인쇄 친화적.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-knowledge-arch-blueprint/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-knowledge-arch-blueprint.e8f7df6943cc159c.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-knowledge-arch-blueprint.e8f7df6943cc159c.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 84,
+      "slug": "example-html-ppt-obsidian-claude-gradient",
+      "title": "Html Ppt Obsidian Claude Gradient",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "GitHub 다크 퍼플 그라데이션 덱 테마. GitHub-dark #0d1117 배경, 보라-파랑 방사형 앰비언트 라이트, 60px 그리드 마스크, 중앙 정렬 레이아웃, 보라색 필 태그, 3색 그라데이션 제목(#a855f7→#60a5fa→#34d399), GitHub 스타일 코드 팔레트, 보라색 왼쪽 테두리 하이라이트 블록 제공. 개발자 워크플로우, MCP, Agent, 개발 도구 튜토리얼에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-obsidian-claude-gradient/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-obsidian-claude-gradient.bfae185c69253006.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-obsidian-claude-gradient.bfae185c69253006.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 85,
+      "slug": "example-html-ppt-pitch-deck",
+      "title": "Html Ppt 피치덱",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "투자자용 10슬라이드 HTML 피치덱——화이트 + 블루-퍼플 그라디언트 히어로, 큰 숫자, 트랙션 막대 차트, 450만 달러 투자 유치 페이지. 자금 조달 덱, 시드 라운드 피치, VC 미팅 슬라이드 제작에 사용.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-pitch-deck/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-pitch-deck.3a61c4f45b422dee.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-pitch-deck.3a61c4f45b422dee.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 86,
+      "slug": "example-html-ppt-presenter-mode-reveal",
+      "title": "Html Ppt 발표자 모드 Reveal",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "발표자 모드 전용 deck — tokyo-night 기본 테마, T 키로 전환 가능한 5가지 테마, 각 페이지에 150-300자 스크립트 예제（<aside class=\"notes\">）, S 키로 popup 열기（CURRENT / NEXT / SCRIPT / TIMER 4개 카드）. 기술 공유, 공개 연설, 강의용으로 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-presenter-mode-reveal/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-presenter-mode-reveal.18ffa51c14554776.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-presenter-mode-reveal.18ffa51c14554776.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 87,
+      "slug": "example-html-ppt-product-launch",
+      "title": "Html Ppt 제품 출시",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "출시 키노트 덱 — 다크 히어로 + 라이트 콘텐츠, 따뜻한 오렌지→피치 액센트, 기능 카드, 가격 등급, CTA. 제품 발표, 기능 출시 또는 키노트 스타일 공개 시 사용.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-product-launch/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-product-launch.dcea7b69065529e0.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-product-launch.dcea7b69065529e0.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 90,
+      "slug": "example-html-ppt-tech-sharing",
+      "title": "Html Ppt Tech Sharing",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "컨퍼런스 / 내부 기술 공유 발표 자료 — GitHub-dark 스타일, JetBrains Mono 폰트, 터미널 코드 블록, 안건 + Q&A 페이지. 엔지니어링 프레젠테이션, 내부 공유 세션, 컨퍼런스 발표, 코드 중심 설명에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-tech-sharing/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-tech-sharing.b3da8b1623c6feaf.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-tech-sharing.b3da8b1623c6feaf.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 91,
+      "slug": "example-html-ppt-testing-safety-alert",
+      "title": "Html Ppt Testing Safety Alert",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "안전 및 리스크 보고용 경고 덱 템플릿. 빨강-검정 위험 줄무늬, L1/L2/L3 등급 카드, 상태 알림 박스, policy-yaml 코드 블록, 체크리스트, Q1 사고 누적 차트 포함.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-testing-safety-alert/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-testing-safety-alert.7a287eb126e608f2.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-testing-safety-alert.7a287eb126e608f2.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 92,
+      "slug": "example-html-ppt-weekly-report",
+      "title": "Html Ppt 주간 보고서",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "팀 주간/상태 업데이트 덱 — 기업용 명확한 표시, 8셀 KPI 그리드, 완료 목록, 8주 막대 차트, 다음 주 테이블. 주간 보고서, 비즈니스 리뷰, 팀 상태 업데이트 및 임원 대시보드에 사용하세요.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-weekly-report/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-weekly-report.610e9cfe41bd6274.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-weekly-report.610e9cfe41bd6274.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 93,
+      "slug": "example-html-ppt-xhs-pastel-card",
+      "title": "Html Ppt Xhs 파스텔 카드",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "부드러운 마카롱 슬로우 라이프 deck — 크림 #fef8f1 배경 + 3개의 소프트 blob、Playfair 이탤릭 serif display 제목 + sans 본문、28px 라운드 마카롱 카드（피치 / 민트 / 스카이 / 퍼플 / 레몬 / 로즈）、Playfair 이탤릭 01-04 번호、SVG 도넛 차트、chip+page 상단바. 라이프스타일 / 개인 성장 / 슬로우 라이프 / 감성 콘텐츠에 적합하며, '매거진, 핸드메이드, 덜 테크한' 느낌.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-xhs-pastel-card/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-xhs-pastel-card.4a3258feb6fbfd19.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-xhs-pastel-card.4a3258feb6fbfd19.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 94,
+      "slug": "example-html-ppt-xhs-white-editorial",
+      "title": "Html Ppt Xhs 화이트 에디토리얼",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "화이트 배경 매거진 스타일 덱 — 순백 배경 + 상단 10색 레인보우 바, 80-110px 디스플레이 제목, 보라→파랑→초록→주황→핑크 그라데이션 텍스트, 마카롱 소프트 카드(핑크/보라/파랑/초록/주황), 검정 배경 흰색 글자 .focus pill, 인용 블록. 샤오홍슈 이미지 게시물과 가로형 PPT 모두 사용 가능.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-xhs-white-editorial/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-xhs-white-editorial.4a0fb6e62c76c985.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-xhs-white-editorial.4a0fb6e62c76c985.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 95,
+      "slug": "example-html-ppt-zhangzara-8-bit-orbit",
+      "title": "Html Ppt Zhangzara 8 Bit Orbit",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "8-Bit Orbit — 짙은 네이비 배경 위의 픽셀 아트 네온 아케이드 미학. 새벽 2시 CRT 화면 느낌이 필요한 모든 것에 적합: 사이버펑크, 게임, web3, 인디 개발 도구, 해커톤 데모.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-8-bit-orbit/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-8-bit-orbit.058224ab888cfc67.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-8-bit-orbit.058224ab888cfc67.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 96,
+      "slug": "example-html-ppt-zhangzara-biennale-yellow",
+      "title": "Html Ppt Zhangzara Biennale Yellow",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "비엔날레 옐로우 — 따뜻한 양피지에 태양 노랑색, 깊은 인디고 세리프체와 분위기 있는 햇빛 그라데이션. 아트 비엔날레 포스터, 미술관 연간 프로그램, 전시 프레젠테이션, 예술 기관 공고, 디자인 컨퍼런스 브로슈어, 큐레이터 제안서, 문학 출판물, 스튜디오 회고전 등에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-biennale-yellow/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-biennale-yellow.08c9dbd20f2d0b20.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-biennale-yellow.08c9dbd20f2d0b20.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 97,
+      "slug": "example-html-ppt-zhangzara-block-frame",
+      "title": "Html Ppt Zhangzara 블록 프레임",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "BlockFrame — 파스텔 네온 컬러 블록과 굵은 검은 테두리의 네오브루탈리즘 덱. 팝 그래픽하고 디자인 중심적인 느낌이 필요한 곳에 적합: 인디 SaaS 런칭, 에이전시 소개, 크리에이티브 리뷰, 브랜드 리디자인.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-block-frame/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-block-frame.de8dd926647d6c24.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-block-frame.de8dd926647d6c24.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 98,
+      "slug": "example-html-ppt-zhangzara-blue-professional",
+      "title": "Html Ppt Zhangzara Blue Professional",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "블루 프로페셔널 — 크림색 종이 배경에 코발트 블루 악센트. 깔끔하고 현대적이며 전문적인 디자인. B2B SaaS 피칭, 컨설팅 결과물, 자문 업데이트, 투자자 보고서 등에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-blue-professional/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-blue-professional.4f0cce91d26adb58.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-blue-professional.4f0cce91d26adb58.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 99,
+      "slug": "example-html-ppt-zhangzara-bold-poster",
+      "title": "Html Ppt Zhangzara 볼드 포스터",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "볼드 포스터 — 대형 Shrikhand 디스플레이 서체와 단일 소방차 레드 악센트를 사용한 편집 포스터 미학. 브랜드 선언문, 창업자 비전 덱, 편집/문화 제안서, 크리에이티브 리뷰 등 잡지 표지처럼 임팩트 있게 표현해야 하는 콘텐츠에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-bold-poster/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-bold-poster.2eb4b69303f2f181.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-bold-poster.2eb4b69303f2f181.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 100,
+      "slug": "example-html-ppt-zhangzara-broadside",
+      "title": "Html Ppt Zhangzara Broadside",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Broadside — 단일 파이어 오렌지 강조색과 라틴어/중국어 이중 언어 타이포그래피 스택이 있는 어두운 편집 캔버스. 신문 헤드라인처럼 강렬한 인상을 주어야 하는 콘텐츠에 적합: 브랜드 선언문, 매거진 및 문화 기획안, 디자인 강연, 영어/중국어 이중 언어 프레젠테이션, 창업자 비전 선언문.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-broadside/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-broadside.2b69c941f7bb38ec.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-broadside.2b69c941f7bb38ec.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 101,
+      "slug": "example-html-ppt-zhangzara-capsule",
+      "title": "Html Ppt Zhangzara 캡슐",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Capsule — 따뜻한 본 컬러 배경의 모듈형 알약 모양 카드와 풀 파스텔 팝 팔레트. 모듈형, 모던하고 Y2K 감성이 필요한 곳에 적합: 라이프스타일 브랜드, 크리에이터 포트폴리오, DTC 런칭, 뷰티/웰니스, 에이전시 크레덴셜.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-capsule/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-capsule.6e65aaed5a0e500f.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-capsule.6e65aaed5a0e500f.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 102,
+      "slug": "example-html-ppt-zhangzara-cartesian",
+      "title": "Html Ppt Zhangzara Cartesian",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Cartesian — 클래식한 Playfair 세리프체와 조용한 웜 뉴트럴 팔레트. 세련되고 여유로운 느낌. 투자 보고서, 백서, 자문 업무, 장문 리서치, 갤러리 및 문화 프레젠테이션 등 차분하고 신중하며 성숙한 분위기가 필요한 모든 콘텐츠에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-cartesian/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-cartesian.07cbe656cc54955e.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-cartesian.07cbe656cc54955e.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 103,
+      "slug": "example-html-ppt-zhangzara-cobalt-grid",
+      "title": "Html Ppt Zhangzara Cobalt Grid",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Cobalt Grid — 모눈종이 캔버스 위에 전기 코발트 이탤릭 세리프를 배치하고, 계단식 픽셀 글리치 장식과 가는 헤어라인 규칙으로 구성. 차분하고 진지한 디자인/리서치 브리프, 아트 출판물, 큐레이션된 트렌드 리포트에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-cobalt-grid/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-cobalt-grid.a4ebfbfd59012e6b.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-cobalt-grid.a4ebfbfd59012e6b.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 104,
+      "slug": "example-html-ppt-zhangzara-coral",
+      "title": "Html Ppt Zhangzara Coral",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Coral — 거의 검은색 배경에 크림과 코랄 색상, 초대형 Bebas Neue 폰트 사용. 따뜻하고 그래픽적이며 편집적인 느낌이 필요한 콘텐츠에 적합: 패션, 뷰티, 피트니스, 식음료, 라이프스타일 브랜드, 에이전시 크리덴셜.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-coral/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-coral.2c812481828f6bc4.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-coral.2c812481828f6bc4.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 105,
+      "slug": "example-html-ppt-zhangzara-creative-mode",
+      "title": "Html Ppt Zhangzara Creative Mode",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Creative Mode — 크림 페이퍼 캔버스에 자신감 있는 멀티 컬러(그린, 핑크, 오렌지, 옐로우) 액센트와 Archivo Black 디스플레이 폰트를 적용. 디자인 주도적이고 자신감 있는 느낌이 필요한 모든 것에 적합: 크리에이티브 에이전시 피칭, 디자인 스튜디오 덱, 광고 회사 크레덴셜, 브랜드 크리에이티브 리뷰, 아트 디렉션 리뷰.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-creative-mode/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-creative-mode.e8d5f253642fd817.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-creative-mode.e8d5f253642fd817.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 106,
+      "slug": "example-html-ppt-zhangzara-daisy-days",
+      "title": "Html Ppt Zhangzara Daisy Days",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Daisy Days — 손으로 그린 데이지, 별, 무지개가 있는 밝은 파스텔 덱. 친근하고 부드러우며 따뜻합니다. 친근하고 부드럽고 즐거운 느낌이 필요한 모든 것: 교육 콘텐츠, 어린이 및 가족, 웰니스 프로그램, 커뮤니티 워크샵, 공예/일러스트레이션 포트폴리오.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-daisy-days/",
+      "preview": {
+        "poster": "https://open-design.ai/previews/plugins/example-html-ppt-zhangzara-daisy-days.png",
+        "video": null
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 107,
+      "slug": "example-html-ppt-zhangzara-editorial-tri-tone",
+      "title": "Html Ppt Zhangzara Editorial Tri Tone",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Editorial Tri-Tone — 3색 에디토리얼 시스템: 더스티 핑크, 머스타드 크림, 딥 버건디를 Bricolage + Instrument Serif로 구성. 패션 매거진 스타일 콘텐츠에 적합: 에디토리얼 기획안, 패션 브랜드 덱, 라이프스타일 미디어, 아트 디렉션 리뷰.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-editorial-tri-tone/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-editorial-tri-tone.26badb0fbef43dc1.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-editorial-tri-tone.26badb0fbef43dc1.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 108,
+      "slug": "example-html-ppt-zhangzara-grove",
+      "title": "Html Ppt Zhangzara Grove",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Grove — 포레스트 그린 캔버스에 크림색 타이포, 클래식한 Playfair 세리프체, 러스트 컬러 악센트. 유기적이고 세련되며 성숙한 느낌이 필요한 콘텐츠에 적합: 지속가능성 및 웰니스 브랜드, 아웃도어/자연 제품, 와이너리 및 레스토랑, 문학/예술 프레젠테이션, 컨설팅 결과물, 영중/한중 이중언어 보고서.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-grove/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-grove.aa84fb10b893cebd.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-grove.aa84fb10b893cebd.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 109,
+      "slug": "example-html-ppt-zhangzara-long-table",
+      "title": "Html Ppt Zhangzara Long Table",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Long Table — 따뜻한 크림색과 러스트 레드의 서퍼 클럽 미학. 굵은 대문자 그로테스크 헤드라인, 이탤릭 Fraunces, 알약 모양 아웃라인 버튼이 특징. 따뜻하고 친밀한 모던 호스피탈리티 및 커뮤니티 브랜드에 적합: 서퍼 클럽, 디너 시리즈, 소규모 레스토랑, 크리에이티브 스튜디오 이벤트, 멤버십 제안, 라이프스타일 및 와인 브랜드.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-long-table/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-long-table.3cd7342cde36bec5.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-long-table.3cd7342cde36bec5.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 110,
+      "slug": "example-html-ppt-zhangzara-mat",
+      "title": "Html Ppt Zhangzara Mat",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Mat — 다크 세이지 캔버스에 본 페이퍼와 번트 오렌지 액센트를 더한 우드 톤의 미드센추리 모던 스타일. 디자인 스튜디오 포트폴리오, 건축/인테리어 브랜드, 도자기/공예/가구, 컨설팅 자료 등 미드센추리적이고 촉각적이며 의도적인 느낌이 필요한 모든 것에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-mat/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-mat.491467b1aa92bfd6.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-mat.491467b1aa92bfd6.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 111,
+      "slug": "example-html-ppt-zhangzara-monochrome",
+      "title": "Html Ppt Zhangzara Monochrome",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "모노크롬 — 아이보리 원장지에 순수 검은색 타이포그래피. 제목은 Lora 세리프체, 본문은 Jost, 색상 완전 배제. 수기 조판 원장 느낌이 필요한 콘텐츠에 적합: 사용자 리서치 종합, 백서, 장문 보고서, 학술 및 정책 브리프, 컨설팅 결과물, 한영 이중언어 보고서.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-monochrome/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-monochrome.b5f727dbdb04306a.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-monochrome.b5f727dbdb04306a.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 112,
+      "slug": "example-html-ppt-zhangzara-neo-grid-bold",
+      "title": "Html Ppt Zhangzara Neo Grid Bold",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Neo-Grid Bold — 오프화이트 배경에 단일 네온 옐로우 액센트를 사용한 편집 스타일의 네오 브루탈리즘 디자인. 자신감 있고 편집적인 그래픽이 필요한 경우에 적합: 디자인 중심 피칭, 브랜드 작업, 창업자 강연, 컨퍼런스 기조연설.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-neo-grid-bold/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-neo-grid-bold.6da44f413a02a5e0.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-neo-grid-bold.6da44f413a02a5e0.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 113,
+      "slug": "example-html-ppt-zhangzara-peoples-platform",
+      "title": "Html Ppt Zhangzara 인민 플랫폼",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "인민 플랫폼(블록 & 볼드) — 활동가 포스터 에너지: 크림색 바탕에 파랑, 주황, 빨강 배색과 Alfa Slab + Caveat Brush 폰트 사용. 솔직하고 강렬하며 그래픽적인 표현이 필요한 콘텐츠에 적합: 문화 비평, 선언문, 시민 커뮤니티 프레젠테이션, 디자인 강연, 캠페인 제안.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-peoples-platform/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-peoples-platform.449fb1779f1ed4fb.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-peoples-platform.449fb1779f1ed4fb.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 114,
+      "slug": "example-html-ppt-zhangzara-pin-and-paper",
+      "title": "Html Ppt Zhangzara Pin And Paper",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Pin & Paper — 안전핀 일러스트가 있는 노란 종이, 잉크 블루 손글씨 Caveat, 종이 질감. 수작업 느낌, 따뜻함, 문학적 분위기가 필요한 콘텐츠: 정성적 연구 결과, 창업자 회고, 브랜드 스토리, 워크숍 요약.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-pin-and-paper/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-pin-and-paper.2a067b392e78c99b.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-pin-and-paper.2a067b392e78c99b.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 115,
+      "slug": "example-html-ppt-zhangzara-pink-script",
+      "title": "Html Ppt Zhangzara Pink Script",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Pink Script — After Hours — 블랙 캔버스, 핫 핑크 액센트, 펄 크림 페이퍼, Instrument Serif 헤드라인: 심야 에디토리얼 럭셔리 스타일. 패션 브랜드 덱, 크리에이터 퍼스널 브랜드, 나이트라이프/주류 런칭, 럭셔리 제품 공개, 에디토리얼 피처 등 야간의 의도적이고 고급스러운 분위기에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-pink-script/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-pink-script.34e0c18ba83fc1f8.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-pink-script.34e0c18ba83fc1f8.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 116,
+      "slug": "example-html-ppt-zhangzara-playful",
+      "title": "Html Ppt Zhangzara Playful",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Playful — 따뜻한 햇살 같은 피치 배경에 Syne 폰트를 사용한 친근한 인디 프로젝트 발표 덱. 크리에이터 포트폴리오, 인디 제품 론칭, 라이프스타일 브랜드, 소규모 비즈니스 피칭, 커뮤니티 덱 등 따뜻하고 친근한 느낌이 필요한 모든 경우에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-playful/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-playful.8a81042a56e77738.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-playful.8a81042a56e77738.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 117,
+      "slug": "example-html-ppt-zhangzara-raw-grid",
+      "title": "Html Ppt Zhangzara Raw Grid",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Raw Grid — 두꺼운 테두리, 오프셋 그림자, 핑크/세이지/잉크 팔레트를 갖춘 네오 브루탈리스트 덱. 직접적이고 그래픽적으로 자신감 있는 느낌이 필요한 곳에 적합: 창업자 피칭, 액셀러레이터 데모, 브랜드 덱, 인디 론칭, 크리에이터 포트폴리오.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-raw-grid/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-raw-grid.52bcfd4e2dc28832.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-raw-grid.52bcfd4e2dc28832.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 118,
+      "slug": "example-html-ppt-zhangzara-retro-windows",
+      "title": "Html Ppt Zhangzara 레트로 Windows",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Windows 95 스타일: 회색 타이틀 바, MS Sans Serif, 픽셀 타이포그래피로 향수를 자극합니다. 레트로 게임, Y2K 감성 브랜드, 90년대 느낌의 포트폴리오, 기술사 발표, 의도적으로 복고풍인 프레젠테이션에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-retro-windows/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-retro-windows.1066682fb28860f4.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-retro-windows.1066682fb28860f4.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 119,
+      "slug": "example-html-ppt-zhangzara-retro-zine",
+      "title": "Html Ppt Zhangzara Retro Zine",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Retro Zine — 베이지 종이에 그린 악센트, Bebas Neue + Caveat 폰트 사용: HTML 형식의 리소 인쇄 스타일 진. 인디 진과 출판물, 음악/예술 브랜드, 크리에이터 포트폴리오, 소량 제작 제품 런칭, 커뮤니티 덱 등 인쇄물 느낌, 로우파이, 수작업 감성이 필요한 곳에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-retro-zine/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-retro-zine.70641198f83ae97b.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-retro-zine.70641198f83ae97b.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 120,
+      "slug": "example-html-ppt-zhangzara-sakura-chroma",
+      "title": "Html Ppt Zhangzara Sakura Chroma",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Sakura Chroma — 빈티지 일본 카세트 패키지 미학: 크림색 종이, 대각선 무지개 리본, 압축 볼드체, JIS 스타일 체크박스. 인디 하드웨어 브랜드 덱, 음악 레이블 발매 일정, 아날로그 스튜디오 회고, 잡지 기획, 카와이 테크 제품 출시, 크리에이티브 스튜디오 연례 보고서에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-sakura-chroma/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-sakura-chroma.ef968226dfa50216.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-sakura-chroma.ef968226dfa50216.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 121,
+      "slug": "example-html-ppt-zhangzara-scatterbrain",
+      "title": "Html Ppt Zhangzara Scatterbrain",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Scatterbrain — 포스트잇 스타일: 파스텔 톤 메모지, Caveat 손글씨체, Shrikhand 및 Zilla Slab 폰트 스택. 디자이너 화이트보드 분위기: 브레인스토밍, 워크숍, 크리에이티브 에이전시 소개, 디자인 씽킹 세션, 아이디어 피칭, 아트 디렉션 리뷰.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-scatterbrain/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-scatterbrain.d164606a56b3fa8f.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-scatterbrain.d164606a56b3fa8f.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 122,
+      "slug": "example-html-ppt-zhangzara-signal",
+      "title": "Html Ppt Zhangzara Signal",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Signal — 딥 네이비 캔버스에 본 페이퍼와 음영 골드 포인트. 무게감 있고 신뢰할 수 있는 기관 스타일. 투자자 자료, 이사회 프레젠테이션, 컨설팅 결과물, 법률/정책 브리프, 자문 제안서에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-signal/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-signal.a491d020ecc143a3.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-signal.a491d020ecc143a3.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 123,
+      "slug": "example-html-ppt-zhangzara-soft-editorial",
+      "title": "Html Ppt Zhangzara 소프트 에디토리얼",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "소프트 에디토리얼 — 따뜻한 종이 배경에 Cormorant Garamond 세리프 폰트와 세이지, 블러시, 레몬 액센트. 문학적이고 우아하며 여유로운 느낌: 편집 특집, 브랜드 장문 스토리, 갤러리/뮤지엄 프레젠테이션, 자문 결과물, 웨딩/라이프스타일 미디어, 창업자 에세이.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-soft-editorial/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-soft-editorial.859b433dda6b6ef8.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-soft-editorial.859b433dda6b6ef8.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 124,
+      "slug": "example-html-ppt-zhangzara-stencil-tablet",
+      "title": "Html Ppt Zhangzara 스텐실 태블릿",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "스텐실 & 태블릿 — 본 페이퍼에 스텐실 컷 헤드라인과 6색 어스 팔레트: 고고학과 브랜드의 만남. 박물관 및 문화기관 프레젠테이션, 예술/건축 브랜드, 장편 리서치, 전통 공예 브랜드, 선언문 등 아카이브적이고 촉각적이며 무게감 있는 그래픽이 필요한 콘텐츠에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-stencil-tablet/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-stencil-tablet.c91b6262a2f15512.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-stencil-tablet.c91b6262a2f15512.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 125,
+      "slug": "example-html-ppt-zhangzara-studio",
+      "title": "Html Ppt Zhangzara Studio",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Studio — 블랙 캔버스에 일렉트릭 옐로우 타이포; 고전압 디자인 스튜디오 미학. 스튜디오 포트폴리오, 크리에이티브 에이전시 피칭, 브랜드 쇼케이스, 아트 디렉션 리뷰, 패션/스니커즈 브랜드 작업에 적합.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-studio/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-studio.187093df304627be.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-studio.187093df304627be.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 126,
+      "slug": "example-html-ppt-zhangzara-vellum",
+      "title": "Html Ppt Zhangzara Vellum",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Vellum — 따뜻한 노란색 이탤릭 Cormorant 세리프와 단일 더스티 틸 액센트가 있는 짙은 네이비 캔버스. 조용하고 학구적인 미학. 연구 종합, 백서, 학술 및 정책 브리프, 자문 결과물, 장문 에디토리얼, 창업자 회고록 등 학술적이고 문학적이며 지적인 느낌이 필요한 콘텐츠에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-html-ppt-zhangzara-vellum/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-vellum.b5ac73ea6a973cf3.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-html-ppt-zhangzara-vellum.b5ac73ea6a973cf3.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 127,
+      "slug": "example-huashu-slides",
+      "title": "Huashu Slides",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Publication-grade single-file HTML decks from the slides workflow of 花叔's huashu-design skill: editorial masthead/kicker/serif-display grammar on a fixed 1920×1080 auto-fit canvas, one terracotta accent, light/dark rhythm, keyboard + hash navigation, anti-AI-slop rules, and an optional editable-PPTX path.",
+      "url": "https://open-design.ai/plugins/example-huashu-slides/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-slides.a91dafc83d18dbba.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-slides.a91dafc83d18dbba.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 131,
+      "slug": "example-ib-pitch-book",
+      "title": "투자은행 피치북",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "전략적 대안을 위한 투자은행 피치북. 비교기업 분석, 선례 거래, 밸류에이션 풋볼 필드, DCF 민감도 분석, 전략 옵션 매트릭스, 프로세스 권고사항 포함. 투자은행 전용 형식, 공시 밴드, 출처 레이블 유지. 이사회 및 매도측 논의 자료용.",
+      "url": "https://open-design.ai/plugins/example-ib-pitch-book/",
+      "preview": {
+        "poster": "https://open-design.ai/previews/plugins/example-ib-pitch-book.png",
+        "video": null
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 138,
+      "slug": "example-kami-deck",
+      "title": "Kami Deck",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "kami(紙 / 纸) 디자인 시스템으로 인쇄급 슬라이드 덱 제작: 따뜻한 양피지 배경(표지/챕터 슬라이드는 잉크 블루), 단일 웨이트 세리프체, 슬라이드당 잉크 블루 강조 ≤ 5%, 이탤릭 없음. 가로 매거진 스와이프 페이지네이션(←/→ · 휠 · 스와이프 · ESC 개요). 단일 HTML 파일, Google Fonts 외 종속성 없음.",
+      "url": "https://open-design.ai/plugins/example-kami-deck/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-kami-deck.d6cf5a1d7c818b36.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-kami-deck.d6cf5a1d7c818b36.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 142,
+      "slug": "example-huashu-keynote-black",
+      "title": "Keynote Black",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Jobs-2007 / Lei-Jun-launch-event keynote decks: pure black #000000 stage, pure white type, one word or one giant tabular-nums numeral per screen, exactly one brand accent (Mi orange #FF6900 / Spotify green #1ED760 / Apple blue #2997FF) per deck, massive negative space, faint center spotlight, accent-vs-grey spec-comparison bars, and a price-reveal climax page on a fixed 1920×1080 canvas. Based on https://github.com/alchaincyf/huashu-design black-big-number-stage (design-styles.md 大胆派「黑底巨型数字剧场」, generated from spec and wrapped in a full multi-section deck shell).",
+      "url": "https://open-design.ai/plugins/example-huashu-keynote-black/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-keynote-black.da9fc4cdda567017.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-keynote-black.da9fc4cdda567017.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 143,
+      "slug": "example-ppt-keynote",
+      "title": "Keynote 스타일 슬라이드",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Apple Keynote 품질의 슬라이드, 화면당 하나의 카드, 키보드 좌우 탐색 지원.",
+      "url": "https://open-design.ai/plugins/example-ppt-keynote/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-ppt-keynote.8ac2da926623afc1.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-ppt-keynote.8ac2da926623afc1.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 157,
+      "slug": "example-huashu-luxe-whitespace",
+      "title": "Luxe Whitespace",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Quiet-luxury decks with 70%+ whitespace: a warm off-white #FAFAF8 canvas, Inter 200-600 ultra-thin hierarchy, 120px weight-200 floating numerals with gold decimal points, one warm gold (#D4A574) spent only on hairlines and winning comparison bars, and gradient hairline separators (#E0DCD6) on a fixed 1920×1080 canvas. Based on https://github.com/alchaincyf/huashu-design ppt-build, expanded from a single showcase page into a full multi-section deck.",
+      "url": "https://open-design.ai/plugins/example-huashu-luxe-whitespace/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-luxe-whitespace.7f05e2bbf215635f.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-luxe-whitespace.7f05e2bbf215635f.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 166,
+      "slug": "example-hps-memphis-pop",
+      "title": "Memphis Pop",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@lewislulu",
+      "provider": "Open Design",
+      "description": "80s Memphis pop deck — warm cream canvas tiled edge-to-edge with a pink/teal/yellow confetti-dot pattern, 2.5px black-outlined cards with 5–9px hard offset shadows, hot-pink #ff3d8b lead accent, Archivo Black display type. Single-file HTML, keyboard navigation, zero dependencies. Based on lewislulu/html-ppt-skill memphis-pop. Use for playful product launches, creative pitches, community talks, or any deck that wants loud 1980s Memphis-design energy.",
+      "url": "https://open-design.ai/plugins/example-hps-memphis-pop/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-hps-memphis-pop.f5b05d59687d9904.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-hps-memphis-pop.f5b05d59687d9904.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 167,
+      "slug": "example-ve-midnight-editorial",
+      "title": "Midnight Editorial",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@nicobailon",
+      "provider": "Open Design",
+      "description": "Cinematic editorial dark deck theme: deep navy #0f1729 pages with warm gold #d4a73a accents, Instrument Serif 120px dramatic display dropping straight to 14px JetBrains Mono labels, a gold radial accent glow per slide, gold SVG corner marks and ghost section numerals, staggered cinematic reveal transitions, and a locked cream/gold light mode toggled by the SlideEngine (T key). Pure CSS/SVG diagrams and charts, keyboard-first single-file HTML, zero external JS. Based on https://github.com/nicobailon/visual-explainer midnight-editorial (templates/slide-deck.html), locked as a single-aesthetic deck plugin. Use for engineering reviews, product keynotes and editorial launches that should feel like a midnight issue of a serious journal.",
+      "url": "https://open-design.ai/plugins/example-ve-midnight-editorial/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-ve-midnight-editorial.5776dc2640d3a4bf.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-ve-midnight-editorial.5776dc2640d3a4bf.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 176,
+      "slug": "example-huashu-sparkline-arc",
+      "title": "Narrative Sparkline",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Duarte-style narrative sparkline decks: one oscillating SVG bézier waveform spanning the full 1920×1080 canvas, brand-orange (#FF6B2C) turning-point annotations, greyed ghost comparison lines, stroke-dashoffset progressive reveal, mono hairline chrome, Inter + Geist Mono. Built for change narratives, before/after contrasts, and data story arcs. Based on https://github.com/alchaincyf/huashu-design narrative-sparkline (references/design-styles.md · 中性派 · Sparkline叙事波形), generated from spec into a full multi-section deck.",
+      "url": "https://open-design.ai/plugins/example-huashu-sparkline-arc/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-sparkline-arc.566ca10b96dbeec5.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-sparkline-arc.566ca10b96dbeec5.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 179,
+      "slug": "example-fs-notebook-tabs",
+      "title": "Notebook Tabs",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@zarazhangrui",
+      "provider": "Open Design",
+      "description": "Editorial 'physical notebook' HTML decks: a cream paper card (#f8f6f1) floating on a dark ground, mint/lavender/pink/sky index tabs on the right fore-edge, binder holes on the left, Bodoni Moda display + DM Sans body, on a fixed 1920x1080 stage that scales to any viewport. Based on zarazhangrui/frontend-slides 'Notebook Tabs' style preset (STYLE_PRESETS.md section 5).",
+      "url": "https://open-design.ai/plugins/example-fs-notebook-tabs/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-fs-notebook-tabs.21d8c091dd8e5a49.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-fs-notebook-tabs.21d8c091dd8e5a49.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 185,
+      "slug": "example-open-design-landing-deck",
+      "title": "Open Design 랜딩 덱",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Atelier Zero 비주얼 언어(따뜻한 종이 배경, 이탤릭 세리프 강조, 코랄 종료 점, 초현실 콜라주 플레이트)로 단일 파일 슬라이드 덱을 생성합니다. 가로 매거진 스타일 스와이프 페이지네이션(←/→, 휠, 스와이프), 브랜드 마크와 슬라이드 카운터가 있는 크롬 스트립, ESC 개요 그리드, 코랄 진행 표시줄을 제공하며, 자매 스킬 open-design-landing의 표준 스타일시트와 16슬롯 이미지 라이브러리를 상속합니다.",
+      "url": "https://open-design.ai/plugins/example-open-design-landing-deck/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-open-design-landing-deck.2a9f64e17c2a0426.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-open-design-landing-deck.2a9f64e17c2a0426.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 186,
+      "slug": "example-deck-open-slide-canvas",
+      "title": "Open-Slide 1920 캔버스 덱",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "1920x1080 고정 캔버스 덱으로 React 컴포넌트 레벨의 자유로운 구성을 지원하며 고정 템플릿에 구속되지 않습니다.",
+      "url": "https://open-design.ai/plugins/example-deck-open-slide-canvas/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-deck-open-slide-canvas.8ea3a0b10f35833c.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-deck-open-slide-canvas.8ea3a0b10f35833c.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 193,
+      "slug": "example-huashu-pentagram-grid",
+      "title": "Pentagram Info-Architecture",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Rational Swiss-grid data decks: black-and-white restraint, Helvetica Neue hierarchy, one red (#E63946), 64px black chrome bars, 5%-opacity grid hairlines, and 260px giant numerals anchoring red/dark/grey comparison bar charts on a fixed 1920×1080 canvas. Based on https://github.com/alchaincyf/huashu-design ppt-pentagram, expanded from a single showcase page into a full multi-section deck.",
+      "url": "https://open-design.ai/plugins/example-huashu-pentagram-grid/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-pentagram-grid.835ddc778e65eb88.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-pentagram-grid.835ddc778e65eb88.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 222,
+      "slug": "example-replit-deck",
+      "title": "Replit Deck",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "Replit Slides 랜딩 페이지 템플릿 갤러리 스타일의 단일 파일 가로 스와이프 HTML 덱. 8가지 테마(helix, holm, vance, bevel, world-dark, world-mint, atlas, bluehouse) 제공. 각 테마는 replit.com/slides에서 추출한 완전한 시각 시스템(팔레트+타이포+강조색)입니다. 하나의 테마를 선택하고 혼합하지 마세요. 피치 덱, 이사회 보고서, 브랜드 메모, 캠페인 공개 등 Replit Slides 스타일이 필요한 경우에 적합합니다.",
+      "url": "https://open-design.ai/plugins/example-replit-deck/",
+      "preview": {
+        "poster": "https://open-design.ai/previews/plugins/example-replit-deck.png",
+        "video": null
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 224,
+      "slug": "example-hps-retro-tv",
+      "title": "Retro TV",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@lewislulu",
+      "provider": "Open Design",
+      "description": "80s/90s picture-tube deck — warm cream canvas with CRT scanlines on every slide (::before repeating-gradient) over a curved-glass tube vignette, amber #e67e14 / brick-red #c73a1f accents, Playfair Display headlines with heavy offset shadows, test-card color bars and antenna/dial inline-SVG decor. Single-file HTML, keyboard navigation, zero dependencies. Based on lewislulu/html-ppt-skill retro-tv. Use for nostalgic product launches, media or entertainment pitches, retrospectives, or any deck that wants warm broadcast-era television energy.",
+      "url": "https://open-design.ai/plugins/example-hps-retro-tv/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-hps-retro-tv.34f25fa46f418c74.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-hps-retro-tv.34f25fa46f418c74.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 229,
+      "slug": "example-simple-deck",
+      "title": "심플 덱",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "단일 파일 가로 스와이프 HTML 덱. assets/template.html(검증된 5줄 iframe 내비게이션 스크립트 포함)을 복사하고 references/layouts.md에서 슬라이드 레이아웃을 붙여넣어 제작합니다. 피치 덱, 제품 개요, 학습 자료 등 magazine-web-ppt의 매거진 스타일이 필요하지 않을 때 사용하세요.",
+      "url": "https://open-design.ai/plugins/example-simple-deck/",
+      "preview": {
+        "poster": "https://open-design.ai/previews/plugins/example-simple-deck.png",
+        "video": null
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 251,
+      "slug": "example-deck-swiss-international",
+      "title": "스위스 인터내셔널 덱",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "16열 그리드, 1개의 채도 높은 강조색, 22개의 고정 레이아웃(클라인 블루, 레몬, 민트, 세이프티 오렌지).",
+      "url": "https://open-design.ai/plugins/example-deck-swiss-international/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-deck-swiss-international.e064738738e14f33.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-deck-swiss-international.e064738738e14f33.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 253,
+      "slug": "example-huashu-takram-soft-tech",
+      "title": "Takram Soft Tech",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@alchaincyf",
+      "provider": "Open Design",
+      "description": "Soft Eastern-philosophy tech decks: warm rice-paper canvas (#F5F0EB), sage green #6B8F71 + one gold #D4A574 + warm grays, Noto Serif SC display headings mixed with Inter labels, rounded translucent data cards, and SVG data visualization treated as an art piece — three-series overlaid radar charts on hand-drawn dashed grids with Fig. NN plate annotations, on a fixed 1920×1080 canvas. Based on https://github.com/alchaincyf/huashu-design ppt-takram, expanded from a single showcase page into a full multi-section deck.",
+      "url": "https://open-design.ai/plugins/example-huashu-takram-soft-tech/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-takram-soft-tech.e264e1b6b78c8172.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-huashu-takram-soft-tech.e264e1b6b78c8172.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 255,
+      "slug": "example-ve-terminal-mono",
+      "title": "Terminal Mono",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@nicobailon",
+      "provider": "Open Design",
+      "description": "Developer-native dark deck theme: near-black #0a0e14 ground, Geist Mono everywhere with large weight-400 titles (never bold display), Dracula-green #50fa7b accent, faint dot-grid texture, and low-opacity green hairlines. Zero skeuomorphism, zero effects - pure typographic discipline. Scroll-snap single-file HTML with SlideEngine navigation, hash routing, and automatic light mode (#f4f6f8 / #0d7a3e) via prefers-color-scheme. Based on nicobailon/visual-explainer terminal-mono.",
+      "url": "https://open-design.ai/plugins/example-ve-terminal-mono/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-ve-terminal-mono.0e62140bc97520b1.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-ve-terminal-mono.0e62140bc97520b1.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 259,
+      "slug": "example-hps-true-blueprint",
+      "title": "True Blueprint",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@lewislulu",
+      "provider": "Open Design",
+      "description": "True-blueprint deck theme: a blueprint-blue #0b3a6f full-bleed field under a 40px white drafting grid, dashed-border translucent cards, white and ice-blue #aee1ff ink lines with amber #ffd27a annotations, every glyph in JetBrains Mono, 2px corners, zero shadows. Drawing-sheet chrome (title block, sheet index, construction-line section numbers, hatched CSS bars, inline-SVG schematics) makes it the natural skin for system-architecture and engineering-design decks. Single self-contained HTML file, zero external JS. Based on lewislulu/html-ppt-skill blueprint theme.",
+      "url": "https://open-design.ai/plugins/example-hps-true-blueprint/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-hps-true-blueprint.a4bb567a752210ef.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-hps-true-blueprint.a4bb567a752210ef.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 281,
+      "slug": "example-weekly-update",
+      "title": "주간 업데이트",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@open-design",
+      "provider": "Open Design",
+      "description": "팀 주간 보고를 위한 단일 파일 가로 스와이프 슬라이드 덱. 완료, 진행 중, 차단됨, 지표, 요청 사항 포함. 6~8장의 슬라이드. '주간 보고', '팀 업데이트', '주간 현황' 등의 요구사항에 사용.",
+      "url": "https://open-design.ai/plugins/example-weekly-update/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-weekly-update.8017453cfd2ed995.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-weekly-update.8017453cfd2ed995.mp4"
+      },
+      "bandColor": "#ffba12"
+    },
+    {
+      "index": 286,
+      "slug": "example-hps-y2k-chrome",
+      "title": "Y2K Chrome",
+      "mode": "deck",
+      "mediaKind": "슬라이드",
+      "author": "@lewislulu",
+      "provider": "Open Design",
+      "description": "Y2K chrome deck — full-bleed 5-stop silver-metal gradient canvas, white→steel→gunmetal chrome-clipped H1 headlines, 72% white frosted-glass cards with inset top highlights, 26–36px mega-radius corners, candy purple #8a5cff / aqua #3ccfd8 / pink #ff84c4 accents, glossy orb and sparkle decor, Space Grotesk type. Single-file HTML, keyboard navigation, zero dependencies. Based on lewislulu/html-ppt-skill y2k-chrome. Use for product launches, consumer-app pitches, music/fashion/creator decks, or anything that wants millennium-bug-era metallic shine.",
+      "url": "https://open-design.ai/plugins/example-hps-y2k-chrome/",
+      "preview": {
+        "poster": "https://repo-assets.open-design.ai/plugin-previews/example-hps-y2k-chrome.a0f8d4166959302d.poster.jpg",
+        "video": "https://repo-assets.open-design.ai/plugin-previews/example-hps-y2k-chrome.a0f8d4166959302d.mp4"
+      },
+      "bandColor": "#ffba12"
+    }
+  ]
+}

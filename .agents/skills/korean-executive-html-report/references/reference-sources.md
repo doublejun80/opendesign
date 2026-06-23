@@ -42,6 +42,12 @@ For ordinary references explicitly named by the user, use them to collect:
 
 ## Open Design Templates
 
+Use the local catalog snapshot before falling back to the live site:
+
+- `open-design-catalog/templates-slide.json`: slide/deck templates for report work
+- `open-design-catalog/templates.json`: full Open Design template catalog
+- `open-design-catalog/skills.json`: official instruction skill catalog and local install status
+
 Useful inspiration categories:
 
 - Open-Slide 1920 canvas deck

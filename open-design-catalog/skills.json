@@ -1,0 +1,235 @@
+{
+  "source": "https://open-design.ai/ko/plugins/skills/",
+  "generatedAt": "2026-06-23T13:27:46.539Z",
+  "officialCount": 16,
+  "installedLocalSkills": [
+    "korean-executive-html-report"
+  ],
+  "installedOfficialCount": 0,
+  "skills": [
+    {
+      "index": "001",
+      "slug": "od-code-migration",
+      "name": "코드 마이그레이션 (기본 시나리오)",
+      "description": "code-migration taskKind을 위한 기본 레퍼런스 파이프라인. patch-edit ↔ build-test devloop과 diff-review 핸드오프 포함.",
+      "tags": [
+        "시나리오",
+        "코드 마이그레이션"
+      ],
+      "url": "https://open-design.ai/plugins/od-code-migration/",
+      "previewImage": "https://repo-assets.open-design.ai/plugin-previews/od-code-migration.aa33dda205aa79a5.poster.jpg",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "002",
+      "slug": "od-plugin-contribute-open-design",
+      "name": "Open Design에 플러그인 기여",
+      "description": "GitHub CLI를 사용하여 로컬 Open Design 플러그인을 Open Design 커뮤니티 카탈로그에 추가하는 풀 리퀘스트를 엽니다.",
+      "tags": [
+        "유틸리티",
+        "플러그인 공유"
+      ],
+      "url": "https://open-design.ai/plugins/od-plugin-contribute-open-design/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-plugin-contribute-open-design.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "003",
+      "slug": "od-default",
+      "name": "기본 디자인 라우터",
+      "description": "Home의 자유 입력 프롬프트를 위한 숨겨진 폴백 시나리오. 어떤 작업을 만들지 사용자에게 묻고 해당 디자인 플로로 이어집니다.",
+      "tags": [
+        "시나리오",
+        "기본 라우터"
+      ],
+      "url": "https://open-design.ai/plugins/od-default/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-default.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "004",
+      "slug": "example-design-brief",
+      "name": "디자인 브리프",
+      "description": "I-Lang 프로토콜 형식으로 작성된 구조화된 디자인 브리프를 구체적인 디자인 사양으로 파싱합니다. 팔레트, 타이포그래피, 레이아웃, 무드, 밀도 및 제약 조건과 같은 명시적 차원을 요구하여 '전문적으로 만들어주세요'와 같은 모호한 요청의 애매함을 제거합니다. 트리거 키워드: design brief, create a design brief, ilang brief, structured brief.",
+      "tags": [
+        "디자인 시스템",
+        "계획"
+      ],
+      "url": "https://open-design.ai/plugins/example-design-brief/",
+      "previewImage": "https://open-design.ai/previews/plugins/example-design-brief.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "005",
+      "slug": "od-design-refine",
+      "name": "디자인 정교화",
+      "description": "기존 Open Design 산출물을 집중적인 비평, 작은 패치, 핸드오프 요약으로 개선하는 베이스라인 Refine 플러그인.",
+      "tags": [
+        "정교화",
+        "디자인 정교화"
+      ],
+      "url": "https://open-design.ai/plugins/od-design-refine/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-design-refine.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "006",
+      "slug": "od-nextjs-export",
+      "name": "Next.js로 내보내기",
+      "description": "수락된 Open Design 산출물을 Next.js App Router 핸드오프로 변환하는 입문용 다운스트림 익스포트 플러그인.",
+      "tags": [
+        "내보내기",
+        "다운스트림 내보내기"
+      ],
+      "url": "https://open-design.ai/plugins/od-nextjs-export/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-nextjs-export.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "007",
+      "slug": "od-react-export",
+      "name": "React로 내보내기",
+      "description": "수락된 Open Design 산출물을 React 컴포넌트 핸드오프로 변환하는 입문용 다운스트림 익스포트 플러그인.",
+      "tags": [
+        "내보내기",
+        "다운스트림 내보내기"
+      ],
+      "url": "https://open-design.ai/plugins/od-react-export/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-react-export.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "008",
+      "slug": "od-vue-export",
+      "name": "Vue로 내보내기",
+      "description": "수락된 Open Design 산출물을 Vue 3 단일 파일 컴포넌트 핸드오프로 변환하는 입문용 다운스트림 익스포트 플러그인.",
+      "tags": [
+        "내보내기",
+        "다운스트림 내보내기"
+      ],
+      "url": "https://open-design.ai/plugins/od-vue-export/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-vue-export.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "009",
+      "slug": "od-figma-migration",
+      "name": "Figma 마이그레이션 (기본 시나리오)",
+      "description": "figma-migration taskKind을 위한 기본 레퍼런스 파이프라인.",
+      "tags": [
+        "시나리오",
+        "Figma 마이그레이션"
+      ],
+      "url": "https://open-design.ai/plugins/od-figma-migration/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-figma-migration.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "010",
+      "slug": "od-media-generation",
+      "name": "미디어 생성 (기본 시나리오)",
+      "description": "이미지, 비디오, 오디오 프로젝트를 위한 기본 시나리오 플러그인. 프로젝트 종류에 따라 media-* atom으로 라우팅하고 결과를 라이브 산출물로 감쌉니다.",
+      "tags": [
+        "시나리오",
+        "미디어 생성"
+      ],
+      "url": "https://open-design.ai/plugins/od-media-generation/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-media-generation.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "011",
+      "slug": "od-new-generation",
+      "name": "새로 생성 (기본 시나리오)",
+      "description": "new-generation taskKind을 위한 기본 레퍼런스 파이프라인.",
+      "tags": [
+        "시나리오",
+        "새로 생성"
+      ],
+      "url": "https://open-design.ai/plugins/od-new-generation/",
+      "previewImage": "https://repo-assets.open-design.ai/plugin-previews/od-new-generation.0ca0819285dc12f5.poster.jpg",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "012",
+      "slug": "od-plugin-authoring",
+      "name": "플러그인 작성",
+      "description": "My plugins에 추가할 수 있는 로컬 Open Design 플러그인 폴더를 만드는 가이드 시나리오.",
+      "tags": [
+        "시나리오",
+        "플러그인 작성"
+      ],
+      "url": "https://open-design.ai/plugins/od-plugin-authoring/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-plugin-authoring.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "013",
+      "slug": "example-pptx-html-fidelity-audit",
+      "name": "Pptx Html 충실도 감사",
+      "description": "python-pptx 내보내기와 원본 HTML 덱의 충실도를 감사하고 레이아웃 및 콘텐츠 편차(바닥글 오버플로, 잘린 콘텐츠, 이탤릭체 누락, 스타일 손실, 간격 오류)를 식별하여 엄격한 바닥글 및 커서 흐름 레이아웃 규칙으로 재내보내기합니다.",
+      "tags": [
+        "유틸리티",
+        "엔지니어링"
+      ],
+      "url": "https://open-design.ai/plugins/example-pptx-html-fidelity-audit/",
+      "previewImage": "https://open-design.ai/previews/plugins/example-pptx-html-fidelity-audit.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "014",
+      "slug": "od-plugin-publish-github",
+      "name": "GitHub에 플러그인 게시",
+      "description": "GitHub CLI를 사용하여 로컬 Open Design 플러그인용 공개 GitHub 리포지토리를 생성합니다.",
+      "tags": [
+        "유틸리티",
+        "플러그인 공유"
+      ],
+      "url": "https://open-design.ai/plugins/od-plugin-publish-github/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-plugin-publish-github.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "015",
+      "slug": "od-share-to-community",
+      "name": "커뮤니티에 공유",
+      "description": "Package the work the user just finished into an Open Design plugin and route them to the existing Add-to-My-plugins / Open-Design-PR buttons. Triggered by the post-completion 'Share to Open Design' submission action.",
+      "tags": [
+        "시나리오",
+        "플러그인 공유"
+      ],
+      "url": "https://open-design.ai/plugins/od-share-to-community/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-share-to-community.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    },
+    {
+      "index": "016",
+      "slug": "od-tune-collab",
+      "name": "튜닝 & 협업 (기본 시나리오)",
+      "description": "tune-collab taskKind을 위한 기본 레퍼런스 파이프라인.",
+      "tags": [
+        "시나리오",
+        "튜닝 협업"
+      ],
+      "url": "https://open-design.ai/plugins/od-tune-collab/",
+      "previewImage": "https://open-design.ai/previews/plugins/od-tune-collab.png",
+      "installedLocally": false,
+      "localInstallPath": null
+    }
+  ]
+}
