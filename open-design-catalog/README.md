@@ -13,6 +13,7 @@ Local snapshot of the Open Design plugin catalog used by this workspace.
 - `SKILLS.md`: human-readable skill list with title, description, source, and install path
 - `templates.json`: all plugin templates from the catalog
 - `templates-slide.json`: slide/deck templates most relevant to this report workspace
+- `TEMPLATES.md`: human-readable template list, category counts, and usage guide
 
 ## Current Counts
 

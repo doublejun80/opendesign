@@ -123,6 +123,17 @@ function md(value = '') {
   return String(value).replace(/\|/g, '\\|').trim();
 }
 
+function templateTableRows(items) {
+  return items.map((template) => [
+    `| ${template.index}`,
+    `\`${md(template.slug)}\``,
+    md(template.title),
+    md(template.mediaKind || template.mode),
+    md(template.description),
+    `[open-design.ai](${template.url}) |`
+  ].join(' | '));
+}
+
 async function writeJson(fileName, value) {
   await fs.writeFile(path.join(OUT_DIR, fileName), `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
@@ -187,6 +198,7 @@ async function main() {
     '- `SKILLS.md`: human-readable skill list with title, description, source, and install path',
     '- `templates.json`: all plugin templates from the catalog',
     '- `templates-slide.json`: slide/deck templates most relevant to this report workspace',
+    '- `TEMPLATES.md`: human-readable template list, category counts, and usage guide',
     '',
     '## Current Counts',
     '',
@@ -252,6 +264,93 @@ async function main() {
   ].join('\n');
 
   await fs.writeFile(path.join(OUT_DIR, 'SKILLS.md'), skillsMarkdown, 'utf8');
+
+  const templatesByKind = Object.entries(
+    templates.reduce((acc, template) => {
+      const key = template.mediaKind || template.mode || 'unknown';
+      acc[key] = acc[key] || [];
+      acc[key].push(template);
+      return acc;
+    }, {})
+  ).sort(([a], [b]) => a.localeCompare(b, 'ko'));
+
+  const templatesMarkdown = [
+    '# Open Design 템플릿 목록',
+    '',
+    '이 문서는 현재 `opendesign` 프로젝트에 반영된 Open Design 공식 템플릿 카탈로그를 설명한다.',
+    '',
+    '## 요약',
+    '',
+    `- 공식 출처: ${TEMPLATES_URL}`,
+    `- 전체 템플릿 수: ${templates.length}`,
+    `- 보고서/슬라이드 우선 후보: ${slideTemplates.length}`,
+    '- 반영 방식: 실제 템플릿 원본 전체 복사가 아니라, 공식 카탈로그 메타데이터를 로컬 JSON/Markdown으로 스냅샷 관리',
+    '',
+    '## 분류별 개수',
+    '',
+    '| 분류 | 개수 |',
+    '|---|---:|',
+    ...Object.entries(countBy(templates, 'mediaKind'))
+      .sort(([a], [b]) => a.localeCompare(b, 'ko'))
+      .map(([kind, count]) => `| ${md(kind)} | ${count} |`),
+    '',
+    '## 실행/사용 방법',
+    '',
+    '템플릿은 단독 실행 파일이 아니다. Codex가 보고서나 화면을 만들 때 참고할 시각 방향, 레이아웃 장르, 템플릿 메타데이터로 사용한다.',
+    '',
+    '### 1. 카탈로그 갱신',
+    '',
+    '```bash',
+    'node scripts/sync-open-design-catalog.mjs',
+    '```',
+    '',
+    '### 2. 보고서 작업에서 사용',
+    '',
+    'Codex에게 아래처럼 지시한다.',
+    '',
+    '```text',
+    'open-design-catalog/templates-slide.json에서 이번 보고서에 맞는 템플릿 후보를 고르고,',
+    'korean-executive-html-report 규칙으로 16:9 HTML 보고서를 만들어줘.',
+    '```',
+    '',
+    '특정 템플릿을 지정할 때는 제목이나 slug를 함께 말한다.',
+    '',
+    '```text',
+    'Bento Insight Grid 템플릿 감도로 구매AX 임원보고 HTML 덱을 만들어줘.',
+    '```',
+    '',
+    '### 3. 템플릿 목록 확인',
+    '',
+    '```bash',
+    'node -e \'const fs=require("fs"); const d=JSON.parse(fs.readFileSync("open-design-catalog/templates-slide.json","utf8")); console.log(d.templates.map(t=>`${t.slug} - ${t.title}`).join("\\n"));\'',
+    '```',
+    '',
+    '## 보고서/슬라이드 우선 후보',
+    '',
+    '| No. | Slug | 제목 | 분류 | 설명 | 출처 |',
+    '|---:|---|---|---|---|---|',
+    ...templateTableRows(slideTemplates),
+    '',
+    '## 전체 템플릿 목록',
+    '',
+    ...templatesByKind.flatMap(([kind, items]) => [
+      `### ${kind}`,
+      '',
+      '| No. | Slug | 제목 | 분류 | 설명 | 출처 |',
+      '|---:|---|---|---|---|---|',
+      ...templateTableRows(items),
+      ''
+    ]),
+    '## 관련 파일',
+    '',
+    '- `templates.json`: 전체 템플릿 메타데이터',
+    '- `templates-slide.json`: 보고서/슬라이드 작업 우선 후보',
+    '- `SKILLS.md`: 설치된 Open Design 지시 스킬 목록',
+    '',
+    ''
+  ].join('\n');
+
+  await fs.writeFile(path.join(OUT_DIR, 'TEMPLATES.md'), templatesMarkdown, 'utf8');
 
   console.log(JSON.stringify({
     skills: skills.length,
