@@ -1,11 +1,27 @@
 {
   "source": "https://open-design.ai/ko/plugins/skills/",
-  "generatedAt": "2026-06-23T13:27:46.539Z",
+  "generatedAt": "2026-06-23T13:35:46.583Z",
   "officialCount": 16,
   "installedLocalSkills": [
-    "korean-executive-html-report"
+    "example-design-brief",
+    "example-pptx-html-fidelity-audit",
+    "korean-executive-html-report",
+    "od-code-migration",
+    "od-default",
+    "od-design-refine",
+    "od-figma-migration",
+    "od-media-generation",
+    "od-new-generation",
+    "od-nextjs-export",
+    "od-plugin-authoring",
+    "od-plugin-contribute-open-design",
+    "od-plugin-publish-github",
+    "od-react-export",
+    "od-share-to-community",
+    "od-tune-collab",
+    "od-vue-export"
   ],
-  "installedOfficialCount": 0,
+  "installedOfficialCount": 16,
   "skills": [
     {
       "index": "001",
@@ -18,8 +34,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-code-migration/",
       "previewImage": "https://repo-assets.open-design.ai/plugin-previews/od-code-migration.aa33dda205aa79a5.poster.jpg",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-code-migration"
     },
     {
       "index": "002",
@@ -32,8 +48,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-plugin-contribute-open-design/",
       "previewImage": "https://open-design.ai/previews/plugins/od-plugin-contribute-open-design.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-plugin-contribute-open-design"
     },
     {
       "index": "003",
@@ -46,8 +62,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-default/",
       "previewImage": "https://open-design.ai/previews/plugins/od-default.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-default"
     },
     {
       "index": "004",
@@ -60,8 +76,8 @@
       ],
       "url": "https://open-design.ai/plugins/example-design-brief/",
       "previewImage": "https://open-design.ai/previews/plugins/example-design-brief.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/example-design-brief"
     },
     {
       "index": "005",
@@ -74,8 +90,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-design-refine/",
       "previewImage": "https://open-design.ai/previews/plugins/od-design-refine.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-design-refine"
     },
     {
       "index": "006",
@@ -88,8 +104,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-nextjs-export/",
       "previewImage": "https://open-design.ai/previews/plugins/od-nextjs-export.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-nextjs-export"
     },
     {
       "index": "007",
@@ -102,8 +118,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-react-export/",
       "previewImage": "https://open-design.ai/previews/plugins/od-react-export.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-react-export"
     },
     {
       "index": "008",
@@ -116,8 +132,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-vue-export/",
       "previewImage": "https://open-design.ai/previews/plugins/od-vue-export.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-vue-export"
     },
     {
       "index": "009",
@@ -130,8 +146,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-figma-migration/",
       "previewImage": "https://open-design.ai/previews/plugins/od-figma-migration.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-figma-migration"
     },
     {
       "index": "010",
@@ -144,8 +160,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-media-generation/",
       "previewImage": "https://open-design.ai/previews/plugins/od-media-generation.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-media-generation"
     },
     {
       "index": "011",
@@ -158,8 +174,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-new-generation/",
       "previewImage": "https://repo-assets.open-design.ai/plugin-previews/od-new-generation.0ca0819285dc12f5.poster.jpg",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-new-generation"
     },
     {
       "index": "012",
@@ -172,8 +188,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-plugin-authoring/",
       "previewImage": "https://open-design.ai/previews/plugins/od-plugin-authoring.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-plugin-authoring"
     },
     {
       "index": "013",
@@ -186,8 +202,8 @@
       ],
       "url": "https://open-design.ai/plugins/example-pptx-html-fidelity-audit/",
       "previewImage": "https://open-design.ai/previews/plugins/example-pptx-html-fidelity-audit.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/example-pptx-html-fidelity-audit"
     },
     {
       "index": "014",
@@ -200,8 +216,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-plugin-publish-github/",
       "previewImage": "https://open-design.ai/previews/plugins/od-plugin-publish-github.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-plugin-publish-github"
     },
     {
       "index": "015",
@@ -214,8 +230,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-share-to-community/",
       "previewImage": "https://open-design.ai/previews/plugins/od-share-to-community.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-share-to-community"
     },
     {
       "index": "016",
@@ -228,8 +244,8 @@
       ],
       "url": "https://open-design.ai/plugins/od-tune-collab/",
       "previewImage": "https://open-design.ai/previews/plugins/od-tune-collab.png",
-      "installedLocally": false,
-      "localInstallPath": null
+      "installedLocally": true,
+      "localInstallPath": ".agents/skills/od-tune-collab"
     }
   ]
 }

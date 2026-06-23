@@ -16,8 +16,8 @@ Local snapshot of the Open Design plugin catalog used by this workspace.
 ## Current Counts
 
 - Official skills: 16
-- Locally installed official skills: 0
-- Local workspace skills: korean-executive-html-report
+- Locally installed official skills: 16
+- Local workspace skills: example-design-brief, example-pptx-html-fidelity-audit, korean-executive-html-report, od-code-migration, od-default, od-design-refine, od-figma-migration, od-media-generation, od-new-generation, od-nextjs-export, od-plugin-authoring, od-plugin-contribute-open-design, od-plugin-publish-github, od-react-export, od-share-to-community, od-tune-collab, od-vue-export
 - All templates: 286
 - Slide/deck templates: 80
 
