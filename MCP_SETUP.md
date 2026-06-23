@@ -110,6 +110,43 @@ Lazyweb 수동 설정의 핵심은 Streamable HTTP URL `https://www.lazyweb.com/
 
 Mobbin은 Pro/Team 이상에서 MCP를 제공하며, 공개 안내 기준 Remote MCP URL은 `https://api.mobbin.com/mcp`입니다. 인증이 필요한 환경에서는 MCP 메뉴에서 OAuth 로그인을 완료한 뒤 사용합니다.
 
+## 3-2. Refero MCP 연결 원칙
+
+Refero는 보고서와 교육자료의 최종 출력 엔진이 아니라, 디자인 리서치와 레퍼런스 품질을 높이는 MCP로 사용한다.
+
+공식 Refero MCP 서버 URL은 다음과 같다.
+
+```text
+https://api.refero.design/mcp
+```
+
+Codex 전역 설정 파일 `~/.codex/config.toml`에는 다음 형식으로 등록한다.
+
+```toml
+[mcp_servers.refero]
+enabled = true
+url = "https://api.refero.design/mcp"
+```
+
+Bearer token을 직접 발급받아 쓰는 환경이라면 토큰은 저장소에 절대 커밋하지 않고 로컬 설정에만 둔다.
+
+```toml
+[mcp_servers.refero.http_headers]
+Authorization = "Bearer <token>"
+```
+
+OAuth 방식이면 `http_headers` 블록을 생략하고, Codex 재시작 후 Refero 도구를 처음 호출할 때 열리는 인증 흐름을 완료한다.
+
+Refero MCP는 다음 순서로 쓴다.
+
+1. `refero_search_styles`로 시각 방향 후보를 먼저 찾는다.
+2. `refero_get_style`로 선택 후보의 색상, 타이포, 간격, 표면, 컴포넌트 규칙을 확인한다.
+3. 화면 구조가 필요하면 `refero_search_screens`와 `refero_get_screen`을 사용한다.
+4. 사용자 여정이나 다단계 절차가 중요하면 `refero_search_flows`와 `refero_get_flow`를 사용한다.
+5. 최종 산출물에는 Refero 화면을 그대로 복제하지 않고, 추출한 원칙과 적용 근거를 `content.json.references`에 남긴다.
+
+현재 로컬 Codex에는 Refero MCP와 함께 `refero-design` Skill도 설치해 둔다. 새 세션에서 스킬을 인식하려면 Codex를 재시작한다.
+
 ## 4. 출력 확인 MCP
 
 품질 검수는 Playwright 또는 Chrome DevTools MCP가 있으면 좋습니다.
