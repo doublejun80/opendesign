@@ -1,0 +1,362 @@
+{
+  "title": "AI 에이전트 품질 가이드 실무 교육자료 Refero 참조 잠금",
+  "purpose": "AI 에이전트 품질 가이드를 실무자가 바로 적용할 수 있는 HTML 교육 덱으로 만들기 전에, Refero에서 참고할 의미 있는 장표 문법과 예시를 고정한다.",
+  "collectedAt": "2026-06-23",
+  "mcpStatus": {
+    "referoMcpConfigured": true,
+    "currentSessionToolsAvailable": false,
+    "note": "Codex 전역 MCP 설정에는 Refero endpoint가 등록되어 있으나, 현재 세션에는 Refero MCP tool이 아직 주입되지 않았다. 이번 파일은 공개 Refero Styles 페이지에서 먼저 수집한 참조 묶음이며, Codex 재시작 및 Refero OAuth 완료 후 MCP 결과로 보강한다."
+  },
+  "designBrief": {
+    "what": "AI 에이전트 품질 가이드 실무사용자 교육 HTML 덱",
+    "who": "AI 도구를 업무에 적용하는 실무자, 현업 기획자, 프로젝트 리더, 품질 검토 담당자",
+    "platform": "로컬에서 열리는 1920x1080 HTML 슬라이드",
+    "goal": "품질 원칙을 요약으로 소비하는 것이 아니라, 업무 요청 작성, 검토, 수정, 평가에 바로 적용하게 만든다.",
+    "tone": "실무 교육용, 기술적으로 신뢰감 있으나 과하게 임원보고처럼 보이지 않는 구조",
+    "mainRisk": "내용이 추상적 원칙 목록으로 끝나거나, 디자인이 예쁘지만 실무 적용 단계가 보이지 않는 것",
+    "researchNeeded": ["styles", "screens-after-mcp-auth", "flows-after-mcp-auth"]
+  },
+  "referenceLock": {
+    "primaryDirection": "Slite + Tailscale 기반의 warm knowledge notebook",
+    "preserve": [
+      "지식 교육자료처럼 읽히는 따뜻한 종이 계열 배경",
+      "체크리스트와 실습 박스가 잘 보이는 얇은 border 기반 카드",
+      "강조색은 한 장표당 1개만 사용",
+      "표 대신 단계, 기준, 예시, 반례를 나란히 놓는 실무형 조판",
+      "교육용 본문은 Pretendard/Noto Sans KR 중심으로 안정화"
+    ],
+    "borrowOnly": [
+      "Seline Analytics의 one-signal-color 품질 지표 패널",
+      "Linear/Resend의 dark command panel을 프롬프트, 로그, 평가 실행 예시에 한정 적용",
+      "Relate의 한국어 UI 본문 밀도와 하늘빛 보조 배경"
+    ],
+    "reject": [
+      "Refero 화면을 그대로 캡처해 장표로 붙이는 방식",
+      "모든 장표를 SaaS 랜딩페이지처럼 만드는 방식",
+      "보라/파랑 gradient 위주의 일반적인 AI 도구 느낌",
+      "문구만 예쁜 원칙 요약형 장표",
+      "실습 예시 없이 루브릭만 나열하는 장표"
+    ],
+    "mediaStrategy": "Refero 이미지는 reference rail, 출처 썸네일, 시각 문법 설명에만 사용한다. 최종 교육 장표는 Refero 문법을 재구성해 자체 HTML 카드, 체크리스트, 매트릭스, 워크플로로 구현한다."
+  },
+  "selectedReferences": [
+    {
+      "id": "slite",
+      "name": "Slite",
+      "sourceUrl": "https://styles.refero.design/style/607c2098-bbbb-40bb-b23e-adf2b72c63dd",
+      "sourceSite": "https://slite.com",
+      "theme": "light",
+      "whySelected": "지식관리와 교육 콘텐츠에 맞는 warm parchment editorial desk 문법이 있어, 교육자료의 기본 톤으로 가장 적합하다.",
+      "usableSlideGrammar": [
+        "개념 설명 장표",
+        "품질 원칙을 지식 카드로 쪼개는 장표",
+        "좋은 예시와 나쁜 예시를 부드럽게 비교하는 장표",
+        "실습 안내와 회고 질문 장표"
+      ],
+      "visualTakeaways": [
+        "크림색 배경과 ink-dark 텍스트",
+        "near-white 카드와 muted category badge",
+        "강한 포인트는 색보다 명확한 대비와 카드 구조로 처리",
+        "교육용 본문은 길어져도 읽히는 editorial rhythm 유지"
+      ],
+      "doNotCopy": [
+        "손글씨/취소선 표현을 과하게 쓰지 않는다.",
+        "브랜드 원문 카피나 레이아웃을 그대로 복제하지 않는다."
+      ],
+      "imageUrls": [
+        "https://images.refero.design/styles/refero.design/image/bb9b0b4c-7585-453d-9f98-d0d3615b4ff7.jpg",
+        "https://images.refero.design/styles/refero.design/image/b015e35b-83c8-4b5d-9269-bb7399d50d8d.jpg"
+      ]
+    },
+    {
+      "id": "tailscale",
+      "name": "Tailscale",
+      "sourceUrl": "https://styles.refero.design/style/5b679fb6-8d53-402d-a77b-c88bfb397623",
+      "sourceSite": "https://tailscale.com",
+      "theme": "light",
+      "whySelected": "기술 주제를 겁주지 않고 실무 문서처럼 설명하는 engineer's whiteboard 스타일이 품질 가이드 교육에 맞다.",
+      "usableSlideGrammar": [
+        "작업 전 체크리스트",
+        "요청 작성 프로세스",
+        "품질 점검 순서",
+        "실습 워크시트"
+      ],
+      "visualTakeaways": [
+        "따뜻한 off-white canvas와 paper card",
+        "Signal Red 같은 단일 강조색을 5% 이하로 제한",
+        "둥근 카드와 얇은 구분선으로 교육 워크시트 느낌 형성",
+        "기술 라벨은 작고 단단하게, 설명은 평이하게"
+      ],
+      "doNotCopy": [
+        "red를 위험/오류 장식으로 남발하지 않는다.",
+        "네트워크 보안 제품의 화면 구조 자체를 복제하지 않는다."
+      ],
+      "imageUrls": [
+        "https://images.refero.design/styles/refero.design/image/abdd6215-6d8a-468b-bd75-3efd63cff124.jpg",
+        "https://images.refero.design/styles/refero.design/image/fb147538-7a1f-40d1-a859-9fa8b11b426a.jpg"
+      ]
+    },
+    {
+      "id": "seline-analytics",
+      "name": "Seline Analytics",
+      "sourceUrl": "https://styles.refero.design/style/7967c6d9-e50c-42b5-b4d1-74003ba41781",
+      "sourceSite": "https://seline.so",
+      "theme": "light",
+      "whySelected": "품질 점수, 평가 루브릭, 개선 전후 비교를 보여줄 때 하나의 파란 신호만 쓰는 analytics workspace 문법이 유효하다.",
+      "usableSlideGrammar": [
+        "품질 평가 대시보드",
+        "루브릭 점수표",
+        "프롬프트 개선 전후 지표",
+        "체크 항목별 통과/보류 상태"
+      ],
+      "visualTakeaways": [
+        "warm cream canvas 위에 one signal blue만 사용",
+        "지표, CTA, 링크, 차트가 동시에 파랗게 보이지 않도록 역할 분리",
+        "thin border와 featherlight card로 표를 가볍게 만든다.",
+        "차트는 설명보다 판단 포인트가 먼저 보이게 한다."
+      ],
+      "doNotCopy": [
+        "모든 지표와 버튼을 같은 파랑으로 과도하게 강조하지 않는다.",
+        "분석 제품의 랜딩페이지 느낌으로 교육자료를 바꾸지 않는다."
+      ],
+      "imageUrls": [
+        "https://images.refero.design/styles/refero.design/image/c52915bb-ac14-4ae4-829e-783aa954b6bc.jpg",
+        "https://images.refero.design/styles/refero.design/image/3ff8e5d1-12e1-45dc-8c98-c6e8107cf6e4.jpg"
+      ]
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "sourceUrl": "https://styles.refero.design/style/90ce5883-bb24-4466-93f7-801cd617b0d1",
+      "sourceSite": "https://linear.app",
+      "theme": "dark",
+      "whySelected": "프롬프트, 도구 실행, 검증 로그처럼 기술적 정확성이 중요한 장표를 command deck처럼 보여주기에 적합하다.",
+      "usableSlideGrammar": [
+        "나쁜 지시문과 좋은 지시문 비교",
+        "작업 로그와 검증 결과",
+        "에이전트에게 줄 명령 구조",
+        "품질 실패 원인 진단"
+      ],
+      "visualTakeaways": [
+        "near-black canvas와 얇은 graphite border",
+        "acid lime은 단 하나의 핵심 실행/통과 상태에만 사용",
+        "monospace는 코드, ID, 로그, 명령에만 사용",
+        "설명보다 구조와 상태 라벨로 판단하게 한다."
+      ],
+      "doNotCopy": [
+        "lime을 장식색이나 제목 강조색으로 쓰지 않는다.",
+        "전체 덱을 dark SaaS로 만들지 않고 실습/진단 장표에 한정한다."
+      ],
+      "imageUrls": [
+        "https://images.refero.design/styles/refero.design/image/a1b2a7c4-9d8c-493f-90bd-c132fbefb421.jpg",
+        "https://images.refero.design/styles/refero.design/image/ac204502-90f2-4cab-8d51-4fd8e4c9b0fd.jpg"
+      ]
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "sourceUrl": "https://styles.refero.design/style/0d914ef0-fa84-4c60-a9aa-cef0b5eb6e5d",
+      "sourceSite": "https://resend.com",
+      "theme": "dark",
+      "whySelected": "개발자 도구 같은 로그, 상태, 이벤트를 검은 표면과 hairline border로 정리하는 방식이 에이전트 실행 예시에 맞다.",
+      "usableSlideGrammar": [
+        "실행 이벤트 타임라인",
+        "검증 실패 사례",
+        "테스트/리뷰 결과 로그",
+        "도구 호출과 근거 확인 예시"
+      ],
+      "visualTakeaways": [
+        "black canvas와 white type으로 로그 가독성 확보",
+        "색은 기능적 데이터 punctuation으로 제한",
+        "hairline border 기반 panel 구성",
+        "상태 색은 작고 의미 있는 곳에만 배치"
+      ],
+      "doNotCopy": [
+        "status color를 장식 배경으로 확장하지 않는다.",
+        "개발자 대상이 아닌 장표까지 dark terminal로 만들지 않는다."
+      ],
+      "imageUrls": [
+        "https://images.refero.design/styles/refero.design/image/52509cef-e9d2-4e9e-973e-d34f99786ddb.jpg",
+        "https://images.refero.design/styles/refero.design/image/379ef3e7-8312-4c82-a840-1c706b1a9f9d.jpg"
+      ]
+    },
+    {
+      "id": "relate",
+      "name": "Relate",
+      "sourceUrl": "https://styles.refero.design/style/337ade6a-4bae-49ba-b4aa-8994ac805a81",
+      "sourceSite": "https://www.relate.so",
+      "theme": "light",
+      "whySelected": "한국어 UI 본문에 Pretendard가 명시되어 있고, light SaaS 화면을 학습자 친화적으로 정리하는 데 적합하다.",
+      "usableSlideGrammar": [
+        "실습 안내 패널",
+        "예시 문장 교정",
+        "업무 요청서 템플릿",
+        "현업 적용 시나리오"
+      ],
+      "visualTakeaways": [
+        "near-white linen canvas와 subtle sky wash",
+        "Pretendard/Noto Sans KR 기반 한국어 본문",
+        "작은 radius와 얇은 border로 카드 밀도 유지",
+        "본문은 여유 있게, 상태 라벨은 작고 분명하게"
+      ],
+      "doNotCopy": [
+        "display letter-spacing 규칙을 한국어 제목에 무리하게 적용하지 않는다.",
+        "CRM 제품 화면 느낌이 강해지지 않도록 교육 맥락으로 재구성한다."
+      ],
+      "imageUrls": [
+        "https://images.refero.design/styles/refero.design/image/1c64e4f4-636a-4a58-ada7-26c2c05c8e6a.jpg",
+        "https://images.refero.design/styles/refero.design/image/c2402bde-b50d-44b6-90b1-0489ed3c1d7c.jpg"
+      ]
+    }
+  ],
+  "slideApplications": [
+    {
+      "slideNo": 1,
+      "role": "Learning Contract",
+      "workingTitle": "AI 에이전트 품질은 결과물이 아니라 작업 방식에서 결정된다",
+      "referoBasis": ["slite", "tailscale"],
+      "layout": "warm editorial title + three practice outcomes",
+      "contentUse": "교육 목표 3개, 실무 적용 약속 1개, 오늘 만들 결과물 1개"
+    },
+    {
+      "slideNo": 2,
+      "role": "Concept Frame",
+      "workingTitle": "좋은 에이전트 작업은 지시, 맥락, 검증, 수정 루프가 분리되어 있다",
+      "referoBasis": ["tailscale"],
+      "layout": "whiteboard process strip",
+      "contentUse": "품질 구성요소를 4단계 흐름으로 보여준다."
+    },
+    {
+      "slideNo": 3,
+      "role": "Before / After",
+      "workingTitle": "막연한 요청은 좋은 답변을 기대하는 구조이고, 좋은 요청은 검증 가능한 작업 구조다",
+      "referoBasis": ["linear", "relate"],
+      "layout": "two-column prompt comparison with dark command inset",
+      "contentUse": "나쁜 요청문, 개선 요청문, 왜 좋아졌는지 라벨"
+    },
+    {
+      "slideNo": 4,
+      "role": "Checklist",
+      "workingTitle": "작업 전에는 목표, 자료, 제약, 산출물, 검증 기준을 먼저 잠근다",
+      "referoBasis": ["tailscale", "slite"],
+      "layout": "worksheet grid",
+      "contentUse": "실무자가 그대로 채우는 요청 전 체크리스트"
+    },
+    {
+      "slideNo": 5,
+      "role": "Rubric",
+      "workingTitle": "품질 평가는 만족도가 아니라 재현 가능한 기준으로 해야 한다",
+      "referoBasis": ["seline-analytics"],
+      "layout": "one-signal scorecard",
+      "contentUse": "정확성, 근거, 완결성, 형식 준수, 실행 가능성 루브릭"
+    },
+    {
+      "slideNo": 6,
+      "role": "Workflow",
+      "workingTitle": "에이전트에게 맡길 일과 사람이 판단할 일을 분리해야 속도가 난다",
+      "referoBasis": ["tailscale", "relate"],
+      "layout": "human-agent handoff swimlane",
+      "contentUse": "사람/AI/검증 도구 역할 분리"
+    },
+    {
+      "slideNo": 7,
+      "role": "Failure Pattern",
+      "workingTitle": "실패는 대부분 모델 성능이 아니라 입력, 범위, 검증 누락에서 시작된다",
+      "referoBasis": ["resend", "linear"],
+      "layout": "dark event log + failure labels",
+      "contentUse": "실패 로그, 원인 분류, 수정 지시 예시"
+    },
+    {
+      "slideNo": 8,
+      "role": "Practical Template",
+      "workingTitle": "좋은 지시는 역할보다 목표, 자료, 제한, 완료 기준이 먼저 보인다",
+      "referoBasis": ["relate", "slite"],
+      "layout": "copy template panel",
+      "contentUse": "현업 요청 템플릿과 항목별 작성 예시"
+    },
+    {
+      "slideNo": 9,
+      "role": "Review Loop",
+      "workingTitle": "첫 답변을 바로 쓰지 말고, 반례와 누락을 물어보는 2차 루프를 둔다",
+      "referoBasis": ["seline-analytics", "tailscale"],
+      "layout": "evaluation loop diagram",
+      "contentUse": "검토 질문, 반례 요청, 수정 지시, 최종 승인 흐름"
+    },
+    {
+      "slideNo": 10,
+      "role": "Team Practice",
+      "workingTitle": "개인 프롬프트가 아니라 팀 표준 작업문으로 축적해야 품질이 올라간다",
+      "referoBasis": ["slite", "relate"],
+      "layout": "knowledge base stack",
+      "contentUse": "팀 템플릿, 좋은 사례 저장, 품질 회고 방식"
+    },
+    {
+      "slideNo": 11,
+      "role": "Exercise",
+      "workingTitle": "내 업무 요청을 품질 기준에 맞게 다시 쓰고 검증한다",
+      "referoBasis": ["tailscale", "linear"],
+      "layout": "practice worksheet + command preview",
+      "contentUse": "실습 입력란, 개선 전후, 검증 기준"
+    },
+    {
+      "slideNo": 12,
+      "role": "Takeaway",
+      "workingTitle": "에이전트 품질은 좋은 질문이 아니라 반복 가능한 작업 체계다",
+      "referoBasis": ["slite", "seline-analytics"],
+      "layout": "editorial summary + metric commitment",
+      "contentUse": "현업 적용 5원칙과 다음 주 실천 항목"
+    }
+  ],
+  "decisionLedger": [
+    {
+      "decision": "덱 기본 배경은 따뜻한 off-white/cream 계열로 한다.",
+      "source": "Slite, Tailscale, Seline Analytics",
+      "sourceRule": "교육과 기술 문서를 cold white 대신 paper canvas로 접근 가능하게 만든다.",
+      "why": "실무 교육자료는 장시간 읽고 따라 해야 하므로, 차가운 SaaS 대시보드보다 문서/워크시트 느낌이 유리하다."
+    },
+    {
+      "decision": "프롬프트와 로그 예시는 dark command panel로 분리한다.",
+      "source": "Linear, Resend",
+      "sourceRule": "monospace와 dark surface는 코드, 명령, 로그, 기술 metadata에만 사용한다.",
+      "why": "교육 장표 전체를 어둡게 만들지 않고도 에이전트 작업의 기술적 부분을 명확히 구분할 수 있다."
+    },
+    {
+      "decision": "품질 평가 장표는 one signal color 원칙을 적용한다.",
+      "source": "Seline Analytics",
+      "sourceRule": "한 화면에서 하나의 색만 판단 신호로 사용한다.",
+      "why": "루브릭과 점수표는 여러 색을 쓰면 꾸민 표가 되므로, 통과/주의/개선 신호를 제한적으로 써야 한다."
+    },
+    {
+      "decision": "한국어 본문은 Pretendard/Noto Sans KR 중심으로 사용한다.",
+      "source": "Relate, project Korean report design system",
+      "sourceRule": "한국어 UI 본문과 실습 문장은 CJK 밀도에 맞는 sans stack을 사용한다.",
+      "why": "영문 Refero 스타일의 display spacing을 한국어에 그대로 적용하면 어색해질 수 있다."
+    }
+  ],
+  "nextMcpQueriesAfterAuth": [
+    {
+      "tool": "refero_search_screens",
+      "query": "knowledge base lesson checklist education workspace"
+    },
+    {
+      "tool": "refero_search_screens",
+      "query": "analytics dashboard scorecard rubric quality metrics"
+    },
+    {
+      "tool": "refero_search_screens",
+      "query": "developer tool logs command palette evaluation results"
+    },
+    {
+      "tool": "refero_search_flows",
+      "query": "onboarding checklist training workflow"
+    }
+  ],
+  "qualityGate": [
+    "각 장표 상단에 실무 결론이 있는가",
+    "Refero 예시는 복제가 아니라 시각 문법으로 재구성되었는가",
+    "교육 장표마다 실습자가 할 행동이 보이는가",
+    "프롬프트/로그/검증 예시는 dark command panel에만 제한되었는가",
+    "루브릭은 기준과 판단 방법이 분리되어 있는가",
+    "content.json에는 최종 출처 URL과 이미지 URL이 남는가"
+  ]
+}
