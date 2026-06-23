@@ -10,6 +10,7 @@ Local snapshot of the Open Design plugin catalog used by this workspace.
 ## Generated Files
 
 - `skills.json`: official instruction skill catalog plus local install status
+- `SKILLS.md`: human-readable skill list with title, description, source, and install path
 - `templates.json`: all plugin templates from the catalog
 - `templates-slide.json`: slide/deck templates most relevant to this report workspace
 

@@ -119,6 +119,10 @@ function countBy(items, key) {
   }, {});
 }
 
+function md(value = '') {
+  return String(value).replace(/\|/g, '\\|').trim();
+}
+
 async function writeJson(fileName, value) {
   await fs.writeFile(path.join(OUT_DIR, fileName), `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
@@ -180,6 +184,7 @@ async function main() {
     '## Generated Files',
     '',
     '- `skills.json`: official instruction skill catalog plus local install status',
+    '- `SKILLS.md`: human-readable skill list with title, description, source, and install path',
     '- `templates.json`: all plugin templates from the catalog',
     '- `templates-slide.json`: slide/deck templates most relevant to this report workspace',
     '',
@@ -200,6 +205,53 @@ async function main() {
   ].join('\n');
 
   await fs.writeFile(path.join(OUT_DIR, 'README.md'), markdown, 'utf8');
+
+  const skillsMarkdown = [
+    '# Open Design 설치 스킬 목록',
+    '',
+    '이 문서는 현재 `opendesign` 프로젝트에 설치된 Open Design 공식 지시 스킬을 사람이 읽기 쉬운 형태로 정리한 목록이다.',
+    '',
+    '## 요약',
+    '',
+    `- 공식 출처: ${SKILLS_URL}`,
+    `- 공식 스킬 수: ${skills.length}`,
+    `- 로컬 설치된 공식 스킬 수: ${skills.filter((skill) => skill.installedLocally).length}`,
+    '- 설치 위치: `.agents/skills/`',
+    '',
+    '## 공식 스킬',
+    '',
+    '| 번호 | 스킬 | 제목 | 설명 | 설치 경로 | 출처 |',
+    '|---:|---|---|---|---|---|',
+    ...skills.map((skill) => [
+      `| ${md(skill.index)}`,
+      `\`${md(skill.slug)}\``,
+      md(skill.name),
+      md(skill.description),
+      skill.localInstallPath ? `\`${md(skill.localInstallPath)}\`` : 'Not installed',
+      `[open-design.ai](${skill.url}) |`
+    ].join(' | ')),
+    '',
+    '## 프로젝트 전용 스킬',
+    '',
+    '| 스킬 | 용도 | 설치 경로 |',
+    '|---|---|---|',
+    '| `korean-executive-html-report` | 이 프로젝트의 한국어 임원보고/전략보고 HTML 덱 생성 전용 스킬 | `.agents/skills/korean-executive-html-report` |',
+    '',
+    '## 참고',
+    '',
+    '- 이 스킬들은 전역 `~/.codex/skills`가 아니라 이 저장소 내부에 설치되어 있다.',
+    '- 다른 Codex 프로젝트에서는 자동으로 보이지 않는다. 다른 프로젝트에서도 쓰려면 해당 프로젝트에 복사하거나 전역 설치가 필요하다.',
+    '- 저장소를 새로 pull한 뒤에는 Codex를 재시작하거나 새 세션을 열어야 새 로컬 스킬 목록이 반영된다.',
+    '',
+    '## 갱신',
+    '',
+    '```bash',
+    'node scripts/sync-open-design-catalog.mjs',
+    '```',
+    ''
+  ].join('\n');
+
+  await fs.writeFile(path.join(OUT_DIR, 'SKILLS.md'), skillsMarkdown, 'utf8');
 
   console.log(JSON.stringify({
     skills: skills.length,
