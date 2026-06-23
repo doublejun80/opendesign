@@ -25,6 +25,15 @@ function assertIncludes(haystack, needle, message) {
   assert.ok(haystack.includes(needle), `${message}\nExpected to include: ${needle}`);
 }
 
+function assertHorizontalDeckRuntime(html, label) {
+  assertIncludes(html, 'id="deck"', `${label} should expose a deck runtime root`);
+  assertIncludes(html, 'scroll-snap-type: x mandatory;', `${label} should use horizontal scroll snapping`);
+  assertIncludes(html, 'overflow-y: hidden;', `${label} should prevent vertical document-style scrolling`);
+  assertIncludes(html, 'scroll-snap-align: start;', `${label} should snap each slide as one screen`);
+  assertIncludes(html, "inline: 'start'", `${label} should move keyboard navigation horizontally`);
+  assertIncludes(html, "location.hash", `${label} should support hash deep links`);
+}
+
 const richBrief = {
   title: '레퍼런스 기반 보고 덱 검증',
   audience: '전략 담당 임원',
@@ -119,6 +128,7 @@ const createResult = run(['scripts/create-report.mjs', richBriefPath, richOutDir
 assert.equal(createResult.status, 0, createResult.stderr || createResult.stdout);
 
 const generatedHtml = fs.readFileSync(path.join(richOutDir, 'index.html'), 'utf-8');
+assertHorizontalDeckRuntime(generatedHtml, 'generated report');
 assertIncludes(generatedHtml, 'class="issue-tree', 'issue-tree pattern should render a dedicated issue tree layout');
 assertIncludes(generatedHtml, 'class="visual-hero', 'visual-hero pattern should render a high-impact visual layout');
 assertIncludes(generatedHtml, '<img src="https://framerusercontent.com/images/JVUac5pbNNM6iJYJShMDHhTUPUc.png', 'visual layouts should render reference images');
@@ -254,6 +264,15 @@ assert.equal(
   true,
   'sample deck should live under reports/sample-executive-report'
 );
+
+for (const reportName of fs.readdirSync(path.join(root, 'reports'))) {
+  const reportHtmlPath = path.join(root, 'reports', reportName, 'index.html');
+  if (!fs.existsSync(reportHtmlPath)) continue;
+  assertHorizontalDeckRuntime(
+    fs.readFileSync(reportHtmlPath, 'utf-8'),
+    `reports/${reportName}/index.html`
+  );
+}
 
 execFileSync(node, ['scripts/validate-workspace.mjs'], { cwd: root, stdio: 'pipe' });
 console.log('Workspace behavior tests passed.');

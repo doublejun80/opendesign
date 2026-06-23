@@ -29,13 +29,13 @@
   "slides": [
     {
       "kicker": "EXECUTIVE ASK",
-      "title": "레퍼런스는 화면 복제가 아니라 판단 구조를 보강하는 재료입니다",
-      "subtitle": "Lazyweb은 맥락과 근거를, Mobbin은 도형과 레이아웃 구조를 참고하되 최종 장표는 한국어 임원보고 문법으로 재작성합니다.",
+      "title": "레퍼런스는 화면 복제보다 판단 구조 보강 재료",
+      "subtitle": "Lazyweb 맥락·근거, Mobbin 도형·레이아웃 구조 참고 / 최종 장표는 한국어 임원보고 문법",
       "pattern": "title"
     },
     {
       "kicker": "ISSUE TREE",
-      "title": "문제는 자료 부족보다 판단 기준의 분산입니다",
+      "title": "자료 부족보다 판단 기준 분산",
       "pattern": "issue-tree",
       "root": "판단 지연",
       "branches": [
@@ -64,29 +64,29 @@
     },
     {
       "kicker": "RISK & CONTROL",
-      "title": "PoC는 범위를 좁히고 통제 기준을 먼저 고정해야 합니다",
+      "title": "PoC 범위 축소와 통제 기준 선고정",
       "pattern": "risk-control",
       "risks": [
         {
           "risk": "레퍼런스 오해석",
-          "control": "출처와 적용 원칙을 분리 기록합니다.",
+          "control": "출처와 적용 원칙 분리 기록",
           "owner": "전략팀"
         },
         {
           "risk": "장표 과밀",
-          "control": "슬라이드당 메시지 3개 이하를 유지합니다.",
+          "control": "슬라이드당 메시지 3개 이하 유지",
           "owner": "작성자"
         },
         {
           "risk": "이미지 장식화",
-          "control": "의사결정 흐름을 설명할 때만 사용합니다.",
+          "control": "의사결정 흐름 설명 시에만 사용",
           "owner": "디자인 검토"
         }
       ]
     },
     {
       "kicker": "APPENDIX",
-      "title": "레퍼런스는 구조 추출 근거로만 관리합니다",
+      "title": "레퍼런스는 구조 추출 근거로만 관리",
       "pattern": "appendix",
       "notes": [
         {

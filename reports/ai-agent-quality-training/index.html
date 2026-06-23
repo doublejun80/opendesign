@@ -40,15 +40,47 @@
       overflow-wrap: normal;
       line-break: strict;
       letter-spacing: 0;
+      height: 100vh;
+      overflow: hidden;
     }
 
     .deck {
-      width: var(--w);
-      margin: 0 auto;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .deck:focus { outline: none; }
+    .deck::-webkit-scrollbar { display: none; }
+
+    .deck-progress {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 20;
+      width: 100%;
+      height: 3px;
+      background: rgba(23, 25, 28, 0.14);
+      pointer-events: none;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--red));
+      transition: width .24s ease;
     }
 
     .slide {
       position: relative;
+      flex: 0 0 var(--w);
       width: var(--w);
       height: var(--h);
       overflow: hidden;
@@ -59,6 +91,8 @@
         var(--paper);
       background-size: 48px 48px;
       page-break-after: always;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .slide.dark {
@@ -864,14 +898,28 @@
     }
 
     @media print {
-      body { background: white; }
-      .deck { margin: 0; }
-      .slide { page-break-after: always; break-after: page; }
+      body { background: white; height: auto; overflow: visible; }
+      .deck-progress { display: none; }
+      .deck {
+        display: block;
+        width: var(--w);
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        scroll-snap-type: none;
+      }
+      .slide {
+        flex: none;
+        page-break-after: always;
+        break-after: page;
+        scroll-snap-align: none;
+      }
     }
   </style>
 </head>
 <body>
-<main class="deck ko-sentence-ok">
+<div class="deck-progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+<main class="deck ko-sentence-ok" id="deck" tabindex="0" aria-label="Korean executive report deck">
 
   <section class="slide cover" data-slide="1">
     <div class="top"><div class="track"><span class="dot"></span>AI Agent Quality Training</div><div>01 / 16</div></div>
@@ -1228,18 +1276,93 @@ metric: {RaiT 지표}
 
 </main>
 <script>
+  const deck = document.getElementById("deck");
   const slides = [...document.querySelectorAll(".slide")];
+  const progressBar = document.getElementById("progressBar");
   let current = 0;
-  function go(next) {
-    current = Math.max(0, Math.min(slides.length - 1, next));
-    slides[current].scrollIntoView({ behavior: "smooth", block: "start" });
+
+  function clampSlide(next) {
+    return Math.max(0, Math.min(slides.length - 1, next));
   }
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight" || event.key === "PageDown") go(current + 1);
-    if (event.key === "ArrowLeft" || event.key === "PageUp") go(current - 1);
-    if (event.key === "Home") go(0);
-    if (event.key === "End") go(slides.length - 1);
+
+  function updateProgress() {
+    if (!progressBar || slides.length === 0) return;
+    progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+  }
+
+  function replaceHash() {
+    try {
+      history.replaceState(null, "", `#/${current + 1}`);
+    } catch {
+      // Ignore srcdoc/file-history restrictions.
+    }
+  }
+
+  function indexFromHash() {
+    const match = location.hash.match(/^#\/?(\d+)$/);
+    if (!match) return null;
+    return clampSlide(Number(match[1]) - 1);
+  }
+
+  function go(next) {
+    current = clampSlide(next);
+    slides[current].scrollIntoView({ behavior: "smooth", inline: 'start', block: "nearest" });
+    updateProgress();
+    replaceHash();
+  }
+
+  function syncFromScroll() {
+    if (!deck || slides.length === 0) return;
+    const slideWidth = slides[0].getBoundingClientRect().width || deck.clientWidth || 1;
+    current = clampSlide(Math.round(deck.scrollLeft / slideWidth));
+    updateProgress();
+  }
+
+  let scrollFrame = 0;
+  deck?.addEventListener("scroll", () => {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = 0;
+      syncFromScroll();
+    });
   });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.target?.closest?.("input, textarea, select, [contenteditable='true']")) return;
+    if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+      event.preventDefault();
+      go(current + 1);
+    }
+    if (event.key === "ArrowLeft" || event.key === "PageUp") {
+      event.preventDefault();
+      go(current - 1);
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      go(0);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      go(slides.length - 1);
+    }
+  });
+
+  window.addEventListener("hashchange", () => {
+    const hashed = indexFromHash();
+    if (hashed !== null) {
+      current = hashed;
+      slides[current].scrollIntoView({ behavior: "smooth", inline: 'start', block: "nearest" });
+      updateProgress();
+    }
+  });
+
+  const hashed = indexFromHash();
+  if (hashed !== null) {
+    current = hashed;
+    slides[current].scrollIntoView({ behavior: "auto", inline: 'start', block: "nearest" });
+  }
+  updateProgress();
+  deck?.focus({ preventScroll: true });
 </script>
 </body>
 </html>

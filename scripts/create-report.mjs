@@ -246,18 +246,55 @@ body {
   background: #d8d8d8;
   font-family: var(--kr-font-sans);
   color: var(--kr-ink);
+  height: 100vh;
+  overflow: hidden;
 }
 
-.deck { width: var(--kr-slide-w); margin: 0 auto; }
+.deck {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.deck:focus { outline: none; }
+.deck::-webkit-scrollbar { display: none; }
+
+.deck-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  height: 3px;
+  background: rgba(17, 24, 39, .12);
+  pointer-events: none;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--kr-blue), #ff7a00);
+  transition: width .24s ease;
+}
 
 .slide {
   position: relative;
+  flex: 0 0 var(--kr-slide-w);
   width: var(--kr-slide-w);
   height: var(--kr-slide-h);
   padding: var(--kr-margin-y) var(--kr-margin-x);
   background: linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,0) 44%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .slide::after {
@@ -627,23 +664,110 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 .dark .footer-note { color: rgba(255,255,255,.56); }
 
 @media print {
-  body { background: white; }
-  .deck { margin: 0; }
-  .slide { page-break-after: always; break-after: page; }
+  body { background: white; height: auto; overflow: visible; }
+  .deck-progress { display: none; }
+  .deck {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .slide {
+    flex: none;
+    page-break-after: always;
+    break-after: page;
+    scroll-snap-align: none;
+  }
 }
 `;
 
 const js = `
+const deck = document.getElementById('deck');
 const slides = [...document.querySelectorAll('.slide')];
+const progressBar = document.getElementById('progressBar');
 let current = 0;
-function show(n) {
-  current = Math.max(0, Math.min(slides.length - 1, n));
-  slides[current].scrollIntoView({ behavior: 'smooth' });
+
+function clampSlide(n) {
+  return Math.max(0, Math.min(slides.length - 1, n));
 }
-window.addEventListener('keydown', event => {
-  if (event.key === 'ArrowRight' || event.key === 'PageDown') show(current + 1);
-  if (event.key === 'ArrowLeft' || event.key === 'PageUp') show(current - 1);
+
+function updateProgress() {
+  if (!progressBar || slides.length === 0) return;
+  progressBar.style.width = \`\${((current + 1) / slides.length) * 100}%\`;
+}
+
+function replaceHash() {
+  try {
+    history.replaceState(null, '', \`#/\${current + 1}\`);
+  } catch {
+    // Ignore srcdoc/file-history restrictions.
+  }
+}
+
+function indexFromHash() {
+  const match = location.hash.match(/^#\\/?(\\d+)$/);
+  if (!match) return null;
+  return clampSlide(Number(match[1]) - 1);
+}
+
+function show(n, options = {}) {
+  const { updateHash = true } = options;
+  current = Math.max(0, Math.min(slides.length - 1, n));
+  slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  updateProgress();
+  if (updateHash) replaceHash();
+}
+
+function syncFromScroll() {
+  if (!deck || slides.length === 0) return;
+  const slideWidth = slides[0].getBoundingClientRect().width || deck.clientWidth || 1;
+  current = clampSlide(Math.round(deck.scrollLeft / slideWidth));
+  updateProgress();
+}
+
+let scrollFrame = 0;
+deck?.addEventListener('scroll', () => {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = 0;
+    syncFromScroll();
+  });
 });
+
+window.addEventListener('keydown', event => {
+  if (event.target?.closest?.('input, textarea, select, [contenteditable="true"]')) return;
+  if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+    event.preventDefault();
+    show(current + 1);
+  }
+  if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+    event.preventDefault();
+    show(current - 1);
+  }
+  if (event.key === 'Home') {
+    event.preventDefault();
+    show(0);
+  }
+  if (event.key === 'End') {
+    event.preventDefault();
+    show(slides.length - 1);
+  }
+});
+
+window.addEventListener('hashchange', () => {
+  const hashed = indexFromHash();
+  if (hashed !== null) show(hashed, { updateHash: false });
+});
+
+const hashed = indexFromHash();
+if (hashed !== null) {
+  show(hashed, { updateHash: false });
+} else {
+  updateProgress();
+}
+deck?.focus({ preventScroll: true });
 `;
 
 const html = `<!doctype html>
@@ -655,7 +779,8 @@ const html = `<!doctype html>
 <style>${css}</style>
 </head>
 <body>
-<main class="deck">
+<div class="deck-progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+<main class="deck" id="deck" tabindex="0" aria-label="Korean executive report deck">
 ${brief.slides.map(renderSlide).join('\n')}
 </main>
 <script>${js}</script>

@@ -6,6 +6,12 @@
 <title>Open Design 기반 임원보고 덱 고도화</title>
 <style>
 :root {
+  /*
+    Default Korean executive-report tokens.
+    If the user specifies a Refero master reference, treat these values as fallbacks.
+    Override palette, radius, border, shadow, spacing, and component density in the
+    report so the master reference's visual taste is not diluted by this default theme.
+  */
   --kr-font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --kr-bg: #f6f2ea;
   --kr-bg-2: #ebe4d8;
@@ -35,26 +41,63 @@
 
 * { box-sizing: border-box; }
 
+:where(.slide, .slide *) {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  letter-spacing: 0;
+}
+
+.ko-keep {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ko-allow-break {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
 body {
   margin: 0;
   background: #d8d8d8;
   font-family: var(--kr-font-sans);
   color: var(--kr-ink);
+  height: 100vh;
+  overflow: hidden;
 }
 
 .deck {
-  width: var(--kr-slide-w);
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deck:focus { outline: none; }
+
+.deck::-webkit-scrollbar { display: none; }
+
+.deck {
+  scrollbar-width: none;
 }
 
 .slide {
   position: relative;
+  flex: 0 0 var(--kr-slide-w);
   width: var(--kr-slide-w);
   height: var(--kr-slide-h);
   padding: var(--kr-margin-y) var(--kr-margin-x);
   background: radial-gradient(circle at 88% 12%, rgba(36, 87, 197, 0.10), transparent 28%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .slide.dark {
@@ -64,7 +107,7 @@ body {
 
 .kicker {
   font-size: 25px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--kr-blue);
   font-weight: 800;
@@ -76,7 +119,7 @@ body {
 .title {
   font-size: 64px;
   line-height: 1.12;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   font-weight: 850;
   margin: 0;
   max-width: 1360px;
@@ -119,7 +162,7 @@ body {
   font-size: 32px;
   line-height: 1.25;
   margin: 0 0 14px;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
 }
 
 .card p, .body-text {
@@ -132,7 +175,7 @@ body {
 .metric {
   font-size: 84px;
   line-height: .95;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
   font-weight: 900;
 }
 
@@ -208,9 +251,21 @@ body {
 .phase p { font-size: 25px; line-height: 1.48; color: var(--kr-muted); }
 
 @media print {
-  body { background: white; }
-  .deck { margin: 0; }
-  .slide { page-break-after: always; }
+  body { background: white; height: auto; overflow: visible; }
+  .deck {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .slide {
+    flex: none;
+    page-break-after: always;
+    break-after: page;
+    scroll-snap-align: none;
+  }
 }
 
 
@@ -225,18 +280,55 @@ body {
   background: #d8d8d8;
   font-family: var(--kr-font-sans);
   color: var(--kr-ink);
+  height: 100vh;
+  overflow: hidden;
 }
 
-.deck { width: var(--kr-slide-w); margin: 0 auto; }
+.deck {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.deck:focus { outline: none; }
+.deck::-webkit-scrollbar { display: none; }
+
+.deck-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  height: 3px;
+  background: rgba(17, 24, 39, .12);
+  pointer-events: none;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--kr-blue), #ff7a00);
+  transition: width .24s ease;
+}
 
 .slide {
   position: relative;
+  flex: 0 0 var(--kr-slide-w);
   width: var(--kr-slide-w);
   height: var(--kr-slide-h);
   padding: var(--kr-margin-y) var(--kr-margin-x);
   background: linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,0) 44%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .slide::after {
@@ -606,26 +698,40 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 .dark .footer-note { color: rgba(255,255,255,.56); }
 
 @media print {
-  body { background: white; }
-  .deck { margin: 0; }
-  .slide { page-break-after: always; break-after: page; }
+  body { background: white; height: auto; overflow: visible; }
+  .deck-progress { display: none; }
+  .deck {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .slide {
+    flex: none;
+    page-break-after: always;
+    break-after: page;
+    scroll-snap-align: none;
+  }
 }
 </style>
 </head>
 <body>
-<main class="deck">
+<div class="deck-progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+<main class="deck" id="deck" tabindex="0" aria-label="Korean executive report deck">
 
 <section class="slide visual dark" data-slide="0">
 
   <div class="kicker">EXECUTIVE ASK</div>
-  <h1 class="title">보고 덱은 이제 템플릿·스킬·시스템·실제 화면을 함께 써야 합니다</h1>
+  <h1 class="title">보고 덱 제작: 템플릿·스킬·시스템·실제 화면 통합</h1>
   <div class="visual-hero body-area">
     <div class="visual-copy">
-      <p>단순 카드형 HTML을 넘어 Open Design 템플릿, 디자인 스킬, 시각 시스템, Lazyweb/Mobbin 레퍼런스를 한 번의 생성 흐름에 묶습니다.</p>
+      <p>단순 카드형 HTML을 넘어 Open Design 템플릿, 디자인 스킬, 시각 시스템, Lazyweb/Mobbin 레퍼런스 연결</p>
       <ul>
-      <li><span>01</span>Open Design 템플릿으로 장표 장르를 먼저 고른다</li>
-      <li><span>02</span>Lazyweb/Mobbin으로 실제 화면 근거를 확보한다</li>
-      <li><span>03</span>최종 장표는 한국어 임원보고 문법으로 재작성한다</li></ul>
+      <li><span>01</span>Open Design 템플릿으로 장표 장르 선결정</li>
+      <li><span>02</span>Lazyweb/Mobbin으로 실제 화면 근거 확보</li>
+      <li><span>03</span>최종 장표는 한국어 임원보고 문법으로 재작성</li></ul>
     </div>
     <div class="visual-rail" aria-label="reference images">
       <figure class="visual-shot shot-1">
@@ -654,27 +760,27 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide bento-slide" data-slide="1">
 
   <div class="kicker">OPEN DESIGN STACK</div>
-  <h1 class="title">Open Design의 핵심은 예쁜 카드가 아니라 제작 스택을 고르는 것입니다</h1>
+  <h1 class="title">Open Design 핵심: 예쁜 카드보다 제작 스택 선택</h1>
   <div class="bento-synthesis body-area">
     <article class="bento-tile tile-1">
       <span>Templates</span>
       <strong>장르 선택</strong>
-      <p>Bento, Blueprint, Swiss, Dark Technical처럼 장표 문법을 먼저 고릅니다.</p>
+      <p>Bento, Blueprint, Swiss, Dark Technical 등 장표 문법 선결정</p>
     </article>
     <article class="bento-tile tile-2">
       <span>Skills</span>
       <strong>작업 지시</strong>
-      <p>디자인 브리프, 정교화, export 스킬을 생성 흐름에 붙입니다.</p>
+      <p>디자인 브리프·정교화·export 스킬을 생성 흐름에 연결</p>
     </article>
     <article class="bento-tile tile-3">
       <span>Systems</span>
       <strong>시각 언어</strong>
-      <p>Premium·Enterprise·Publication 계열을 보고 대상에 맞게 조합합니다.</p>
+      <p>Premium·Enterprise·Publication 계열을 보고 대상별 조합</p>
     </article>
     <article class="bento-tile tile-4">
       <span>References</span>
       <strong>실제 화면</strong>
-      <p>Lazyweb/Mobbin 화면은 이미지 레일, 흐름, 라벨, 밀도에만 반영합니다.</p>
+      <p>Lazyweb/Mobbin 화면은 이미지 레일·흐름·라벨·밀도에만 반영</p>
     </article></div>
   <div class="source-strip" aria-label="reference sources">
     <span class="source-label source-open-design">open-design · Slides solution</span>
@@ -689,14 +795,14 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide visual dark" data-slide="2">
 
   <div class="kicker">REFERENCE SYNTHESIS</div>
-  <h1 class="title">실제 화면은 장식이 아니라 판단 흐름을 보여주는 근거입니다</h1>
+  <h1 class="title">실제 화면은 장식이 아닌 판단 흐름 근거</h1>
   <div class="visual-hero body-area">
     <div class="visual-copy">
-      <p>Mobbin 공개 MCP 페이지의 KYC·플랜 화면처럼 실제 제품 화면을 이미지 레일로 배치하고, 본문은 적용 원칙만 남깁니다.</p>
+      <p>Mobbin 공개 MCP 페이지의 KYC·플랜 화면을 이미지 레일로 배치 / 본문은 적용 원칙만 유지</p>
       <ul>
-      <li><span>01</span>이미지는 근거, 본문은 판단</li>
-      <li><span>02</span>모바일 화면은 흐름·상태·CTA 밀도를 보여주는 증거</li>
-      <li><span>03</span>출처 라벨은 하단에 남겨 재검토 가능하게 한다</li></ul>
+      <li><span>01</span>이미지는 근거 / 본문은 판단</li>
+      <li><span>02</span>모바일 화면은 흐름·상태·CTA 밀도 증거</li>
+      <li><span>03</span>출처 라벨은 하단 유지 / 재검토 가능</li></ul>
     </div>
     <div class="visual-rail" aria-label="reference images">
       <figure class="visual-shot shot-1">
@@ -721,7 +827,7 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="3">
 
   <div class="kicker">ISSUE TREE</div>
-  <h1 class="title">현재 격차는 디자인 취향 부족이 아니라 레퍼런스 적용 단계 누락입니다</h1>
+  <h1 class="title">현재 격차: 디자인 취향보다 레퍼런스 적용 단계 누락</h1>
   <div class="issue-tree body-area">
     <div class="issue-root">
       <span class="small-label">핵심 쟁점</span>
@@ -754,7 +860,7 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="4">
 
   <div class="kicker">OPTION MATRIX</div>
-  <h1 class="title">권장안은 Open Design 스타일 프리셋과 레퍼런스 이미지를 함께 쓰는 방식입니다</h1>
+  <h1 class="title">권장안: Open Design 스타일 프리셋과 레퍼런스 이미지 병행</h1>
   <div class="matrix body-area"><div class="row"><div class="cell head">구분</div><div class="cell head ">기존 생성기</div><div class="cell head recommend">프리셋+레퍼런스</div><div class="cell head ">완전 수작업</div></div><div class="row"><div class="cell head">시각 품질</div><div class="cell ">낮음</div><div class="cell recommend">높음</div><div class="cell ">높음</div></div><div class="row"><div class="cell head">반복성</div><div class="cell ">높음</div><div class="cell recommend">높음</div><div class="cell ">낮음</div></div><div class="row"><div class="cell head">근거 추적</div><div class="cell ">약함</div><div class="cell recommend">강함</div><div class="cell ">작성자 의존</div></div><div class="row"><div class="cell head">추천</div><div class="cell ">보완 필요</div><div class="cell recommend">추천</div><div class="cell ">특수 과제만</div></div></div>
   <div class="source-strip" aria-label="reference sources">
     <span class="source-label source-open-design">open-design · Slides solution</span>
@@ -769,27 +875,27 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="5">
 
   <div class="kicker">ROADMAP</div>
-  <h1 class="title">다음 생성부터는 레퍼런스 수집, 스타일 선택, 이미지 합성을 기본 단계로 둡니다</h1>
+  <h1 class="title">다음 생성 기본 단계: 레퍼런스 수집, 스타일 선택, 이미지 합성</h1>
   <div class="roadmap body-area">
     <article class="phase">
       <div class="phase-num">PHASE 1</div>
       <h3>1단계 레퍼런스 수집</h3>
-      <p>Lazyweb으로 맥락과 사례를 찾고, Mobbin으로 실제 화면 패턴을 확보합니다.</p>
+      <p>Lazyweb 맥락·사례 탐색 / Mobbin 실제 화면 패턴 확보</p>
     </article>
     <article class="phase">
       <div class="phase-num">PHASE 2</div>
       <h3>2단계 스타일 선택</h3>
-      <p>Open Design 템플릿과 디자인 시스템 중 보고 성격에 맞는 조합을 고릅니다.</p>
+      <p>Open Design 템플릿·디자인 시스템 조합 선택</p>
     </article>
     <article class="phase">
       <div class="phase-num">PHASE 3</div>
       <h3>3단계 시각 합성</h3>
-      <p>이미지 레일, Bento, 매트릭스, 흐름도를 장표별 역할에 맞게 배치합니다.</p>
+      <p>이미지 레일·Bento·매트릭스·흐름도 역할별 배치</p>
     </article>
     <article class="phase">
       <div class="phase-num">PHASE 4</div>
       <h3>4단계 export 검수</h3>
-      <p>1920×1080 PNG/PDF로 잘림과 밀도, 출처 라벨을 확인합니다.</p>
+      <p>1920×1080 PNG/PDF 기준 잘림·밀도·출처 라벨 확인</p>
     </article></div>
   <div class="source-strip" aria-label="reference sources">
     <span class="source-label source-open-design">open-design · Slides solution</span>
@@ -804,7 +910,7 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="6">
 
   <div class="kicker">DECISION</div>
-  <h1 class="title">승인 요청은 생성기를 유지하되 Open Design식 시각 제작 단계를 기본값으로 올리는 것입니다</h1>
+  <h1 class="title">승인 요청: 생성기 유지와 시각 제작 단계 기본값 상향</h1>
   <div class="grid-3 body-area">
     <article class="card solid">
       <div class="metric">기본값</div>
@@ -832,16 +938,90 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 </section>
 </main>
 <script>
+const deck = document.getElementById('deck');
 const slides = [...document.querySelectorAll('.slide')];
+const progressBar = document.getElementById('progressBar');
 let current = 0;
-function show(n) {
-  current = Math.max(0, Math.min(slides.length - 1, n));
-  slides[current].scrollIntoView({ behavior: 'smooth' });
+
+function clampSlide(n) {
+  return Math.max(0, Math.min(slides.length - 1, n));
 }
-window.addEventListener('keydown', event => {
-  if (event.key === 'ArrowRight' || event.key === 'PageDown') show(current + 1);
-  if (event.key === 'ArrowLeft' || event.key === 'PageUp') show(current - 1);
+
+function updateProgress() {
+  if (!progressBar || slides.length === 0) return;
+  progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+}
+
+function replaceHash() {
+  try {
+    history.replaceState(null, '', `#/${current + 1}`);
+  } catch {
+    // Ignore srcdoc/file-history restrictions.
+  }
+}
+
+function indexFromHash() {
+  const match = location.hash.match(/^#\/?(\d+)$/);
+  if (!match) return null;
+  return clampSlide(Number(match[1]) - 1);
+}
+
+function show(n, options = {}) {
+  const { updateHash = true } = options;
+  current = Math.max(0, Math.min(slides.length - 1, n));
+  slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  updateProgress();
+  if (updateHash) replaceHash();
+}
+
+function syncFromScroll() {
+  if (!deck || slides.length === 0) return;
+  const slideWidth = slides[0].getBoundingClientRect().width || deck.clientWidth || 1;
+  current = clampSlide(Math.round(deck.scrollLeft / slideWidth));
+  updateProgress();
+}
+
+let scrollFrame = 0;
+deck?.addEventListener('scroll', () => {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = 0;
+    syncFromScroll();
+  });
 });
+
+window.addEventListener('keydown', event => {
+  if (event.target?.closest?.('input, textarea, select, [contenteditable="true"]')) return;
+  if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+    event.preventDefault();
+    show(current + 1);
+  }
+  if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+    event.preventDefault();
+    show(current - 1);
+  }
+  if (event.key === 'Home') {
+    event.preventDefault();
+    show(0);
+  }
+  if (event.key === 'End') {
+    event.preventDefault();
+    show(slides.length - 1);
+  }
+});
+
+window.addEventListener('hashchange', () => {
+  const hashed = indexFromHash();
+  if (hashed !== null) show(hashed, { updateHash: false });
+});
+
+const hashed = indexFromHash();
+if (hashed !== null) {
+  show(hashed, { updateHash: false });
+} else {
+  updateProgress();
+}
+deck?.focus({ preventScroll: true });
 </script>
 </body>
 </html>

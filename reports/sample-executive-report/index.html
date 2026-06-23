@@ -6,6 +6,12 @@
 <title>AI 기반 IT 구매 자동화 PoC 검토</title>
 <style>
 :root {
+  /*
+    Default Korean executive-report tokens.
+    If the user specifies a Refero master reference, treat these values as fallbacks.
+    Override palette, radius, border, shadow, spacing, and component density in the
+    report so the master reference's visual taste is not diluted by this default theme.
+  */
   --kr-font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --kr-bg: #f6f2ea;
   --kr-bg-2: #ebe4d8;
@@ -35,26 +41,63 @@
 
 * { box-sizing: border-box; }
 
+:where(.slide, .slide *) {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  letter-spacing: 0;
+}
+
+.ko-keep {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ko-allow-break {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
 body {
   margin: 0;
   background: #d8d8d8;
   font-family: var(--kr-font-sans);
   color: var(--kr-ink);
+  height: 100vh;
+  overflow: hidden;
 }
 
 .deck {
-  width: var(--kr-slide-w);
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deck:focus { outline: none; }
+
+.deck::-webkit-scrollbar { display: none; }
+
+.deck {
+  scrollbar-width: none;
 }
 
 .slide {
   position: relative;
+  flex: 0 0 var(--kr-slide-w);
   width: var(--kr-slide-w);
   height: var(--kr-slide-h);
   padding: var(--kr-margin-y) var(--kr-margin-x);
   background: radial-gradient(circle at 88% 12%, rgba(36, 87, 197, 0.10), transparent 28%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .slide.dark {
@@ -64,7 +107,7 @@ body {
 
 .kicker {
   font-size: 25px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--kr-blue);
   font-weight: 800;
@@ -76,7 +119,7 @@ body {
 .title {
   font-size: 64px;
   line-height: 1.12;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   font-weight: 850;
   margin: 0;
   max-width: 1360px;
@@ -119,7 +162,7 @@ body {
   font-size: 32px;
   line-height: 1.25;
   margin: 0 0 14px;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
 }
 
 .card p, .body-text {
@@ -132,7 +175,7 @@ body {
 .metric {
   font-size: 84px;
   line-height: .95;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
   font-weight: 900;
 }
 
@@ -208,9 +251,21 @@ body {
 .phase p { font-size: 25px; line-height: 1.48; color: var(--kr-muted); }
 
 @media print {
-  body { background: white; }
-  .deck { margin: 0; }
-  .slide { page-break-after: always; }
+  body { background: white; height: auto; overflow: visible; }
+  .deck {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .slide {
+    flex: none;
+    page-break-after: always;
+    break-after: page;
+    scroll-snap-align: none;
+  }
 }
 
 
@@ -225,18 +280,55 @@ body {
   background: #d8d8d8;
   font-family: var(--kr-font-sans);
   color: var(--kr-ink);
+  height: 100vh;
+  overflow: hidden;
 }
 
-.deck { width: var(--kr-slide-w); margin: 0 auto; }
+.deck {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.deck:focus { outline: none; }
+.deck::-webkit-scrollbar { display: none; }
+
+.deck-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  height: 3px;
+  background: rgba(17, 24, 39, .12);
+  pointer-events: none;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--kr-blue), #ff7a00);
+  transition: width .24s ease;
+}
 
 .slide {
   position: relative;
+  flex: 0 0 var(--kr-slide-w);
   width: var(--kr-slide-w);
   height: var(--kr-slide-h);
   padding: var(--kr-margin-y) var(--kr-margin-x);
   background: linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,0) 44%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .slide::after {
@@ -255,6 +347,18 @@ body {
 .slide.dark {
   color: white;
   background: linear-gradient(135deg, #101722 0%, #172133 64%, #101722 100%);
+}
+
+.slide.visual {
+  background:
+    linear-gradient(115deg, rgba(10,16,28,.96) 0%, rgba(17,24,39,.92) 46%, rgba(36,87,197,.48) 100%),
+    #101722;
+}
+
+.slide.bento-slide {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.72) 0%, rgba(236,241,255,.62) 54%, rgba(255,244,219,.62) 100%),
+    var(--kr-bg);
 }
 
 .slide.dark::after { border-color: rgba(152,183,255,.22); }
@@ -371,6 +475,164 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 .issue-branch h3 { font-size: 32px; margin: 0 0 26px; word-break: keep-all; }
 .issue-branch li { font-size: 27px; line-height: 1.48; }
 
+.visual-hero {
+  display: grid;
+  grid-template-columns: .86fr 1.14fr;
+  gap: 54px;
+  align-items: stretch;
+}
+
+.visual-copy {
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 18px;
+}
+
+.visual-copy p {
+  max-width: 680px;
+  margin: 0 0 42px;
+  font-size: 31px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.74);
+  word-break: keep-all;
+}
+
+.visual-copy ul {
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.visual-copy li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 18px;
+  align-items: center;
+  margin: 0;
+  padding: 20px 22px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.88);
+  font-size: 26px;
+  line-height: 1.34;
+}
+
+.visual-copy li span {
+  color: #ffd166;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.visual-rail {
+  position: relative;
+  min-height: 610px;
+}
+
+.visual-shot {
+  position: absolute;
+  width: 295px;
+  margin: 0;
+  padding: 12px;
+  border-radius: 34px;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 28px 70px rgba(0,0,0,.34);
+}
+
+.visual-shot img {
+  display: block;
+  width: 100%;
+  height: 470px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 24px;
+  background: #f5f5f7;
+}
+
+.visual-shot figcaption {
+  padding: 12px 6px 2px;
+  color: rgba(17,24,39,.72);
+  font-size: 15px;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shot-1 { left: 34px; top: 12px; transform: rotate(-5deg); }
+.shot-2 { left: 318px; top: 88px; transform: rotate(3deg); }
+.shot-3 { right: 18px; top: 28px; transform: rotate(6deg); }
+.shot-4 { right: 232px; bottom: 0; transform: rotate(-2deg); }
+
+.bento-synthesis {
+  display: grid;
+  grid-template-columns: 1.25fr .82fr .82fr;
+  grid-template-rows: 260px 260px;
+  gap: 22px;
+}
+
+.bento-tile {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border: 1px solid rgba(22,25,31,.12);
+  border-radius: 22px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 18px 40px rgba(17,24,39,.08);
+}
+
+.bento-tile::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  right: -34px;
+  bottom: -34px;
+  border: 1px solid rgba(36,87,197,.18);
+  transform: rotate(18deg);
+}
+
+.bento-tile span {
+  display: block;
+  font-size: 20px;
+  color: var(--kr-blue);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.bento-tile strong {
+  display: block;
+  margin-top: 18px;
+  font-size: 42px;
+  line-height: 1.08;
+  word-break: keep-all;
+}
+
+.bento-tile p {
+  max-width: 560px;
+  margin: 18px 0 0;
+  font-size: 24px;
+  line-height: 1.42;
+  color: var(--kr-muted);
+  word-break: keep-all;
+}
+
+.tile-1 {
+  grid-row: span 2;
+  color: white;
+  background:
+    linear-gradient(140deg, rgba(17,24,39,.98), rgba(36,87,197,.82)),
+    var(--kr-navy);
+}
+.tile-1 span, .tile-1 p { color: rgba(255,255,255,.74); }
+.tile-2 { background: #fff7e6; }
+.tile-3 { background: #e9eefc; }
+.tile-4 { grid-column: span 2; background: #ffffff; }
+
 .risk-grid { display: grid; gap: 18px; }
 .risk-row {
   display: grid;
@@ -436,23 +698,37 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 .dark .footer-note { color: rgba(255,255,255,.56); }
 
 @media print {
-  body { background: white; }
-  .deck { margin: 0; }
-  .slide { page-break-after: always; break-after: page; }
+  body { background: white; height: auto; overflow: visible; }
+  .deck-progress { display: none; }
+  .deck {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .slide {
+    flex: none;
+    page-break-after: always;
+    break-after: page;
+    scroll-snap-align: none;
+  }
 }
 </style>
 </head>
 <body>
-<main class="deck">
+<div class="deck-progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+<main class="deck" id="deck" tabindex="0" aria-label="Korean executive report deck">
 
 <section class="slide dark" data-slide="0">
 
   <div class="kicker">EXECUTIVE ASK</div>
-  <h1 class="title">반복 구매 업무는 3개월 PoC로 먼저 줄일 수 있습니다</h1>
-  <p class="subtitle">견적 수집, 스펙 비교, 승인 진행을 자동화해 처리시간 30% 단축 가능성을 검증합니다.</p>
+  <h1 class="title">반복 구매 업무, 3개월 PoC로 선제 축소</h1>
+  <p class="subtitle">견적 수집·스펙 비교·승인 진행 자동화 / 처리시간 30% 단축 검증</p>
   <div class="title-meta">
     <span>CIO 및 구매 담당 임원</span>
-    <span>2026-06-22</span>
+    <span>2026-06-23</span>
   </div>
   
   <div class="footer-note"><span>AI 기반 IT 구매 자동화 PoC 검토</span><span>1/6</span></div>
@@ -461,22 +737,22 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="1">
 
   <div class="kicker">ONE-PAGE SUMMARY</div>
-  <h1 class="title">핵심은 구매 전 과정을 바꾸는 것이 아니라 반복 구간을 먼저 줄이는 것입니다</h1>
+  <h1 class="title">전 과정 전환보다 반복 구간 우선 축소</h1>
   <div class="grid-3 body-area">
     <article class="card solid">
       <div class="metric">7일</div>
       <h3>현재 병목</h3>
-      <p>견적 요청과 비교표 작성이 실무 시간을 잡아먹고 승인 상태 확인이 늦습니다.</p>
+      <p>견적 요청·비교표 작성 시간 과다 / 승인 상태 확인 지연</p>
     </article>
     <article class="card solid">
       <div class="metric">3개</div>
       <h3>PoC 범위</h3>
-      <p>노트북, 모니터, SaaS 갱신처럼 반복성이 높은 품목만 먼저 적용합니다.</p>
+      <p>노트북·모니터·SaaS 갱신 등 반복 품목 우선 적용</p>
     </article>
     <article class="card solid">
       <div class="metric">30%</div>
       <h3>성공 기준</h3>
-      <p>처리시간 30% 단축, 비교표 자동화율 70%를 1차 기준으로 둡니다.</p>
+      <p>처리시간 30% 단축 / 비교표 자동화율 70% 기준</p>
     </article></div>
   
   <div class="footer-note"><span>AI 기반 IT 구매 자동화 PoC 검토</span><span>2/6</span></div>
@@ -485,7 +761,7 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="2">
 
   <div class="kicker">WHY NOW</div>
-  <h1 class="title">실무자는 비교표를 만들고, 임원은 진행 상태를 늦게 봅니다</h1>
+  <h1 class="title">실무 비교표 수작업 / 임원 진행 상태 후행 확인</h1>
   <div class="split body-area">
     <article class="card solid split-card muted"><h3>As-Is</h3><ul><li>견적 메일 수집</li><li>수작업 스펙 비교</li><li>승인 상태 개별 확인</li></ul></article>
     <div class="arrow">→</div>
@@ -498,7 +774,7 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="3">
 
   <div class="kicker">OPTION MATRIX</div>
-  <h1 class="title">전면 도입보다 제한 품목 PoC가 비용과 리스크의 균형이 가장 좋습니다</h1>
+  <h1 class="title">전면 도입보다 제한 품목 PoC가 비용·리스크 균형 우위</h1>
   <div class="matrix body-area"><div class="row"><div class="cell head">구분</div><div class="cell head ">현행 유지</div><div class="cell head recommend">제한 품목 PoC</div><div class="cell head ">전면 도입</div></div><div class="row"><div class="cell head">속도</div><div class="cell ">변화 없음</div><div class="cell recommend">4주 내 착수</div><div class="cell ">준비기간 장기화</div></div><div class="row"><div class="cell head">비용</div><div class="cell ">단기 비용 낮음</div><div class="cell recommend">통제 가능</div><div class="cell ">초기 비용 큼</div></div><div class="row"><div class="cell head">리스크</div><div class="cell ">병목 지속</div><div class="cell recommend">범위 제한</div><div class="cell ">업무 충격 큼</div></div><div class="row"><div class="cell head">추천</div><div class="cell ">비추천</div><div class="cell recommend">추천</div><div class="cell ">보류</div></div></div>
   
   <div class="footer-note"><span>AI 기반 IT 구매 자동화 PoC 검토</span><span>4/6</span></div>
@@ -507,27 +783,27 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="4">
 
   <div class="kicker">ROADMAP</div>
-  <h1 class="title">3개월 동안 품목을 좁히고, 기준을 고정한 뒤, 성과만 보고 확대 여부를 판단합니다</h1>
+  <h1 class="title">3개월 기준 고정 후 성과 기반 확대 판단</h1>
   <div class="roadmap body-area">
     <article class="phase">
       <div class="phase-num">PHASE 1</div>
       <h3>1단계 기준 정의</h3>
-      <p>대상 품목, 비교 항목, 승인 기준을 고정합니다.</p>
+      <p>대상 품목·비교 항목·승인 기준 고정</p>
     </article>
     <article class="phase">
       <div class="phase-num">PHASE 2</div>
       <h3>2단계 자동화 구성</h3>
-      <p>견적 수집, 스펙 비교, 상태 추적 흐름을 만듭니다.</p>
+      <p>견적 수집·스펙 비교·상태 추적 흐름 구성</p>
     </article>
     <article class="phase">
       <div class="phase-num">PHASE 3</div>
       <h3>3단계 실거래 검증</h3>
-      <p>실제 구매 건을 넣어 처리시간과 오류를 측정합니다.</p>
+      <p>실제 구매 건 투입 / 처리시간·오류 측정</p>
     </article>
     <article class="phase">
       <div class="phase-num">PHASE 4</div>
       <h3>4단계 확대 판단</h3>
-      <p>성과 기준 충족 시 품목 확대 여부를 보고합니다.</p>
+      <p>성과 기준 충족 여부 기반 확대 보고</p>
     </article></div>
   
   <div class="footer-note"><span>AI 기반 IT 구매 자동화 PoC 검토</span><span>5/6</span></div>
@@ -536,7 +812,7 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 <section class="slide" data-slide="5">
 
   <div class="kicker">DECISION</div>
-  <h1 class="title">승인 요청은 전면 도입이 아니라 PoC 착수와 성공 기준 확정입니다</h1>
+  <h1 class="title">승인 요청: PoC 착수와 성공 기준 확정</h1>
   <div class="grid-3 body-area">
     <article class="card solid">
       <div class="metric">3개월</div>
@@ -558,16 +834,90 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 </section>
 </main>
 <script>
+const deck = document.getElementById('deck');
 const slides = [...document.querySelectorAll('.slide')];
+const progressBar = document.getElementById('progressBar');
 let current = 0;
-function show(n) {
-  current = Math.max(0, Math.min(slides.length - 1, n));
-  slides[current].scrollIntoView({ behavior: 'smooth' });
+
+function clampSlide(n) {
+  return Math.max(0, Math.min(slides.length - 1, n));
 }
-window.addEventListener('keydown', event => {
-  if (event.key === 'ArrowRight' || event.key === 'PageDown') show(current + 1);
-  if (event.key === 'ArrowLeft' || event.key === 'PageUp') show(current - 1);
+
+function updateProgress() {
+  if (!progressBar || slides.length === 0) return;
+  progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+}
+
+function replaceHash() {
+  try {
+    history.replaceState(null, '', `#/${current + 1}`);
+  } catch {
+    // Ignore srcdoc/file-history restrictions.
+  }
+}
+
+function indexFromHash() {
+  const match = location.hash.match(/^#\/?(\d+)$/);
+  if (!match) return null;
+  return clampSlide(Number(match[1]) - 1);
+}
+
+function show(n, options = {}) {
+  const { updateHash = true } = options;
+  current = Math.max(0, Math.min(slides.length - 1, n));
+  slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  updateProgress();
+  if (updateHash) replaceHash();
+}
+
+function syncFromScroll() {
+  if (!deck || slides.length === 0) return;
+  const slideWidth = slides[0].getBoundingClientRect().width || deck.clientWidth || 1;
+  current = clampSlide(Math.round(deck.scrollLeft / slideWidth));
+  updateProgress();
+}
+
+let scrollFrame = 0;
+deck?.addEventListener('scroll', () => {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = 0;
+    syncFromScroll();
+  });
 });
+
+window.addEventListener('keydown', event => {
+  if (event.target?.closest?.('input, textarea, select, [contenteditable="true"]')) return;
+  if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+    event.preventDefault();
+    show(current + 1);
+  }
+  if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+    event.preventDefault();
+    show(current - 1);
+  }
+  if (event.key === 'Home') {
+    event.preventDefault();
+    show(0);
+  }
+  if (event.key === 'End') {
+    event.preventDefault();
+    show(slides.length - 1);
+  }
+});
+
+window.addEventListener('hashchange', () => {
+  const hashed = indexFromHash();
+  if (hashed !== null) show(hashed, { updateHash: false });
+});
+
+const hashed = indexFromHash();
+if (hashed !== null) {
+  show(hashed, { updateHash: false });
+} else {
+  updateProgress();
+}
+deck?.focus({ preventScroll: true });
 </script>
 </body>
 </html>
