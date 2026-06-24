@@ -24,23 +24,8 @@ const escapeHtml = (value = '') => String(value)
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
 
-const slugClass = (value = 'manual') => String(value)
-  .toLowerCase()
-  .replace(/[^a-z0-9-]+/g, '-')
-  .replace(/^-|-$/g, '') || 'manual';
-
-function renderSourceLabels() {
-  if (!Array.isArray(brief.references) || brief.references.length === 0) return '';
-
-  const labels = brief.references.map(reference => `
-    <span class="source-label source-${slugClass(reference.source)}">${escapeHtml(reference.source)} · ${escapeHtml(reference.title)}</span>`).join('');
-
-  return `<div class="source-strip" aria-label="reference sources">${labels}</div>`;
-}
-
 function renderFooter(i) {
   return `
-  ${renderSourceLabels()}
   <div class="footer-note"><span>${escapeHtml(brief.title)}</span><span>${i + 1}/${brief.slides.length}</span></div>`;
 }
 
@@ -146,7 +131,7 @@ function slideVisualHero(slide, i) {
   const visuals = (slide.visuals || []).map((visual, index) => `
       <figure class="visual-shot shot-${index + 1}">
         <img src="${escapeHtml(visual.url)}" alt="${escapeHtml(visual.title)}" />
-        <figcaption>${escapeHtml(visual.source)} · ${escapeHtml(visual.title)}</figcaption>
+        <figcaption>${escapeHtml(visual.title)}</figcaption>
       </figure>`).join('');
 
   return `
@@ -641,37 +626,6 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 .appendix-item { min-height: 210px; padding: 30px; }
 .appendix-item span, .small-label { display: block; font-size: 20px; line-height: 1.3; color: var(--kr-muted); font-weight: 850; text-transform: uppercase; letter-spacing: .04em; }
 .appendix-item strong { display: block; margin-top: 16px; font-size: 30px; line-height: 1.34; word-break: keep-all; }
-
-.source-strip {
-  position: absolute;
-  left: var(--kr-margin-x);
-  bottom: 76px;
-  display: flex;
-  gap: 10px;
-  max-width: 1320px;
-  flex-wrap: wrap;
-  z-index: 2;
-}
-
-.source-label {
-  display: inline-flex;
-  align-items: center;
-  max-width: 420px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--kr-muted);
-  background: rgba(255,255,255,.72);
-  border: 1px solid var(--kr-line);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.dark .source-label { color: rgba(255,255,255,.74); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
-.source-lazyweb { border-color: rgba(36,87,197,.32); }
-.source-mobbin { border-color: rgba(183,121,31,.32); }
 
 .footer-note {
   position: absolute;

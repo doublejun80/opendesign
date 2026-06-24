@@ -27,6 +27,10 @@ function assertIncludes(haystack, needle, message) {
   assert.ok(haystack.includes(needle), `${message}\nExpected to include: ${needle}`);
 }
 
+function assertNotIncludes(haystack, needle, message) {
+  assert.equal(haystack.includes(needle), false, `${message}\nDid not expect to include: ${needle}`);
+}
+
 function assertHorizontalDeckRuntime(html, label) {
   assertIncludes(html, 'id="deck"', `${label} should expose a deck runtime root`);
   assertIncludes(html, 'scroll-snap-type: x mandatory;', `${label} should use horizontal scroll snapping`);
@@ -176,8 +180,16 @@ assertIncludes(generatedHtml, '<img src="https://framerusercontent.com/images/JV
 assertIncludes(generatedHtml, 'class="bento-synthesis', 'bento-synthesis pattern should render a bento layout');
 assertIncludes(generatedHtml, 'class="risk-grid', 'risk-control pattern should render a dedicated risk grid layout');
 assertIncludes(generatedHtml, 'class="appendix-grid', 'appendix pattern should render a dedicated appendix layout');
-assertIncludes(generatedHtml, 'source-label source-lazyweb', 'Lazyweb references should be preserved as source labels');
-assertIncludes(generatedHtml, 'source-label source-mobbin', 'Mobbin references should be preserved as source labels');
+assertNotIncludes(generatedHtml, '<span class="source-label', 'generated reports should not expose source labels on final slides');
+assertNotIncludes(generatedHtml, '<div class="source-strip', 'generated reports should not expose a source strip on final slides');
+assertNotIncludes(generatedHtml, 'mobbin ·', 'generated image captions should not expose source prefixes');
+assertNotIncludes(generatedHtml, 'lazyweb ·', 'generated image captions should not expose source prefixes');
+
+const aiAgentTrainingHtml = fs.readFileSync(path.join(root, 'reports', 'ai-agent-quality-training', 'index.html'), 'utf-8');
+assertNotIncludes(aiAgentTrainingHtml, 'Source:', 'AI agent training deck should not expose source footer text');
+assertNotIncludes(aiAgentTrainingHtml, 'Refero 적용', 'AI agent training deck should not expose reference-application footer text');
+assertNotIncludes(aiAgentTrainingHtml, 'Refero MCP', 'AI agent training deck should not expose MCP reference footer text');
+assertNotIncludes(aiAgentTrainingHtml, 'source-rail', 'AI agent training deck should not expose source rail badges');
 
 const lazywebRawPath = path.join(tmpRoot, 'lazyweb-results.json');
 writeJson(lazywebRawPath, {

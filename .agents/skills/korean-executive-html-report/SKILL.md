@@ -348,13 +348,15 @@ When references are used, add a `references` array to `content.json`:
 ```
 
 For ordinary reference screens, do not copy them directly. Convert them into Korean
-executive-report grammar and preserve only compact source labels in the final HTML.
+executive-report grammar and keep source evidence in `content.json` only. Do not expose
+visible source labels, source rails, MCP labels, or "Refero style applied" notes in the
+final HTML slides.
 For a Refero master reference, do not clone the original brand/content, but do preserve
 the master sample's visual taste, density, rhythm, and memorable devices.
 If images are useful, prefer Refero, official brand images, user-provided images, or local
 reference assets from sources the user explicitly requested. Place them in image rails,
-evidence panels, appendix thumbnails, or master-reference-compatible visual slots with
-source labels.
+evidence panels, appendix thumbnails, or master-reference-compatible visual slots without
+visible source labels.
 
 ## Open Design Source Stack
 

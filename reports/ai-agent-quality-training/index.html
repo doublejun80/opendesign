@@ -902,26 +902,6 @@
       margin-bottom: 14px;
     }
 
-    .source-rail {
-      display: flex;
-      gap: 8px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
-
-    .source-rail span {
-      max-width: 470px;
-      padding: 7px 10px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255, 253, 248, 0.74);
-      font-size: 13px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     @media print {
       body { background: white; height: auto; overflow: visible; }
       .deck-progress { display: none; }
@@ -971,13 +951,13 @@
           <div class="outcome"><b>운영 자동화</b><span>입력-실행-판정-리포트 루프 구성</span></div>
         </div>
       </div>
-      <div class="reference-stack" aria-label="Refero reference images">
-        <figure class="ref-shot shot-a"><img src="https://images.refero.design/styles/refero.design/image/bb9b0b4c-7585-453d-9f98-d0d3615b4ff7.jpg" alt="Slite Refero style" /><figcaption>Refero Style · Slite knowledge card</figcaption></figure>
-        <figure class="ref-shot shot-b"><img src="https://images.refero.design/styles/refero.design/image/abdd6215-6d8a-468b-bd75-3efd63cff124.jpg" alt="Tailscale Refero style" /><figcaption>Refero Style · Tailscale worksheet</figcaption></figure>
-        <figure class="ref-shot shot-c"><img src="https://images.refero.design/screenshots/visitors.now/desktop/2f9e2bdb-7670-49df-a379-8cf6c8a74356_thumb.jpg" alt="Visitors analytics dashboard" /><figcaption>Refero Screen · Visitors scorecard</figcaption></figure>
+      <div class="reference-stack" aria-label="visual examples">
+        <figure class="ref-shot shot-a"><img src="https://images.refero.design/styles/refero.design/image/bb9b0b4c-7585-453d-9f98-d0d3615b4ff7.jpg" alt="reference image" /></figure>
+        <figure class="ref-shot shot-b"><img src="https://images.refero.design/styles/refero.design/image/abdd6215-6d8a-468b-bd75-3efd63cff124.jpg" alt="reference image" /></figure>
+        <figure class="ref-shot shot-c"><img src="https://images.refero.design/screenshots/visitors.now/desktop/2f9e2bdb-7670-49df-a379-8cf6c8a74356_thumb.jpg" alt="reference image" /></figure>
       </div>
     </div>
-    <div class="footer"><span>Source: ai_agent_quality Guide.docx · Refero Styles/Screens</span><span>local HTML deck</span></div>
+    <div class="footer"><span></span><span>01</span></div>
   </section>
 
   <section class="slide" data-slide="2">
@@ -1043,7 +1023,7 @@
         <div class="check">eval_run_id 기록</div>
       </div>
     </div>
-    <div class="footer"><span>Refero 적용: Tailscale식 worksheet/process strip</span><span>04</span></div>
+    <div class="footer"><span></span><span>04</span></div>
   </section>
 
   <section class="slide" data-slide="5">
@@ -1073,7 +1053,7 @@
       <article class="card grade green"><div class="big">C</div><h3>일반 안내형</h3><p>FAQ, 사용법 안내, 초안 생성</p><div class="rule-box">핵심 지표 70~85%<br />안전성 필수 통과<br />사용자 재질문률 모니터링</div></article>
       <article class="card grade"><div class="big">D</div><h3>실험 / PoC</h3><p>내부 데모, 기능 탐색, 초기 실험</p><div class="rule-box">통과율보다 실패 패턴 수집<br />배포 판단 금지<br />골든셋 후보 축적</div></article>
     </div>
-    <div class="footer"><span>Refero MCP: Zendesk benchmark/stat settings pattern 참고</span><span>06</span></div>
+    <div class="footer"><span></span><span>06</span></div>
   </section>
 
   <section class="slide" data-slide="7">
@@ -1187,7 +1167,7 @@ metric: {RaiT 지표}
   "recommended_owner": "Prompt|Model|RAG|Tool|Policy|UX|Performance"
 }</pre>
     </div>
-    <div class="footer"><span>Refero 적용: Linear / Resend dark command panel</span><span>10</span></div>
+    <div class="footer"><span></span><span>10</span></div>
   </section>
 
   <section class="slide" data-slide="11">
@@ -1230,7 +1210,7 @@ metric: {RaiT 지표}
         <span class="field">pass/fail</span><span class="field">red_flags</span><span class="field">issue_owner</span><span class="field">config_hash</span>
       </div>
     </div>
-    <div class="footer"><span>Refero MCP: Raycast developer panel · Visitors dashboard pattern</span><span>12</span></div>
+    <div class="footer"><span></span><span>12</span></div>
   </section>
 
   <section class="slide" data-slide="13">
@@ -1254,7 +1234,7 @@ metric: {RaiT 지표}
       <article class="card perf-card"><span class="tag">TTFT</span><div class="big">p95</div><h3>사용자가 첫 반응을 느끼는 시간</h3><p>큐잉, 네트워크, 프롬프트 전처리, RAG 검색, 모델 prefill, 첫 토큰 생성 시간이 포함된다.</p><div class="report-fields"><span>RAG 검색 시간</span><span>큐잉 시간</span><span>prefill 시간</span><span>스트리밍 여부</span></div></article>
       <article class="card perf-card"><span class="tag amber">TTLT</span><div class="big">p99</div><h3>답변이 완성될 때까지의 시간</h3><p>출력 길이, 모델 TPS, 후처리, 도구 호출, 네트워크가 영향을 준다. 긴 보고서와 표 생성에서 중요하다.</p><div class="report-fields"><span>출력 토큰</span><span>Tool latency</span><span>후처리 시간</span><span>요청당 비용</span></div></article>
     </div>
-    <div class="footer"><span>Refero MCP: Calendly analytics reporting · 원문 Chapter 7</span><span>14</span></div>
+    <div class="footer"><span></span><span>14</span></div>
   </section>
 
   <section class="slide" data-slide="15">
@@ -1303,11 +1283,6 @@ metric: {RaiT 지표}
       <article class="lane"><div class="week">Week 2</div><h3>골든셋 50개 구축</h3><ul><li>실제 로그 30개</li><li>경계·악의 케이스 15개</li><li>Tool/RAG 케이스 5개</li></ul></article>
       <article class="lane"><div class="week">Release</div><h3>Judge와 리포트 적용</h3><ul><li>사람 평가 10% 샘플</li><li>Judge 일치율 확인</li><li>릴리스 Gate 운영</li></ul></article>
       <article class="lane"><div class="week">Monthly</div><h3>운영 자산 갱신</h3><ul><li>실패 로그 편입</li><li>Prompt/Rubric 버전 관리</li><li>성능·비용 리뷰</li></ul></article>
-    </div>
-    <div class="source-rail">
-      <span>Refero Styles: Slite, Tailscale, Seline, Linear, Resend, Relate</span>
-      <span>Refero MCP Screens: Visitors, Calendly, Raycast</span>
-      <span>Refero MCP Flow: Loom onboarding</span>
     </div>
     <div class="footer"><span>다음 행동: 팀별 1개 업무를 골라 테스트 플랜과 Judge Prompt 작성</span><span>16</span></div>
   </section>
