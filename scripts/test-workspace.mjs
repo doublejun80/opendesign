@@ -275,4 +275,5 @@ for (const reportName of fs.readdirSync(path.join(root, 'reports'))) {
 }
 
 execFileSync(node, ['scripts/validate-workspace.mjs'], { cwd: root, stdio: 'pipe' });
+execFileSync(node, ['scripts/test-report-editor.mjs'], { cwd: root, stdio: 'pipe' });
 console.log('Workspace behavior tests passed.');

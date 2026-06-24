@@ -10,6 +10,7 @@
     "sample:reference": "node scripts/create-report.mjs examples/reference-rich-brief.json reports/reference-rich-report",
     "sample:premium": "node scripts/create-report.mjs examples/open-design-premium-brief.json reports/open-design-premium-report",
     "references:apply": "node scripts/apply-reference-results.mjs",
+    "editor": "node scripts/report-editor.mjs",
     "export:sample": "node scripts/export-deck.mjs reports/sample-executive-report/index.html exports/sample-executive-report",
     "export:premium": "node scripts/export-deck.mjs reports/open-design-premium-report/index.html exports/open-design-premium-report"
   },
