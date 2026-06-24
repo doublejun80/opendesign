@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open Design Report Editor</title>
+  <link rel="stylesheet" href="/report-editor.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="slide-rail" aria-label="Slides">
+      <header class="brand-block">
+        <div class="brand-mark">OD</div>
+        <div>
+          <p class="eyebrow">Open Design</p>
+          <h1>Report Editor</h1>
+        </div>
+      </header>
+
+      <section class="report-meta">
+        <label for="deckTitle">보고서 제목</label>
+        <input id="deckTitle" type="text" data-report-field="title" />
+        <div class="meta-line">
+          <span id="reportPath">reports/...</span>
+          <span id="saveState">Loading</span>
+        </div>
+      </section>
+
+      <div class="rail-actions">
+        <button class="button secondary" id="addSlideButton" type="button">+ 장표</button>
+        <button class="button ghost" id="reloadButton" type="button">새로고침</button>
+      </div>
+
+      <nav class="slide-list" id="slideList" aria-label="장표 목록"></nav>
+    </aside>
+
+    <section class="preview-workspace" aria-label="Preview">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Live HTML Preview</p>
+          <h2 id="activeSlideTitle">장표 선택</h2>
+        </div>
+        <div class="topbar-actions">
+          <button class="button ghost" id="schemaButton" type="button">스키마</button>
+          <button class="button ghost" id="linebreakButton" type="button">줄바꿈</button>
+          <button class="button ghost" id="overflowButton" type="button">Overflow</button>
+          <button class="button primary" id="saveButton" type="button">저장 · 재생성</button>
+        </div>
+      </header>
+
+      <div class="preview-stage">
+        <div class="preview-chrome">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="preview-viewport" id="previewViewport">
+          <iframe id="reportPreview" title="Report preview"></iframe>
+        </div>
+      </div>
+
+      <section class="qa-panel" id="qaPanel" aria-live="polite">
+        <strong>검증 결과</strong>
+        <pre id="qaOutput">검증 버튼을 누르면 결과가 표시됩니다.</pre>
+      </section>
+    </section>
+
+    <aside class="property-panel" aria-label="Properties">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Structured Edit</p>
+          <h2>속성 패널</h2>
+        </div>
+        <span class="pattern-pill" id="patternPill">pattern</span>
+      </header>
+
+      <section class="panel-section">
+        <label for="slidePattern">장표 패턴</label>
+        <select id="slidePattern"></select>
+      </section>
+
+      <form id="editorForm" class="editor-form"></form>
+    </aside>
+  </main>
+
+  <template id="fieldTemplate">
+    <label class="field">
+      <span></span>
+      <input />
+    </label>
+  </template>
+
+  <script src="/report-editor.js" type="module"></script>
+</body>
+</html>
