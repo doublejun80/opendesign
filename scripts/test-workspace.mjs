@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { chromium } from 'playwright';
 
 const root = process.cwd();
 const node = process.execPath;
@@ -32,6 +34,44 @@ function assertHorizontalDeckRuntime(html, label) {
   assertIncludes(html, 'scroll-snap-align: start;', `${label} should snap each slide as one screen`);
   assertIncludes(html, "inline: 'start'", `${label} should move keyboard navigation horizontally`);
   assertIncludes(html, "location.hash", `${label} should support hash deep links`);
+}
+
+async function assertDeckFitsViewport(htmlPath, label) {
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const page = await browser.newPage({
+      viewport: { width: 1366, height: 768 },
+      deviceScaleFactor: 1
+    });
+    await page.goto(pathToFileURL(htmlPath).href);
+    await page.waitForSelector('.slide');
+    const fit = await page.evaluate(() => {
+      const slide = document.querySelector('.slide');
+      const shells = document.querySelectorAll('.slide-shell');
+      const rect = slide.getBoundingClientRect();
+      return {
+        slideWidth: rect.width,
+        slideHeight: rect.height,
+        right: rect.right,
+        bottom: rect.bottom,
+        viewportWidth: window.innerWidth,
+        viewportHeight: window.innerHeight,
+        shellCount: shells.length
+      };
+    });
+
+    assert.ok(fit.shellCount > 0, `${label} should wrap slides in fit-to-window shells`);
+    assert.ok(
+      fit.right <= fit.viewportWidth + 1,
+      `${label} should not protrude horizontally: slide right ${fit.right}, viewport ${fit.viewportWidth}`
+    );
+    assert.ok(
+      fit.bottom <= fit.viewportHeight + 1,
+      `${label} should not protrude vertically: slide bottom ${fit.bottom}, viewport ${fit.viewportHeight}`
+    );
+  } finally {
+    await browser.close();
+  }
 }
 
 const richBrief = {
@@ -129,6 +169,7 @@ assert.equal(createResult.status, 0, createResult.stderr || createResult.stdout)
 
 const generatedHtml = fs.readFileSync(path.join(richOutDir, 'index.html'), 'utf-8');
 assertHorizontalDeckRuntime(generatedHtml, 'generated report');
+await assertDeckFitsViewport(path.join(richOutDir, 'index.html'), 'generated report');
 assertIncludes(generatedHtml, 'class="issue-tree', 'issue-tree pattern should render a dedicated issue tree layout');
 assertIncludes(generatedHtml, 'class="visual-hero', 'visual-hero pattern should render a high-impact visual layout');
 assertIncludes(generatedHtml, '<img src="https://framerusercontent.com/images/JVUac5pbNNM6iJYJShMDHhTUPUc.png', 'visual layouts should render reference images');

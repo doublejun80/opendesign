@@ -8,6 +8,9 @@
     :root {
       --w: 1920px;
       --h: 1080px;
+      --deck-scale: 1;
+      --deck-fit-w: var(--w);
+      --deck-fit-h: var(--h);
       --paper: #f7f3ea;
       --paper-2: #eee8dc;
       --panel: #fffdf8;
@@ -49,6 +52,7 @@
       height: 100vh;
       margin: 0;
       display: flex;
+      align-items: center;
       overflow-x: auto;
       overflow-y: hidden;
       scroll-snap-type: x mandatory;
@@ -59,6 +63,27 @@
 
     .deck:focus { outline: none; }
     .deck::-webkit-scrollbar { display: none; }
+
+    .slide-shell {
+      position: relative;
+      flex: 0 0 var(--deck-fit-w);
+      width: var(--deck-fit-w);
+      height: var(--deck-fit-h);
+      overflow: hidden;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .slide-shell > .slide {
+      position: absolute;
+      left: 0;
+      top: 0;
+      flex: none;
+      transform: scale(var(--deck-scale));
+      transform-origin: top left;
+      scroll-snap-align: none;
+      scroll-snap-stop: normal;
+    }
 
     .deck-progress {
       position: fixed;
@@ -914,6 +939,19 @@
         break-after: page;
         scroll-snap-align: none;
       }
+      .slide-shell {
+        width: var(--w);
+        height: var(--h);
+        page-break-after: always;
+        break-after: page;
+        overflow: visible;
+      }
+      .slide-shell > .slide {
+        position: relative;
+        transform: none;
+        page-break-after: auto;
+        break-after: auto;
+      }
     }
   </style>
 </head>
@@ -1277,9 +1315,49 @@ metric: {RaiT 지표}
 </main>
 <script>
   const deck = document.getElementById("deck");
-  const slides = [...document.querySelectorAll(".slide")];
+  const rawSlides = [...document.querySelectorAll(".slide")];
   const progressBar = document.getElementById("progressBar");
   let current = 0;
+
+  function cssPixelValue(name, fallback) {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const numeric = Number.parseFloat(value);
+    return Number.isFinite(numeric) ? numeric : fallback;
+  }
+
+  const slideBaseWidth = cssPixelValue("--w", 1920);
+  const slideBaseHeight = cssPixelValue("--h", 1080);
+
+  function wrapSlidesForViewportFit() {
+    return rawSlides.map((slide) => {
+      if (slide.parentElement?.classList.contains("slide-shell")) {
+        return slide.parentElement;
+      }
+      const shell = document.createElement("div");
+      shell.className = "slide-shell";
+      if (slide.hasAttribute("data-slide")) {
+        shell.dataset.slide = slide.getAttribute("data-slide");
+      }
+      slide.parentNode.insertBefore(shell, slide);
+      shell.appendChild(slide);
+      return shell;
+    });
+  }
+
+  const slides = wrapSlidesForViewportFit();
+  deck?.classList.add("fit-to-window");
+
+  function fitSlidesToViewport() {
+    if (!deck) return;
+    const scale = Math.min(
+      window.innerWidth / slideBaseWidth,
+      window.innerHeight / slideBaseHeight,
+      1
+    ) || 1;
+    document.documentElement.style.setProperty("--deck-scale", String(scale));
+    document.documentElement.style.setProperty("--deck-fit-w", `${slideBaseWidth * scale}px`);
+    document.documentElement.style.setProperty("--deck-fit-h", `${slideBaseHeight * scale}px`);
+  }
 
   function clampSlide(next) {
     return Math.max(0, Math.min(slides.length - 1, next));
@@ -1304,11 +1382,12 @@ metric: {RaiT 지표}
     return clampSlide(Number(match[1]) - 1);
   }
 
-  function go(next) {
+  function go(next, options = {}) {
+    const { behavior = "smooth", updateHash = true } = options;
     current = clampSlide(next);
-    slides[current].scrollIntoView({ behavior: "smooth", inline: 'start', block: "nearest" });
+    slides[current].scrollIntoView({ behavior, inline: 'start', block: "nearest" });
     updateProgress();
-    replaceHash();
+    if (updateHash) replaceHash();
   }
 
   function syncFromScroll() {
@@ -1350,16 +1429,24 @@ metric: {RaiT 지표}
   window.addEventListener("hashchange", () => {
     const hashed = indexFromHash();
     if (hashed !== null) {
-      current = hashed;
-      slides[current].scrollIntoView({ behavior: "smooth", inline: 'start', block: "nearest" });
-      updateProgress();
+      go(hashed, { updateHash: false });
     }
   });
 
+  let resizeFrame = 0;
+  window.addEventListener("resize", () => {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      fitSlidesToViewport();
+      go(current, { behavior: "auto", updateHash: false });
+    });
+  });
+
+  fitSlidesToViewport();
+
   const hashed = indexFromHash();
   if (hashed !== null) {
-    current = hashed;
-    slides[current].scrollIntoView({ behavior: "auto", inline: 'start', block: "nearest" });
+    go(hashed, { behavior: "auto", updateHash: false });
   }
   updateProgress();
   deck?.focus({ preventScroll: true });

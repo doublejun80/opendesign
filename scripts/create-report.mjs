@@ -239,6 +239,9 @@ ${tokenCss}
   --kr-radius-sm: 12px;
   --kr-radius-md: 18px;
   --kr-radius-lg: 26px;
+  --kr-deck-scale: 1;
+  --kr-deck-fit-w: var(--kr-slide-w);
+  --kr-deck-fit-h: var(--kr-slide-h);
 }
 
 body {
@@ -255,6 +258,7 @@ body {
   height: 100vh;
   margin: 0;
   display: flex;
+  align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
@@ -265,6 +269,27 @@ body {
 
 .deck:focus { outline: none; }
 .deck::-webkit-scrollbar { display: none; }
+
+.slide-shell {
+  position: relative;
+  flex: 0 0 var(--kr-deck-fit-w);
+  width: var(--kr-deck-fit-w);
+  height: var(--kr-deck-fit-h);
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.slide-shell > .slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  flex: none;
+  transform: scale(var(--kr-deck-scale));
+  transform-origin: top left;
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
 
 .deck-progress {
   position: fixed;
@@ -680,14 +705,67 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
     break-after: page;
     scroll-snap-align: none;
   }
+  .slide-shell {
+    width: var(--kr-slide-w);
+    height: var(--kr-slide-h);
+    page-break-after: always;
+    break-after: page;
+    overflow: visible;
+  }
+  .slide-shell > .slide {
+    position: relative;
+    transform: none;
+    page-break-after: auto;
+    break-after: auto;
+  }
 }
 `;
 
 const js = `
 const deck = document.getElementById('deck');
-const slides = [...document.querySelectorAll('.slide')];
+const rawSlides = [...document.querySelectorAll('.slide')];
 const progressBar = document.getElementById('progressBar');
 let current = 0;
+
+function cssPixelValue(name, fallback) {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const numeric = Number.parseFloat(value);
+  return Number.isFinite(numeric) ? numeric : fallback;
+}
+
+const slideBaseWidth = cssPixelValue('--kr-slide-w', 1920);
+const slideBaseHeight = cssPixelValue('--kr-slide-h', 1080);
+
+function wrapSlidesForViewportFit() {
+  return rawSlides.map(slide => {
+    if (slide.parentElement?.classList.contains('slide-shell')) {
+      return slide.parentElement;
+    }
+    const shell = document.createElement('div');
+    shell.className = 'slide-shell';
+    if (slide.hasAttribute('data-slide')) {
+      shell.dataset.slide = slide.getAttribute('data-slide');
+    }
+    slide.parentNode.insertBefore(shell, slide);
+    shell.appendChild(slide);
+    return shell;
+  });
+}
+
+const slides = wrapSlidesForViewportFit();
+deck?.classList.add('fit-to-window');
+
+function fitSlidesToViewport() {
+  if (!deck) return;
+  const scale = Math.min(
+    window.innerWidth / slideBaseWidth,
+    window.innerHeight / slideBaseHeight,
+    1
+  ) || 1;
+  document.documentElement.style.setProperty('--kr-deck-scale', String(scale));
+  document.documentElement.style.setProperty('--kr-deck-fit-w', \`\${slideBaseWidth * scale}px\`);
+  document.documentElement.style.setProperty('--kr-deck-fit-h', \`\${slideBaseHeight * scale}px\`);
+}
 
 function clampSlide(n) {
   return Math.max(0, Math.min(slides.length - 1, n));
@@ -713,9 +791,9 @@ function indexFromHash() {
 }
 
 function show(n, options = {}) {
-  const { updateHash = true } = options;
+  const { updateHash = true, behavior = 'smooth' } = options;
   current = Math.max(0, Math.min(slides.length - 1, n));
-  slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  slides[current].scrollIntoView({ behavior, inline: 'start', block: 'nearest' });
   updateProgress();
   if (updateHash) replaceHash();
 }
@@ -761,9 +839,20 @@ window.addEventListener('hashchange', () => {
   if (hashed !== null) show(hashed, { updateHash: false });
 });
 
+let resizeFrame = 0;
+window.addEventListener('resize', () => {
+  if (resizeFrame) cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(() => {
+    fitSlidesToViewport();
+    show(current, { updateHash: false, behavior: 'auto' });
+  });
+});
+
+fitSlidesToViewport();
+
 const hashed = indexFromHash();
 if (hashed !== null) {
-  show(hashed, { updateHash: false });
+  show(hashed, { updateHash: false, behavior: 'auto' });
 } else {
   updateProgress();
 }

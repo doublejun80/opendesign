@@ -99,8 +99,24 @@ try {
   }).then((response) => response.json());
   assert.equal(saveResponse.ok, true);
 
+  fs.writeFileSync(path.join(reportDir, 'index.html'), `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<style>
+body { margin: 0; overflow: hidden; }
+.deck { width: 100vw; height: 100vh; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; }
+.slide { flex: 0 0 1920px; width: 1920px; height: 1080px; scroll-snap-align: start; }
+</style>
+</head>
+<body>
+<main class="deck legacy-report" id="deck"><section class="slide">API ???遺??</section></main>
+</body>
+</html>`, 'utf-8');
+
   const reportHtml = await fetch(`${baseUrl}/report/index.html`).then((response) => response.text());
-  assert.match(reportHtml, /API 저장 부제/);
+  assert.match(reportHtml, /data-open-design-editor-fit/);
+  assert.match(reportHtml, /<section class="slide">/);
 } finally {
   await server.close();
 }

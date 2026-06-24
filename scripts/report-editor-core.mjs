@@ -18,6 +18,92 @@ const mimeTypes = new Map([
   ['.svg', 'image/svg+xml; charset=utf-8']
 ]);
 
+const editorReportFitStyle = `
+<style data-open-design-editor-fit>
+:root {
+  --od-editor-deck-scale: 1;
+  --od-editor-deck-fit-w: 1920px;
+  --od-editor-deck-fit-h: 1080px;
+}
+.deck.od-editor-fit {
+  align-items: center;
+}
+.deck.od-editor-fit .od-editor-slide-shell {
+  position: relative;
+  flex: 0 0 var(--od-editor-deck-fit-w);
+  width: var(--od-editor-deck-fit-w);
+  height: var(--od-editor-deck-fit-h);
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.deck.od-editor-fit .od-editor-slide-shell > .slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  flex: none;
+  transform: scale(var(--od-editor-deck-scale));
+  transform-origin: top left;
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+@media print {
+  .deck.od-editor-fit .od-editor-slide-shell {
+    width: 1920px;
+    height: 1080px;
+    page-break-after: always;
+    break-after: page;
+    overflow: visible;
+  }
+  .deck.od-editor-fit .od-editor-slide-shell > .slide {
+    position: relative;
+    transform: none;
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
+</style>`;
+
+const editorReportFitScript = `
+<script data-open-design-editor-fit>
+(() => {
+  const deck = document.getElementById('deck') || document.querySelector('.deck');
+  if (!deck || deck.dataset.openDesignEditorFit === 'true') return;
+  if (deck.querySelector('.slide-shell, .od-editor-slide-shell')) return;
+  const rawSlides = [...deck.querySelectorAll(':scope > .slide')];
+  if (rawSlides.length === 0) return;
+
+  const baseWidth = rawSlides[0].offsetWidth || rawSlides[0].getBoundingClientRect().width || 1920;
+  const baseHeight = rawSlides[0].offsetHeight || rawSlides[0].getBoundingClientRect().height || 1080;
+  deck.dataset.openDesignEditorFit = 'true';
+  deck.classList.add('od-editor-fit');
+
+  rawSlides.forEach((slide) => {
+    const shell = document.createElement('div');
+    shell.className = 'od-editor-slide-shell';
+    if (slide.hasAttribute('data-slide')) {
+      shell.dataset.slide = slide.getAttribute('data-slide');
+    }
+    slide.parentNode.insertBefore(shell, slide);
+    shell.appendChild(slide);
+  });
+
+  function fitSlidesToViewport() {
+    const scale = Math.min(window.innerWidth / baseWidth, window.innerHeight / baseHeight, 1) || 1;
+    document.documentElement.style.setProperty('--od-editor-deck-scale', String(scale));
+    document.documentElement.style.setProperty('--od-editor-deck-fit-w', (baseWidth * scale) + 'px');
+    document.documentElement.style.setProperty('--od-editor-deck-fit-h', (baseHeight * scale) + 'px');
+  }
+
+  let resizeFrame = 0;
+  window.addEventListener('resize', () => {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(fitSlidesToViewport);
+  });
+  fitSlidesToViewport();
+})();
+</script>`;
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
@@ -61,6 +147,39 @@ function serveFile(response, filePath) {
     'cache-control': 'no-store'
   });
   fs.createReadStream(filePath).pipe(response);
+}
+
+function injectEditorReportFit(html) {
+  if (!/\bclass=(["'])[^"']*\bdeck\b[^"']*\1/.test(html)) return html;
+  if (html.includes('data-open-design-editor-fit') || html.includes('slide-shell')) return html;
+
+  const withStyle = html.includes('</head>')
+    ? html.replace('</head>', `${editorReportFitStyle}\n</head>`)
+    : `${editorReportFitStyle}\n${html}`;
+
+  return withStyle.includes('</body>')
+    ? withStyle.replace('</body>', `${editorReportFitScript}\n</body>`)
+    : `${withStyle}\n${editorReportFitScript}`;
+}
+
+function serveReportFile(response, filePath) {
+  if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+    sendText(response, 404, 'Not found');
+    return;
+  }
+
+  const ext = path.extname(filePath).toLowerCase();
+  if (ext === '.html' && path.basename(filePath).toLowerCase() === 'index.html') {
+    const html = fs.readFileSync(filePath, 'utf-8');
+    response.writeHead(200, {
+      'content-type': 'text/html; charset=utf-8',
+      'cache-control': 'no-store'
+    });
+    response.end(injectEditorReportFit(html));
+    return;
+  }
+
+  serveFile(response, filePath);
 }
 
 function readRequestBody(request) {
@@ -285,7 +404,7 @@ export async function createEditorServer(options = {}) {
           sendText(response, 403, 'Forbidden');
           return;
         }
-        serveFile(response, filePath);
+        serveReportFile(response, filePath);
         return;
       }
 
