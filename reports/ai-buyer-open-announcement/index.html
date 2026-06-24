@@ -92,21 +92,21 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 72% 10%, rgba(255, 106, 0, 0.2), transparent 24%),
-        radial-gradient(circle at 10% 58%, rgba(255, 138, 0, 0.12), transparent 28%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 246, 234, 0.24));
+        radial-gradient(circle at 78% 11%, rgba(255, 106, 0, 0.28), transparent 22%),
+        radial-gradient(circle at 12% 24%, rgba(234, 0, 44, 0.2), transparent 22%),
+        linear-gradient(180deg, #07122f 0, #07122f 414px, rgba(255, 255, 255, 0) 415px);
       pointer-events: none;
     }
 
     .poster::after {
       content: "";
       position: absolute;
-      top: 170px;
-      right: 14px;
+      top: 116px;
+      right: 16px;
       width: 520px;
       height: 520px;
       border-radius: 50%;
-      border: 2px solid rgba(255, 106, 0, 0.22);
+      border: 2px solid rgba(255, 106, 0, 0.32);
       box-shadow:
         inset 0 0 0 82px rgba(255, 106, 0, 0.04),
         inset 0 0 0 166px rgba(234, 0, 44, 0.028);
@@ -135,12 +135,13 @@
       gap: 12px;
       padding: 0 20px 0 13px;
       border-radius: 10px;
-      background: linear-gradient(135deg, var(--navy), #0d1a3e);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       color: #fff;
       font-size: 22px;
       font-weight: 880;
       letter-spacing: -0.02em;
-      box-shadow: 0 14px 28px rgba(7, 18, 47, 0.18);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
     }
 
     .brand-mark {
@@ -183,7 +184,7 @@
 
     .hero h1 {
       margin: 0;
-      color: var(--navy);
+      color: #fff;
       font-size: 62px;
       line-height: 1.04;
       font-weight: 960;
@@ -200,7 +201,7 @@
 
     .hero-subtitle {
       margin: 18px 0 0;
-      color: var(--navy);
+      color: #fff;
       font-size: 31px;
       line-height: 1.17;
       font-weight: 860;
@@ -215,7 +216,7 @@
 
     .hero-lead {
       margin: 13px 0 0;
-      color: #1d2844;
+      color: rgba(255, 255, 255, 0.88);
       font-size: 22px;
       line-height: 1.38;
       font-weight: 700;
@@ -630,16 +631,16 @@
 
     .value-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
 
     .value-card {
       display: grid;
-      grid-template-columns: 70px 1fr;
-      gap: 16px;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
       align-items: center;
-      padding: 15px 18px;
+      padding: 14px 13px;
       border-radius: 18px;
       border: 1px solid rgba(7, 18, 47, 0.12);
       box-shadow: 0 14px 28px rgba(7, 18, 47, 0.075);
@@ -650,14 +651,19 @@
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.93), rgba(255, 239, 219, 0.76));
     }
 
-    .value-card.procurement {
+    .value-card.quality {
       border-color: rgba(21, 137, 79, 0.24);
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(234, 247, 238, 0.8));
     }
 
+    .value-card.focus {
+      border-color: rgba(7, 18, 47, 0.18);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(243, 245, 249, 0.88));
+    }
+
     .avatar {
-      width: 66px;
-      height: 66px;
+      width: 50px;
+      height: 50px;
       display: grid;
       place-items: center;
       border-radius: 50%;
@@ -669,34 +675,42 @@
       color: var(--orange);
     }
 
-    .procurement .avatar {
+    .quality .avatar {
       color: var(--green);
     }
 
+    .focus .avatar {
+      color: var(--navy);
+    }
+
     .avatar svg {
-      width: 42px;
-      height: 42px;
+      width: 32px;
+      height: 32px;
       stroke-width: 2.2;
     }
 
     .value-copy h3 {
       margin: 0;
       color: var(--orange);
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.13;
       font-weight: 930;
       letter-spacing: -0.035em;
     }
 
-    .procurement .value-copy h3 {
+    .quality .value-copy h3 {
       color: var(--green);
+    }
+
+    .focus .value-copy h3 {
+      color: var(--navy);
     }
 
     .value-copy p {
       margin: 7px 0 0;
       color: #1f2a44;
-      font-size: 14px;
-      line-height: 1.32;
+      font-size: 12px;
+      line-height: 1.3;
       font-weight: 670;
       letter-spacing: -0.034em;
     }
@@ -805,9 +819,9 @@
 
           <section class="hero">
             <div>
-              <h1><span class="ko-keep">구매, 이제</span> <span class="ai">AI Buyer</span><span class="ko-keep">와</span><br /><span class="ko-keep">함께 일합니다</span></h1>
-              <p class="hero-subtitle"><span class="ko-keep">구매 <strong>‘AI 컨시어지’</strong> 1차 서비스 오픈 안내</span></p>
-              <p class="hero-lead"><strong>7월 6일</strong>, <span class="ko-keep">사업부서와 구매담당자를 위한 첫 번째</span> <strong>구매 AI 서비스</strong> <span class="ko-keep">시작</span></p>
+              <h1><span class="ko-keep">구매 검토,</span><br /><span class="ai">AI Buyer</span><span class="ko-keep">와</span><br /><span class="ko-keep">먼저 확인</span></h1>
+              <p class="hero-subtitle"><span class="ko-keep">사업·영업 담당자를 위한 구매 <strong>‘AI 컨시어지’</strong> 1차 오픈</span></p>
+              <p class="hero-lead"><strong>7월 6일</strong>, <span class="ko-keep">원가 구성 확인과 업체지정요청서 작성을 돕는</span> <strong>구매 AI 서비스</strong> <span class="ko-keep">시작</span></p>
             </div>
             <div class="signal-card" aria-hidden="true">
               <div class="signal-kicker">
@@ -822,7 +836,7 @@
                 </svg>
                 AI Buyer Flow
               </div>
-              <div class="signal-title"><span class="ko-keep">문의·검토·작성</span><br /><span class="ko-keep">구매 업무 한 화면 처리</span></div>
+              <div class="signal-title"><span class="ko-keep">단가 확인부터</span><br /><span class="ko-keep">요청서 점검까지</span></div>
             </div>
           </section>
 
@@ -838,12 +852,12 @@
             </div>
             <div class="why-copy">
               <h2 class="section-title">1. 왜 지금 필요한가 <small>Why Now</small></h2>
-              <p class="why-point"><span class="ko-keep">현장의 대기 시간과 행정 부담 축소</span></p>
-              <p class="body-copy"><span class="ko-keep">복잡한 절차, 반복 문의, 수기 입력, 파편화된 시스템 조회로 발생하던 비효율을 AI로 해결</span></p>
+              <p class="why-point"><span class="ko-keep">데이터 탐색·문의 대기·수기 작성 부담 축소</span></p>
+              <p class="body-copy"><span class="ko-keep">과거 구매 데이터와 작성 기준을 찾기 어려웠던 시간을 AI Buyer가 안내·정리</span></p>
               <div class="impact-strip" aria-label="기대 효과 요약">
-                <div class="impact"><b>대기↓</b><span>구매 문의 응답 지연 완화</span></div>
-                <div class="impact"><b>입력↓</b><span>반복 작성·증빙 탐색 축소</span></div>
-                <div class="impact"><b>품질↑</b><span>데이터 기반 검토 기준 확보</span></div>
+                <div class="impact"><b>탐색↓</b><span>구매 이력·단가 범위 확인</span></div>
+                <div class="impact"><b>대기↓</b><span>기준 확인 리드타임 축소</span></div>
+                <div class="impact"><b>누락↓</b><span>요청서 항목·증빙 점검</span></div>
               </div>
             </div>
           </section>
@@ -851,33 +865,33 @@
           <section class="section-card services">
             <div class="section-head">
               <h2 class="section-title">2. 1차 Open 서비스</h2>
-              <p class="section-note"><span class="ko-keep">이번 오픈은 ‘영업 단계 원가 검토’와 ‘업체지정 품의’ 두 영역을 우선 혁신</span></p>
+              <p class="section-note"><span class="ko-keep">사업·영업 초기 단계에서 자주 막히는 원가 확인과 업체지정요청서 작성 지원</span></p>
             </div>
             <div class="service-list">
               <article class="service-card">
-                <h3 class="service-title"><span class="num">1</span><span class="ko-keep">Data 기반 Deal Support</span><span class="ko-keep">(영업단계 원가 구성 확인)</span></h3>
+                <h3 class="service-title"><span class="num">1</span><span class="ko-keep">AI와 함께 확인하는 적정 단가·원가 구성</span></h3>
                 <div class="shift-grid">
                   <div class="shift-box">
                     <span class="shift-label">기존 Pain</span>
-                    <p><span class="ko-keep">적정 원가 확인을 위해 여러 시스템을 조회하거나 구매담당자에게 문의 후 대기</span></p>
+                    <p><span class="ko-keep">과거 구매 데이터를 찾기 어렵고, 적정 수준 판단을 위해 여러 경로 확인</span></p>
                   </div>
                   <div class="shift-box">
                     <span class="shift-label ai">AI 서비스 변화</span>
-                    <p><span class="ko-keep">구매 이력과 축적 데이터를 바탕으로 적정 단가·원가 구성을 실시간 시뮬레이션</span></p>
+                    <p><span class="ko-keep">품목·거래 이력 기반으로 단가 범위와 원가 구성 힌트를 빠르게 제시</span></p>
                   </div>
                 </div>
               </article>
 
               <article class="service-card">
-                <h3 class="service-title"><span class="num">2</span><span class="ko-keep">AI Buyer와 작성하는 업체지정요청서</span></h3>
+                <h3 class="service-title"><span class="num">2</span><span class="ko-keep">업체지정요청서 작성 가이드·검토</span></h3>
                 <div class="shift-grid">
                   <div class="shift-box">
                     <span class="shift-label">기존 Pain</span>
-                    <p><span class="ko-keep">업체 지정 사유와 증빙을 직접 찾고 정리해 작성 시간·품질 편차 발생</span></p>
+                    <p><span class="ko-keep">무엇을 써야 하는지, 어떤 증빙을 챙겨야 하는지 작성 기준 편차 발생</span></p>
                   </div>
                   <div class="shift-box">
                     <span class="shift-label ai">AI 서비스 변화</span>
-                    <p><span class="ko-keep">요청 목적만 입력하면 유사 사업 이력 기반 초안 작성, 지정 사유 구조화와 증빙 준비 지원</span></p>
+                    <p><span class="ko-keep">지정 사유·비교 근거·필수 증빙을 안내하고 누락·보완 포인트 점검</span></p>
                   </div>
                 </div>
               </article>
@@ -904,9 +918,9 @@
                   </svg>
                 </span>
                 <div>
-                  <h3>Sprint 1 확장</h3>
-                  <time>2026년 7월 ~ 11월</time>
-                  <p><span class="ko-keep">Resource Planning 업무의 AI 에이전트화 착수</span></p>
+                  <h3>1차 오픈 안정화</h3>
+                  <time>2026년 7월</time>
+                  <p><span class="ko-keep">원가 구성 확인·업체지정요청서 작성 지원</span></p>
                 </div>
               </article>
 
@@ -918,9 +932,9 @@
                   </svg>
                 </span>
                 <div>
-                  <h3>2차 서비스 오픈</h3>
+                  <h3>견적소싱 연계</h3>
                   <time>2026년 11월 예정</time>
-                  <p><span class="ko-keep">견적소싱요청부터 구매요청까지 연결하는 플로우 완성</span></p>
+                  <p><span class="ko-keep">AI Buyer로 견적소싱부터 구매요청까지 빠르게 연결</span></p>
                 </div>
               </article>
 
@@ -951,28 +965,45 @@
               <article class="value-card business">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M20 21a8 8 0 0 0-16 0" />
-                    <circle cx="12" cy="7" r="4" />
+                    <path d="M3 12h18" />
+                    <path d="M12 3v18" />
+                    <circle cx="12" cy="12" r="8" />
+                    <circle cx="12" cy="12" r="2" />
                   </svg>
                 </div>
                 <div class="value-copy">
-                  <h3>사업부서 <span class="nowrap">(사용자)</span></h3>
-                  <p><span class="ko-keep">구매 절차 부담 축소, 빠른 데이터 기반 의사결정으로 영업 집중도 향상</span></p>
+                  <h3>빠른 기준 확인</h3>
+                  <p><span class="ko-keep">과거 구매 데이터와 단가 범위를 먼저 확인</span></p>
                 </div>
               </article>
 
-              <article class="value-card procurement">
+              <article class="value-card quality">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                    <path d="M14 2v6h6" />
+                    <path d="m9 15 2 2 4-5" />
                   </svg>
                 </div>
                 <div class="value-copy">
-                  <h3>구매부서 <span class="nowrap">(담당자)</span></h3>
-                  <p><span class="ko-keep">단순 문의·클릭 업무 축소, 공급망 리스크 관리와 전략 컨설팅 집중</span></p>
+                  <h3>요청서 품질 확보</h3>
+                  <p><span class="ko-keep">지정 사유·비교 근거·필수 증빙 누락 점검</span></p>
+                </div>
+              </article>
+
+              <article class="value-card focus">
+                <div class="avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 21h18" />
+                    <path d="M7 17V9" />
+                    <path d="M12 17V5" />
+                    <path d="M17 17v-7" />
+                    <path d="m5 13 7-7 4 4 3-3" />
+                  </svg>
+                </div>
+                <div class="value-copy">
+                  <h3>본업 집중</h3>
+                  <p><span class="ko-keep">검토 대기와 자료 탐색을 줄이고 사업·영업 업무 집중</span></p>
                 </div>
               </article>
             </div>
@@ -981,8 +1012,8 @@
               <div class="notice-title"><span class="info">i</span><span>안내 사항</span></div>
               <ul>
                 <li><span class="ko-keep">서비스 오픈: 2026년 7월 6일 (월) 09:00</span></li>
+                <li><span class="ko-keep">1차 오픈 대상: 사업·영업 담당자</span></li>
                 <li><span class="ko-keep">사용 가이드 및 AX Room 안내: 추후 별도 안내 예정</span></li>
-                <li><span class="ko-keep">구성원 여러분의 많은 관심과 적극적인 활용 요청</span></li>
               </ul>
             </footer>
           </section>
