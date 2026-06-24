@@ -1,0 +1,102 @@
+{
+  "title": "구매 AI Concierge 1차 서비스 오픈 안내",
+  "format": "one-page-vertical-html-poster",
+  "audience": "SK AX 내부 구성원, 사업부서 사용자, 구매담당자",
+  "message": {
+    "primary": "구매, 이제 AI Buyer와 함께 일합니다",
+    "launch": "1st OPEN | 2026.07.06",
+    "subtitle": "구매 ‘AI 컨시어지’ 1차 서비스 오픈 안내",
+    "lead": "7월 6일, 사업부서와 구매담당자를 위한 첫 번째 구매 AI 서비스 시작"
+  },
+  "sections": [
+    {
+      "name": "왜 지금 필요한가",
+      "point": "현장의 대기 시간과 행정 부담 축소",
+      "body": "복잡한 절차, 반복 문의, 수기 입력, 파편화된 시스템 조회로 발생하던 비효율을 AI로 해결"
+    },
+    {
+      "name": "1차 Open 서비스",
+      "services": [
+        {
+          "title": "Data 기반 Deal Support",
+          "context": "영업단계 원가 구성 확인",
+          "pain": "적정 원가 확인을 위해 여러 시스템을 조회하거나 구매담당자에게 문의 후 대기",
+          "aiShift": "구매 이력과 축적 데이터를 바탕으로 적정 단가·원가 구성을 실시간 시뮬레이션"
+        },
+        {
+          "title": "AI Buyer와 작성하는 업체지정요청서",
+          "pain": "업체 지정 사유와 증빙을 직접 찾고 정리해 작성 시간·품질 편차 발생",
+          "aiShift": "요청 목적만 입력하면 유사 사업 이력 기반 초안 작성, 지정 사유 구조화와 증빙 준비 지원"
+        }
+      ]
+    },
+    {
+      "name": "향후 로드맵",
+      "items": [
+        {
+          "phase": "Sprint 1 확장",
+          "period": "2026년 7월 ~ 11월",
+          "detail": "Resource Planning 업무의 AI 에이전트화 착수"
+        },
+        {
+          "phase": "2차 서비스 오픈",
+          "period": "2026년 11월 예정",
+          "detail": "견적소싱요청부터 구매요청까지 연결하는 플로우 완성"
+        },
+        {
+          "phase": "후속 확장",
+          "period": "~2027년",
+          "detail": "계약 리스크 모니터링, 검수·세금계산서 정산 자동화"
+        }
+      ]
+    },
+    {
+      "name": "기대 가치",
+      "items": [
+        {
+          "target": "사업부서",
+          "value": "구매 절차 부담 축소, 빠른 데이터 기반 의사결정으로 영업 집중도 향상"
+        },
+        {
+          "target": "구매부서",
+          "value": "단순 문의·클릭 업무 축소, 공급망 리스크 관리와 전략 컨설팅 집중"
+        }
+      ]
+    }
+  ],
+  "design": {
+    "direction": "premium-enterprise-launch-poster",
+    "visualSystem": "bright SaaS launch poster with blueprint roadmap, modular service cards, orange signal accents",
+    "colors": {
+      "navy": "#07122F",
+      "orange": "#FF6A00",
+      "skRed": "#EA002C",
+      "paper": "#FFFDF8",
+      "fog": "#F3F4F1",
+      "green": "#15894F"
+    },
+    "typography": "Pretendard/SUIT/Noto Sans KR fallback, heavy Korean headline, report-style noun phrases",
+    "notes": [
+      "화면에는 제작 메타, 출처, 레퍼런스 표기를 노출하지 않음",
+      "사용자 제공 포스터의 메시지는 유지하되 단순 카드 나열이 아니라 세로형 런칭 포스터 계층으로 재조판",
+      "1080x1920 9:16 캔버스를 브라우저 화면에 자동 맞춤"
+    ]
+  },
+  "references": [
+    {
+      "source": "Refero MCP style search",
+      "title": "AI Product Generation / Fourmula",
+      "use": "밝은 제품 런칭 페이지, 강한 오렌지 포인트, 부드러운 고급 SaaS 카드 계층"
+    },
+    {
+      "source": "Refero MCP style search",
+      "title": "Timescale blueprint-inspired SaaS system",
+      "use": "얇은 선, 모듈형 정보 패널, 기술형 로드맵 구조"
+    },
+    {
+      "source": "Refero MCP screen search",
+      "title": "Slite roadmap/document layout",
+      "use": "단일 문서형 안내문에서 제목, 맥락, 로드맵을 빠르게 읽히게 하는 구성"
+    }
+  ]
+}

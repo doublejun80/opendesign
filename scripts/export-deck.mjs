@@ -9,10 +9,21 @@ const dryRun = args.includes('--dry-run');
 const checkOverflow = args.includes('--check-overflow');
 const skipPdf = args.includes('--no-pdf');
 const skipPng = args.includes('--no-png');
-const viewport = { width: 1920, height: 1080 };
+const defaultViewport = { width: 1920, height: 1080 };
 
 function countSlidesFromHtml(html) {
   return [...html.matchAll(/<section\b[^>]*class=["'][^"']*\bslide\b[^"']*["'][^>]*>/g)].length;
+}
+
+function detectViewportFromHtml(html) {
+  const widthMatch = html.match(/data-canvas-width=["'](\d+)["']/);
+  const heightMatch = html.match(/data-canvas-height=["'](\d+)["']/);
+  const width = widthMatch ? Number(widthMatch[1]) : defaultViewport.width;
+  const height = heightMatch ? Number(heightMatch[1]) : defaultViewport.height;
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+    return defaultViewport;
+  }
+  return { width, height };
 }
 
 function writeJson(filePath, value) {
@@ -36,6 +47,7 @@ if (!fs.existsSync(inputHtml)) {
 
 const html = fs.readFileSync(inputHtml, 'utf-8');
 const slideCount = countSlidesFromHtml(html);
+const viewport = detectViewportFromHtml(html);
 
 if (slideCount === 0) {
   console.error('HTML에서 .slide 섹션을 찾지 못했습니다.');

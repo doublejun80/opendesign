@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>구매 AI Concierge 1차 서비스 오픈 안내</title>
+  <style>
+    :root {
+      --canvas-w: 1080px;
+      --canvas-h: 1920px;
+      --fit-scale: 1;
+      --paper: #fffdf8;
+      --ink: #050b1c;
+      --muted: #596275;
+      --navy: #07122f;
+      --navy-2: #101b3d;
+      --orange: #ff6a00;
+      --orange-2: #ff8a00;
+      --sk-red: #ea002c;
+      --green: #15894f;
+      --line: rgba(7, 18, 47, 0.12);
+      font-family: "Pretendard", "SUIT", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255, 106, 0, 0.24), transparent 20%),
+        radial-gradient(circle at 80% 86%, rgba(234, 0, 44, 0.12), transparent 24%),
+        linear-gradient(135deg, #f6f7f3 0%, #e9ece5 100%);
+      color: var(--ink);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 106, 0, 0.55) transparent;
+    }
+
+    .slide-shell {
+      width: max(100vw, calc(var(--canvas-w) * var(--fit-scale)));
+      height: 100vh;
+      min-width: max(100vw, calc(var(--canvas-w) * var(--fit-scale)));
+      display: grid;
+      place-items: center;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .slide {
+      position: relative;
+      width: var(--canvas-w);
+      height: var(--canvas-h);
+      overflow: hidden;
+      transform: scale(var(--fit-scale));
+      transform-origin: center center;
+      background:
+        linear-gradient(rgba(7, 18, 47, 0.044) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7, 18, 47, 0.044) 1px, transparent 1px),
+        var(--paper);
+      background-size: 36px 36px, 36px 36px, auto;
+      box-shadow: 0 30px 90px rgba(5, 11, 28, 0.2);
+    }
+
+    .poster {
+      padding: 38px 42px 34px;
+    }
+
+    .poster::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 72% 10%, rgba(255, 106, 0, 0.2), transparent 24%),
+        radial-gradient(circle at 10% 58%, rgba(255, 138, 0, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 246, 234, 0.24));
+      pointer-events: none;
+    }
+
+    .poster::after {
+      content: "";
+      position: absolute;
+      top: 170px;
+      right: 14px;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 106, 0, 0.22);
+      box-shadow:
+        inset 0 0 0 82px rgba(255, 106, 0, 0.04),
+        inset 0 0 0 166px rgba(234, 0, 44, 0.028);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-rows: 54px 276px 224px 502px 420px 270px;
+      gap: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-badge {
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px 0 13px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--navy), #0d1a3e);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 880;
+      letter-spacing: -0.02em;
+      box-shadow: 0 14px 28px rgba(7, 18, 47, 0.18);
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+    }
+
+    .launch-pill {
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 18px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      color: #fff;
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -0.01em;
+      box-shadow: 0 18px 34px rgba(255, 106, 0, 0.25);
+    }
+
+    .launch-pill span + span {
+      padding-left: 14px;
+      border-left: 2px solid rgba(255, 255, 255, 0.58);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      align-content: end;
+      padding: 8px 32px 0;
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 62px;
+      line-height: 1.04;
+      font-weight: 960;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 .ai {
+      display: inline-block;
+      color: var(--orange);
+      font-size: 74px;
+      letter-spacing: -0.04em;
+      text-shadow: 0 14px 28px rgba(255, 106, 0, 0.18);
+    }
+
+    .hero-subtitle {
+      margin: 18px 0 0;
+      color: var(--navy);
+      font-size: 31px;
+      line-height: 1.17;
+      font-weight: 860;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-subtitle strong,
+    .hero-lead strong {
+      color: var(--orange);
+      font-weight: 940;
+    }
+
+    .hero-lead {
+      margin: 13px 0 0;
+      color: #1d2844;
+      font-size: 22px;
+      line-height: 1.38;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+    }
+
+    .signal-card {
+      position: absolute;
+      right: 24px;
+      bottom: 8px;
+      width: 284px;
+      height: 124px;
+      padding: 18px 18px 15px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 106, 0, 0.22);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 242, 224, 0.9));
+      box-shadow: 0 22px 42px rgba(7, 18, 47, 0.14);
+    }
+
+    .signal-card::before {
+      content: "";
+      position: absolute;
+      top: -46px;
+      right: -38px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: conic-gradient(from 120deg, rgba(255, 106, 0, 0), rgba(255, 106, 0, 0.48), rgba(234, 0, 44, 0.08), rgba(255, 106, 0, 0));
+      filter: blur(1px);
+    }
+
+    .signal-kicker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .signal-title {
+      margin-top: 8px;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.08;
+      font-weight: 940;
+      letter-spacing: -0.035em;
+    }
+
+    .section-card {
+      position: relative;
+      border: 1px solid rgba(7, 18, 47, 0.13);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 18px 36px rgba(7, 18, 47, 0.085);
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 237, 215, 0.26));
+      pointer-events: none;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: 31px;
+      line-height: 1.08;
+      font-weight: 940;
+      letter-spacing: -0.04em;
+    }
+
+    .section-title small {
+      margin-left: 8px;
+      color: var(--navy-2);
+      font-size: 16px;
+      font-weight: 860;
+      letter-spacing: -0.02em;
+    }
+
+    .why {
+      display: grid;
+      grid-template-columns: 106px 1fr;
+      gap: 24px;
+      align-items: center;
+      padding: 24px 30px;
+    }
+
+    .icon-disk {
+      position: relative;
+      z-index: 1;
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 52% 44%, #fff, #fff0df 64%, rgba(255, 106, 0, 0.18));
+      color: var(--orange);
+      box-shadow: inset 0 0 0 1px rgba(255, 106, 0, 0.12), 0 18px 32px rgba(255, 106, 0, 0.16);
+    }
+
+    .icon-disk svg {
+      width: 50px;
+      height: 50px;
+      stroke-width: 2.5;
+    }
+
+    .why-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .why-point {
+      margin: 12px 0 0;
+      color: var(--orange);
+      font-size: 24px;
+      line-height: 1.18;
+      font-weight: 930;
+      letter-spacing: -0.04em;
+    }
+
+    .body-copy {
+      margin: 9px 0 0;
+      color: #24304a;
+      font-size: 18px;
+      line-height: 1.42;
+      font-weight: 670;
+      letter-spacing: -0.032em;
+    }
+
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .impact {
+      min-height: 54px;
+      padding: 10px 12px;
+      border-radius: 15px;
+      border: 1px solid rgba(7, 18, 47, 0.1);
+      background: #fff;
+    }
+
+    .impact b {
+      display: block;
+      color: var(--navy);
+      font-size: 23px;
+      line-height: 0.95;
+      font-weight: 940;
+      letter-spacing: -0.03em;
+    }
+
+    .impact span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 760;
+      letter-spacing: -0.02em;
+    }
+
+    .services {
+      padding: 24px 28px 28px;
+    }
+
+    .section-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-note {
+      margin: 0;
+      max-width: 520px;
+      color: #24304a;
+      text-align: right;
+      font-size: 17px;
+      line-height: 1.34;
+      font-weight: 720;
+      letter-spacing: -0.03em;
+    }
+
+    .service-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 18px;
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 180px;
+      padding: 20px 22px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 106, 0, 0.26);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 237, 0.9));
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle at 100% 0, rgba(255, 106, 0, 0.16), transparent 65%);
+      pointer-events: none;
+    }
+
+    .service-title {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0;
+      color: var(--orange);
+      font-size: 23px;
+      line-height: 1.16;
+      font-weight: 940;
+      letter-spacing: -0.038em;
+    }
+
+    .service-title .num {
+      width: 31px;
+      height: 31px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 960;
+      flex: 0 0 auto;
+    }
+
+    .shift-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .shift-box {
+      min-height: 104px;
+      padding: 14px 14px;
+      border-radius: 15px;
+      border: 1px solid rgba(7, 18, 47, 0.09);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .shift-label {
+      display: inline-flex;
+      align-items: center;
+      height: 25px;
+      padding: 0 11px;
+      border-radius: 7px;
+      background: #5d6470;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 870;
+      letter-spacing: -0.015em;
+    }
+
+    .shift-label.ai {
+      background: var(--orange);
+    }
+
+    .shift-box p {
+      margin: 9px 0 0;
+      color: #1f2942;
+      font-size: 16px;
+      line-height: 1.34;
+      font-weight: 670;
+      letter-spacing: -0.038em;
+    }
+
+    .roadmap {
+      padding: 24px 28px 28px;
+    }
+
+    .roadmap-flow {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 13px;
+      margin-top: 18px;
+      padding-left: 46px;
+    }
+
+    .roadmap-flow::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 20px;
+      bottom: 20px;
+      width: 4px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--orange), var(--orange-2), rgba(255, 106, 0, 0.3));
+      box-shadow: 0 10px 22px rgba(255, 106, 0, 0.22);
+    }
+
+    .station {
+      position: relative;
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      align-items: center;
+      gap: 16px;
+      min-height: 88px;
+      padding: 15px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(7, 18, 47, 0.12);
+      background: rgba(255, 255, 255, 0.93);
+      box-shadow: 0 14px 28px rgba(7, 18, 47, 0.075);
+    }
+
+    .station .dot {
+      position: absolute;
+      left: -50px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      color: #fff;
+      font-size: 22px;
+      font-weight: 960;
+      box-shadow: 0 10px 22px rgba(255, 106, 0, 0.26);
+    }
+
+    .station-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      color: var(--orange);
+    }
+
+    .station-icon svg {
+      width: 42px;
+      height: 42px;
+      stroke-width: 2.25;
+    }
+
+    .station h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 20px;
+      line-height: 1.14;
+      font-weight: 930;
+      letter-spacing: -0.035em;
+    }
+
+    .station time {
+      display: block;
+      margin-top: 4px;
+      color: var(--orange);
+      font-size: 15px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+    }
+
+    .station p {
+      margin: 7px 0 0;
+      color: #25304a;
+      font-size: 15px;
+      line-height: 1.28;
+      font-weight: 670;
+      letter-spacing: -0.03em;
+    }
+
+    .closing {
+      display: grid;
+      grid-template-rows: 32px 1fr 76px;
+      gap: 12px;
+    }
+
+    .closing-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 940;
+      letter-spacing: -0.04em;
+    }
+
+    .closing-title small {
+      margin-left: 8px;
+      font-size: 15px;
+      font-weight: 860;
+      letter-spacing: -0.02em;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .value-card {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 15px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(7, 18, 47, 0.12);
+      box-shadow: 0 14px 28px rgba(7, 18, 47, 0.075);
+    }
+
+    .value-card.business {
+      border-color: rgba(255, 106, 0, 0.28);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.93), rgba(255, 239, 219, 0.76));
+    }
+
+    .value-card.procurement {
+      border-color: rgba(21, 137, 79, 0.24);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(234, 247, 238, 0.8));
+    }
+
+    .avatar {
+      width: 66px;
+      height: 66px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px rgba(7, 18, 47, 0.1);
+    }
+
+    .business .avatar {
+      color: var(--orange);
+    }
+
+    .procurement .avatar {
+      color: var(--green);
+    }
+
+    .avatar svg {
+      width: 42px;
+      height: 42px;
+      stroke-width: 2.2;
+    }
+
+    .value-copy h3 {
+      margin: 0;
+      color: var(--orange);
+      font-size: 18px;
+      line-height: 1.13;
+      font-weight: 930;
+      letter-spacing: -0.035em;
+    }
+
+    .procurement .value-copy h3 {
+      color: var(--green);
+    }
+
+    .value-copy p {
+      margin: 7px 0 0;
+      color: #1f2a44;
+      font-size: 14px;
+      line-height: 1.32;
+      font-weight: 670;
+      letter-spacing: -0.034em;
+    }
+
+    .notice {
+      display: grid;
+      grid-template-columns: 156px 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      border-radius: 18px;
+      border: 2px solid rgba(255, 106, 0, 0.62);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 244, 230, 0.78));
+      box-shadow: 0 14px 28px rgba(7, 18, 47, 0.065);
+    }
+
+    .notice-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--orange);
+      font-size: 21px;
+      font-weight: 950;
+      letter-spacing: -0.035em;
+    }
+
+    .notice-title .info {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 3px solid var(--orange);
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .notice ul {
+      margin: 0;
+      padding-left: 19px;
+      color: #1e2942;
+      font-size: 13px;
+      line-height: 1.32;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .notice li::marker {
+      color: var(--navy);
+      font-size: 13px;
+    }
+
+    .ko-keep,
+    .nowrap {
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+
+    @media print {
+      @page {
+        size: 1080px 1920px;
+        margin: 0;
+      }
+
+      html,
+      body,
+      .deck,
+      .slide-shell {
+        width: var(--canvas-w);
+        height: var(--canvas-h);
+        min-width: var(--canvas-w);
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .slide {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="deck" class="deck" aria-label="구매 AI Concierge 1차 서비스 오픈 안내">
+    <div class="slide-shell" data-slide-frame="1">
+      <section class="slide poster" data-slide="1" data-canvas-width="1080" data-canvas-height="1920" aria-label="구매 AI Concierge 세로 포스터">
+        <div class="content">
+          <header class="topbar">
+            <div class="brand-badge">
+              <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path d="M5 13a7 7 0 0 1 14 0" />
+                  <path d="M8 13a4 4 0 0 1 8 0" />
+                  <path d="M12 13v5" />
+                  <path d="M9 18h6" />
+                </svg>
+              </span>
+              <span>구매 AI Concierge</span>
+            </div>
+            <div class="launch-pill">
+              <span>1st OPEN</span>
+              <span>2026.07.06</span>
+            </div>
+          </header>
+
+          <section class="hero">
+            <div>
+              <h1><span class="ko-keep">구매, 이제</span> <span class="ai">AI Buyer</span><span class="ko-keep">와</span><br /><span class="ko-keep">함께 일합니다</span></h1>
+              <p class="hero-subtitle"><span class="ko-keep">구매 <strong>‘AI 컨시어지’</strong> 1차 서비스 오픈 안내</span></p>
+              <p class="hero-lead"><strong>7월 6일</strong>, <span class="ko-keep">사업부서와 구매담당자를 위한 첫 번째</span> <strong>구매 AI 서비스</strong> <span class="ko-keep">시작</span></p>
+            </div>
+            <div class="signal-card" aria-hidden="true">
+              <div class="signal-kicker">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 2v4" />
+                  <path d="m16.2 7.8 2.8-2.8" />
+                  <path d="M18 12h4" />
+                  <path d="M12 18v4" />
+                  <path d="M2 12h4" />
+                  <path d="m5 5 2.8 2.8" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                AI Buyer Flow
+              </div>
+              <div class="signal-title"><span class="ko-keep">문의·검토·작성</span><br /><span class="ko-keep">구매 업무 한 화면 처리</span></div>
+            </div>
+          </section>
+
+          <section class="section-card why">
+            <div class="icon-disk" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="8" />
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 2v4" />
+                <path d="M22 12h-4" />
+                <path d="m18.5 5.5-3 3" />
+              </svg>
+            </div>
+            <div class="why-copy">
+              <h2 class="section-title">1. 왜 지금 필요한가 <small>Why Now</small></h2>
+              <p class="why-point"><span class="ko-keep">현장의 대기 시간과 행정 부담 축소</span></p>
+              <p class="body-copy"><span class="ko-keep">복잡한 절차, 반복 문의, 수기 입력, 파편화된 시스템 조회로 발생하던 비효율을 AI로 해결</span></p>
+              <div class="impact-strip" aria-label="기대 효과 요약">
+                <div class="impact"><b>대기↓</b><span>구매 문의 응답 지연 완화</span></div>
+                <div class="impact"><b>입력↓</b><span>반복 작성·증빙 탐색 축소</span></div>
+                <div class="impact"><b>품질↑</b><span>데이터 기반 검토 기준 확보</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-card services">
+            <div class="section-head">
+              <h2 class="section-title">2. 1차 Open 서비스</h2>
+              <p class="section-note"><span class="ko-keep">이번 오픈은 ‘영업 단계 원가 검토’와 ‘업체지정 품의’ 두 영역을 우선 혁신</span></p>
+            </div>
+            <div class="service-list">
+              <article class="service-card">
+                <h3 class="service-title"><span class="num">1</span><span class="ko-keep">Data 기반 Deal Support</span><span class="ko-keep">(영업단계 원가 구성 확인)</span></h3>
+                <div class="shift-grid">
+                  <div class="shift-box">
+                    <span class="shift-label">기존 Pain</span>
+                    <p><span class="ko-keep">적정 원가 확인을 위해 여러 시스템을 조회하거나 구매담당자에게 문의 후 대기</span></p>
+                  </div>
+                  <div class="shift-box">
+                    <span class="shift-label ai">AI 서비스 변화</span>
+                    <p><span class="ko-keep">구매 이력과 축적 데이터를 바탕으로 적정 단가·원가 구성을 실시간 시뮬레이션</span></p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="service-card">
+                <h3 class="service-title"><span class="num">2</span><span class="ko-keep">AI Buyer와 작성하는 업체지정요청서</span></h3>
+                <div class="shift-grid">
+                  <div class="shift-box">
+                    <span class="shift-label">기존 Pain</span>
+                    <p><span class="ko-keep">업체 지정 사유와 증빙을 직접 찾고 정리해 작성 시간·품질 편차 발생</span></p>
+                  </div>
+                  <div class="shift-box">
+                    <span class="shift-label ai">AI 서비스 변화</span>
+                    <p><span class="ko-keep">요청 목적만 입력하면 유사 사업 이력 기반 초안 작성, 지정 사유 구조화와 증빙 준비 지원</span></p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="section-card roadmap">
+            <div class="section-head">
+              <h2 class="section-title">3. 향후 로드맵 <small>Next Journey</small></h2>
+              <p class="section-note"><span class="ko-keep">1차 오픈을 시작으로 구매 프로세스 전반의 AI 지원 범위 확대</span></p>
+            </div>
+            <div class="roadmap-flow">
+              <article class="station">
+                <span class="dot">1</span>
+                <span class="station-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="5" width="18" height="16" rx="2" />
+                    <path d="M16 3v4" />
+                    <path d="M8 3v4" />
+                    <path d="M3 10h18" />
+                    <path d="M8 14h.01" />
+                    <path d="M12 14h.01" />
+                    <path d="M16 14h.01" />
+                  </svg>
+                </span>
+                <div>
+                  <h3>Sprint 1 확장</h3>
+                  <time>2026년 7월 ~ 11월</time>
+                  <p><span class="ko-keep">Resource Planning 업무의 AI 에이전트화 착수</span></p>
+                </div>
+              </article>
+
+              <article class="station">
+                <span class="dot">2</span>
+                <span class="station-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M14 7h4a2 2 0 0 1 2 2v3h-4a2 2 0 1 0 0 4h4v3a2 2 0 0 1-2 2h-4v-4a2 2 0 1 0-4 0v4H6a2 2 0 0 1-2-2v-4h4a2 2 0 1 0 0-4H4V9a2 2 0 0 1 2-2h4V3h4v4Z" />
+                  </svg>
+                </span>
+                <div>
+                  <h3>2차 서비스 오픈</h3>
+                  <time>2026년 11월 예정</time>
+                  <p><span class="ko-keep">견적소싱요청부터 구매요청까지 연결하는 플로우 완성</span></p>
+                </div>
+              </article>
+
+              <article class="station">
+                <span class="dot">3</span>
+                <span class="station-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 21h18" />
+                    <path d="M7 17V9" />
+                    <path d="M12 17V5" />
+                    <path d="M17 17v-7" />
+                    <path d="m5 13 7-7 4 4 3-3" />
+                    <path d="M19 7v5h-5" />
+                  </svg>
+                </span>
+                <div>
+                  <h3>후속 확장</h3>
+                  <time>~2027년</time>
+                  <p><span class="ko-keep">계약 리스크 모니터링, 검수·세금계산서 정산 자동화</span></p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="closing" aria-label="기대 가치와 안내 사항">
+            <h2 class="closing-title">4. 기대 가치 <small>Value Shift</small></h2>
+            <div class="value-grid">
+              <article class="value-card business">
+                <div class="avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="value-copy">
+                  <h3>사업부서 <span class="nowrap">(사용자)</span></h3>
+                  <p><span class="ko-keep">구매 절차 부담 축소, 빠른 데이터 기반 의사결정으로 영업 집중도 향상</span></p>
+                </div>
+              </article>
+
+              <article class="value-card procurement">
+                <div class="avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div class="value-copy">
+                  <h3>구매부서 <span class="nowrap">(담당자)</span></h3>
+                  <p><span class="ko-keep">단순 문의·클릭 업무 축소, 공급망 리스크 관리와 전략 컨설팅 집중</span></p>
+                </div>
+              </article>
+            </div>
+
+            <footer class="notice">
+              <div class="notice-title"><span class="info">i</span><span>안내 사항</span></div>
+              <ul>
+                <li><span class="ko-keep">서비스 오픈: 2026년 7월 6일 (월) 09:00</span></li>
+                <li><span class="ko-keep">사용 가이드 및 AX Room 안내: 추후 별도 안내 예정</span></li>
+                <li><span class="ko-keep">구성원 여러분의 많은 관심과 적극적인 활용 요청</span></li>
+              </ul>
+            </footer>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const deck = document.getElementById('deck');
+    const frames = Array.from(deck.querySelectorAll('[data-slide-frame]'));
+
+    function fitSlides() {
+      const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920, 1);
+      document.documentElement.style.setProperty('--fit-scale', String(scale));
+    }
+
+    function currentIndex() {
+      const center = deck.scrollLeft + deck.clientWidth / 2;
+      let active = 0;
+      frames.forEach((frame, index) => {
+        const frameCenter = frame.offsetLeft + frame.clientWidth / 2;
+        if (Math.abs(frameCenter - center) < Math.abs((frames[active].offsetLeft + frames[active].clientWidth / 2) - center)) {
+          active = index;
+        }
+      });
+      return active;
+    }
+
+    function goToSlide(index, behavior = 'smooth') {
+      const target = frames[Math.max(0, Math.min(frames.length - 1, index))];
+      if (!target) return;
+      target.scrollIntoView({ behavior, inline: 'start', block: 'nearest' });
+      const slideNumber = Number(target.dataset.slideFrame || index + 1);
+      if (location.hash !== `#/${slideNumber}`) {
+        history.replaceState(null, '', `#/${slideNumber}`);
+      }
+    }
+
+    function syncFromHash() {
+      const match = location.hash.match(/#\/(\d+)/);
+      const requested = match ? Number(match[1]) - 1 : 0;
+      goToSlide(requested, 'auto');
+    }
+
+    window.addEventListener('resize', () => {
+      fitSlides();
+      goToSlide(currentIndex(), 'auto');
+    });
+    window.addEventListener('hashchange', syncFromHash);
+    deck.addEventListener('scroll', () => {
+      window.clearTimeout(deck._hashTimer);
+      deck._hashTimer = window.setTimeout(() => {
+        const index = currentIndex();
+        const slideNumber = Number(frames[index]?.dataset.slideFrame || index + 1);
+        if (location.hash !== `#/${slideNumber}`) {
+          history.replaceState(null, '', `#/${slideNumber}`);
+        }
+      }, 80);
+    });
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+        goToSlide(currentIndex() + 1);
+      }
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        goToSlide(currentIndex() - 1);
+      }
+    });
+
+    fitSlides();
+    syncFromHash();
+  </script>
+</body>
+</html>
