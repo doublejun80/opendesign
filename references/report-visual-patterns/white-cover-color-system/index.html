@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>White Cover Color System Reference</title>
+  <style>
+    :root {
+      --w: 1920px;
+      --h: 1080px;
+      --scale: 1;
+      --ink: #102033;
+      --muted: #667383;
+      --line: rgba(16, 32, 51, 0.14);
+      --yellow: #ffe466;
+      --teal: #078b86;
+      --orange: #ff7a00;
+      --blue: #3556d8;
+      --pink: #ff4c9b;
+      --purple: #7b61ff;
+      --red: #ea002c;
+      --font: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #fff;
+      color: var(--ink);
+      font-family: var(--font);
+    }
+
+    .viewport {
+      width: calc(var(--w) * var(--scale));
+      height: calc(var(--h) * var(--scale));
+      overflow: hidden;
+    }
+
+    .deck {
+      width: var(--w);
+      height: var(--h);
+      transform: scale(var(--scale));
+      transform-origin: top left;
+      overflow: hidden;
+    }
+
+    .track { display: flex; width: max-content; height: var(--h); }
+
+    .slide {
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      flex: 0 0 var(--w);
+      padding: 78px 92px 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 86% 18%, rgba(7, 139, 134, 0.08), transparent 32%),
+        linear-gradient(90deg, rgba(16, 32, 51, 0.04) 1px, transparent 1px),
+        #fff;
+      background-size: auto, 96px 96px, auto;
+      word-break: keep-all;
+      overflow-wrap: normal;
+      line-break: strict;
+      letter-spacing: 0;
+    }
+
+    .ko-keep { display: inline-block; white-space: nowrap; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 44px;
+    }
+
+    .label-stack {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--teal);
+      font-size: 19px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      height: 38px;
+      padding: 0 18px;
+      transform: skewX(-10deg);
+      background: var(--yellow);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: 6px 6px 0 rgba(16, 32, 51, 0.12);
+    }
+
+    .tag span { transform: skewX(10deg); }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .hero {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 76px;
+      align-items: start;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: 82px;
+      line-height: 1.02;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .accent { color: var(--teal); }
+
+    .lead {
+      margin: 32px 0 0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 30px;
+      line-height: 1.42;
+      font-weight: 780;
+    }
+
+    .signal-row {
+      margin-top: 58px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 900px;
+    }
+
+    .signal {
+      min-height: 132px;
+      padding: 18px 18px 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #fff;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .signal b {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.3;
+      font-weight: 780;
+    }
+
+    .system-board {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 22px 54px rgba(16, 32, 51, 0.08);
+    }
+
+    .board-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .board-title b {
+      font-size: 34px;
+      line-height: 1.12;
+      font-weight: 950;
+    }
+
+    .board-title span {
+      color: var(--muted);
+      font-size: 17px;
+      text-align: right;
+      font-weight: 800;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .chip {
+      min-height: 96px;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #fff;
+    }
+
+    .swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 1px rgba(16, 32, 51, 0.12);
+    }
+
+    .chip b {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 4px;
+    }
+
+    .chip span {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.32;
+      font-weight: 780;
+    }
+
+    .rule-strip {
+      position: absolute;
+      left: 92px;
+      right: 240px;
+      bottom: 82px;
+      height: 74px;
+      display: grid;
+      grid-template-columns: 170px 1fr 250px;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+    }
+
+    .rule-strip b {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--ink);
+      font-size: 23px;
+      font-weight: 950;
+    }
+
+    .rule-strip span {
+      padding: 0 28px;
+      font-size: 23px;
+      font-weight: 950;
+    }
+
+    .rule-strip i {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 950;
+      border-left: 1px solid var(--line);
+    }
+
+    .sk-brand-footer {
+      position: absolute;
+      right: 92px;
+      bottom: 74px;
+      width: 78px;
+      height: 64px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .sk-brand-footer img {
+      max-width: 72px;
+      max-height: 58px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <div class="viewport">
+    <main class="deck" aria-label="White cover color system reference">
+      <div class="track">
+        <section class="slide" data-slide="1">
+          <div class="topbar">
+            <div class="label-stack">
+              <span class="tag"><span>REFERENCE COVER</span></span>
+              <span>WHITE / COLOR SYSTEM</span>
+            </div>
+            <div class="meta"><span>SK AX report pattern</span><span>01 / 01</span></div>
+          </div>
+
+          <div class="hero">
+            <div>
+              <h1>화이트 표지에<br><span class="accent">작업축과 색상 규칙</span> 먼저 노출</h1>
+              <p class="lead">
+                첫 장은 장식 이미지보다 <span class="ko-keep">보고서의 읽는 법</span>,
+                <span class="ko-keep">상태 색상</span>, <span class="ko-keep">업무 아이콘</span>을 먼저 보여주는 구조
+              </p>
+
+              <div class="signal-row">
+                <div class="signal"><div class="icon" style="background: var(--teal);">M</div><b>Motion</b><span>산출물·움직임 검토</span></div>
+                <div class="signal"><div class="icon" style="background: var(--blue);">AI</div><b>Agent</b><span>생성·수정 루프</span></div>
+                <div class="signal"><div class="icon" style="background: var(--purple);">CL</div><b>Code</b><span>개발 인계 관찰</span></div>
+                <div class="signal"><div class="icon" style="background: var(--orange);">!</div><b>Policy</b><span>권한·비용 확인</span></div>
+              </div>
+            </div>
+
+            <div class="system-board">
+              <div class="board-title">
+                <b>색상 사용 기준</b>
+                <span>색은 장식이 아니라<br>정보 역할 구분</span>
+              </div>
+              <div class="palette">
+                <div class="chip"><div class="swatch" style="background: var(--ink);"></div><div><b>Ink</b><span>제목, 판단, 결론</span></div></div>
+                <div class="chip"><div class="swatch" style="background: var(--teal);"></div><div><b>Teal</b><span>적용, 기준, 진행</span></div></div>
+                <div class="chip"><div class="swatch" style="background: var(--orange);"></div><div><b>Orange</b><span>정책, 제약, 확인</span></div></div>
+                <div class="chip"><div class="swatch" style="background: var(--blue);"></div><div><b>Blue</b><span>도구, 자동화, 실험</span></div></div>
+                <div class="chip"><div class="swatch" style="background: var(--purple);"></div><div><b>Purple</b><span>베타, 관찰, 기술</span></div></div>
+                <div class="chip"><div class="swatch" style="background: var(--red);"></div><div><b>Red</b><span>리스크, 금지, 보안</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rule-strip">
+            <b>원칙</b>
+            <span>배경은 흰색, 색상은 역할을 가진 정보 표식으로만 사용</span>
+            <i>cover reference</i>
+          </div>
+          <div class="sk-brand-footer"><img src="../../../design-systems/korean-executive-report/assets/sk-logo.png" alt="SK" /></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    function fit() {
+      const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      root.style.setProperty("--scale", scale.toFixed(4));
+    }
+    window.addEventListener("resize", fit);
+    fit();
+  </script>
+</body>
+</html>

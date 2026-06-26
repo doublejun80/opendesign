@@ -27,9 +27,13 @@ Use the workspace references in this order for Korean report decks:
    - choose slide role: summary, issue tree, option matrix, roadmap, KPI, risk, handoff
 2. `references/korean-business-qa/korean-report-writing-style.md`
    - rewrite source facts into Korean report titles, subtitles, labels, and action copy
-3. `references/korean-business-qa/modu-qa-rules.md`
+3. `references/korean-business-qa/report-production-harness.md`
+   - run scenario, strategy writer, Korean copy editor, and presentation editor passes
+4. `references/korean-business-qa/korean-report-table-style.md`
+   - keep table headers, body cells, status labels, and numeric cells aligned by role
+5. `references/korean-business-qa/modu-qa-rules.md`
    - check Korean tone, audience fit, source separation, overflow risk, and AI-slop
-4. `references/layout-library/`
+6. `references/layout-library/`
    - use Guizang or other layout libraries only as optional layout references
 
 This workflow applies structure and QA. It does not copy the visual style, code, or
@@ -49,6 +53,17 @@ bottom-right footer area on every slide:
 Use `design-systems/korean-executive-report/assets/sk-logo.png` as the shared source
 asset and copy it into the report's `assets/` folder. Keep enough footer safe area so
 the logo does not touch conclusion boxes, sources, or page numbers.
+
+## Background And Table Defaults
+
+- Report canvas background is white by default.
+- Off-white, grid, tinted, or dark backgrounds are opt-in styles, not the default.
+- Table headers are centered.
+- Table body text is left-aligned.
+- Numeric cells are right-aligned.
+- Short status labels and chips are centered.
+- If a table feels flat or overloaded, convert it into a timeline, matrix, or card
+  classification structure.
 
 ## Reference Sources
 

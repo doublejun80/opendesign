@@ -18,13 +18,16 @@ the strongest one. Do not ask the user to pick visual options by default.
 
 ## 2. Color Palette
 
-- Background: warm off-white or deep navy depending on slide role
+- Background: white by default
 - Primary text: near-black / ink
 - Secondary text: muted gray
 - Accent: restrained blue or amber
 - Risk: subdued red, not alarmist
 - Success: muted green, not neon
 
+Warm off-white, grid texture, dark canvas, and tinted backgrounds are opt-in styles.
+Use them only when the user requests that tone or a selected master reference requires
+it. The local browser preview background must not accidentally appear gray or dim.
 Use no more than two accents per slide.
 If company colors are provided, use them first. If not, choose colors from the selected
 reference direction and preserve their roles: CTA-only colors stay CTA/status-only, risk
@@ -92,6 +95,8 @@ Avoid:
 - meaningless icon clouds
 - excessive shadows
 - childish gradients
+- repeated flat card grids on every slide
+- arbitrary table alignment
 
 ## 5. Layout
 
@@ -126,11 +131,26 @@ Default report generation follows this order:
 1. Korean report logic and audience action
 2. McKinsey-style slide role routing from `references/report-logic/`
 3. Korean title/copy rewriting from `references/korean-business-qa/korean-report-writing-style.md`
-4. Modu-style Korean business QA from `references/korean-business-qa/`
-5. Optional layout references such as Guizang, only when the message benefits
-6. HTML autoscale, Korean line-break audit, overflow export QA
+4. Report production harness from `references/korean-business-qa/report-production-harness.md`
+5. Table alignment rules from `references/korean-business-qa/korean-report-table-style.md`
+6. Modu-style Korean business QA from `references/korean-business-qa/`
+7. Optional layout references such as Guizang, only when the message benefits
+8. HTML autoscale, Korean line-break audit, overflow export QA
 
 Guizang remains a layout-reference library, not the default master style.
+
+### Table Alignment
+
+All table-like structures use role-based alignment:
+
+- Header: center / middle
+- Text body: left / middle
+- Short label or status: center / middle
+- Number: right / middle
+- Chip text: center / middle
+
+Do not mix alignments in the same role. If a table feels flat, convert the message into
+a timeline, matrix, or classification board rather than changing alignment randomly.
 
 ## 6. Depth
 
@@ -146,6 +166,8 @@ Do:
 - Separate facts, interpretation, and ask.
 - Make one element dominant per slide.
 - Show tradeoffs visually.
+- Use white as the default report canvas.
+- Vary the dominant structure by slide while keeping the same brand/type/footer layer.
 
 Don't:
 
@@ -154,6 +176,7 @@ Don't:
   `접근 가능 기능`, or `닫힌 베타` as final report language.
 - Use too many colors.
 - Fill every gap.
+- Let default browser gray show around or behind the deck.
 - Make it look like a SaaS dashboard unless required.
 - Copy ordinary reference screens directly.
 - Reduce a user-selected Refero master sample to structure only.
@@ -221,14 +244,16 @@ When generating a deck:
    QA gate before export.
 3. Rewrite source facts into Korean report title/copy using the message contract:
    reader, decision, reason, action.
-4. If a Refero master exists, lock its visual taste before choosing slide layouts.
-5. Choose each slide layout from the scenario and report logic, not from a fixed
+4. Run the Scenario Harness and three writer passes before layout.
+5. If a Refero master exists, lock its visual taste before choosing slide layouts.
+6. Choose each slide layout from the scenario and report logic, not from a fixed
    slide-number template.
-6. Generate HTML only after the message structure is clear.
-7. Keep final copy tight, Korean-native, and report-fragment style.
-8. Place SK brand in the bottom-right footer for SK AX/default Korean reports.
-9. Validate sentence endings, Korean line breaks, title naturalness, visual density, Refero-master fidelity,
+7. Generate HTML only after the message structure is clear.
+8. Keep final copy tight, Korean-native, and report-fragment style.
+9. Place SK brand in the bottom-right footer for SK AX/default Korean reports.
+10. Validate table alignment, background color, visual rhythm, sentence endings,
+   Korean line breaks, title naturalness, visual density, Refero-master fidelity,
    and slide overflow.
-10. Validate browser-window autoscale in addition to export overflow.
-11. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
+11. Validate browser-window autoscale in addition to export overflow.
+12. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
    requested image URLs/screenshots in a slot that fits the selected visual language.

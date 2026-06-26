@@ -169,14 +169,20 @@ requests another process.
    contract for every slide before writing the title: reader, decision, reason, action.
    Translate product/source facts into Korean business-report language, not literal
    Korean from English.
-4. Apply the modu-style Korean business QA gate from
+4. Run the report production harness from
+   `references/korean-business-qa/report-production-harness.md`: one Scenario Harness
+   plus three writer passes for strategy, Korean copy, and presentation editing.
+5. Apply table alignment rules from
+   `references/korean-business-qa/korean-report-table-style.md` whenever a table,
+   matrix, roadmap row, or tabular grid appears.
+6. Apply the modu-style Korean business QA gate from
    `references/korean-business-qa/modu-qa-rules.md` before finalizing copy and layout:
    audience fit, Korean phrasing, AI-slop removal, overflow risk, source separation,
    and handoff clarity.
-5. Use Guizang and other layout libraries only as optional layout references when they
+7. Use Guizang and other layout libraries only as optional layout references when they
    help the specific slide message. They are not the default visual master and must not
    override Korean report grammar, SK AX brand placement, or the selected reference.
-6. Build HTML with the autoscale runtime, export screenshots, run Korean line-break
+8. Build HTML with the autoscale runtime, export screenshots, run Korean line-break
    audit, and fix overflow before claiming completion.
 
 Do not expose these pipeline names as large production labels in the final slides.
@@ -256,6 +262,16 @@ Use these patterns as a library, not a mandatory slide-number map. The user's sc
 and report logic decide each slide's structure. If a Refero master reference is specified,
 adapt these patterns only when they can live inside that master visual language.
 
+Default background is white. Use off-white, grid texture, dark canvas, or tinted
+background only when the user asks for it or the selected master reference requires it.
+The browser preview background must also be white or a clearly intentional neutral,
+not accidental gray.
+
+Avoid making every slide a repeated flat card grid. Keep the deck cohesive through
+brand, type, spacing, and footer rules, but give each slide one message-specific
+dominant structure: flow, matrix, timeline, evidence rail, split comparison, annotated
+screen, or classification map.
+
 Prefer these patterns:
 
 | Need | Pattern |
@@ -268,6 +284,20 @@ Prefer these patterns:
 | 리스크 관리 | risk-control grid |
 | 수치 강조 | number-led KPI strip |
 | 복잡한 설명 | numbered flow |
+
+## Table And Grid Alignment
+
+For any table-like structure, align by cell role:
+
+- Header cells: center / middle
+- Text body cells: left / middle
+- Short status labels: center / middle
+- Numbers: right / middle with tabular numerals
+- Chips and badges: center / middle inside the chip
+
+Do not mix left, center, and right alignment arbitrarily within the same column. If a
+table becomes visually flat or crowded, convert it into a timeline, matrix, or card grid
+instead of adding more text to cells.
 
 Avoid:
 
@@ -317,6 +347,11 @@ Before finalizing, check:
 13. Are the source notes separated from final copy?
 14. Does local browser preview autoscale to one full slide without exposing neighboring
     slides at common window sizes such as 1366×768?
+15. Are table headers centered, body cells left-aligned, numeric cells right-aligned,
+    and status chips centered according to their role?
+16. Is the background intentionally white or intentionally designed, with no accidental
+    gray/dim canvas?
+17. Did the Scenario Harness and the three writer passes run before final export?
 
 Run the browser QA scripts before finalizing:
 

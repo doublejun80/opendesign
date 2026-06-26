@@ -28,7 +28,14 @@ Run these checks before final delivery of Korean report HTML.
 - One slide, one dominant message.
 - No text overlap, no clipped images, no partial next slide in local preview.
 - Footer safe area remains clear for source, page number, and SK logo.
+- Default canvas background is white unless a dark/tinted style is explicitly selected.
+- Avoid repeated flat card grids. Each slide should have a message-specific dominant
+  structure such as flow, matrix, timeline, evidence rail, split comparison, annotated
+  screen, or classification map.
 - Tables must be readable at 1920x1080 and after browser autoscale.
+- Table headers are centered; body text is left-aligned; numeric cells are right-aligned;
+  status chips are centered.
+- Same-role columns must use the same alignment across a table.
 
 ## Evidence QA
 
