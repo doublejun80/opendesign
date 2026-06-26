@@ -1,0 +1,1425 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>리센느 인기 급상승 원인 분석</title>
+<style>
+:root {
+  --slide-w: 1920px;
+  --slide-h: 1080px;
+  --deck-scale: 1;
+  --active-slide: 0;
+  --font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --bg: #f7f6f2;
+  --paper: #ffffff;
+  --paper-2: #f0eee8;
+  --ink: #17171b;
+  --muted: #61656f;
+  --faint: #8a8f99;
+  --line: rgba(23, 23, 27, 0.16);
+  --line-strong: rgba(23, 23, 27, 0.30);
+  --blue: #2457c5;
+  --blue-soft: #e9efff;
+  --red: #d83850;
+  --red-soft: #fff0f2;
+  --green: #1b7f5d;
+  --green-soft: #e8f5ef;
+  --amber: #a36400;
+  --amber-soft: #fff4df;
+  --violet: #6952c8;
+  --violet-soft: #f0edff;
+  --shadow: 0 18px 54px rgba(24, 24, 28, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+:where(.slide, .slide *) {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  letter-spacing: 0;
+}
+
+.ko-keep {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ko-allow-break {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.viewport {
+  width: calc(var(--slide-w) * var(--deck-scale));
+  height: calc(var(--slide-h) * var(--deck-scale));
+  overflow: hidden;
+  position: relative;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+.deck {
+  width: var(--slide-w);
+  height: var(--slide-h);
+  transform: scale(var(--deck-scale));
+  transform-origin: top left;
+  overflow: hidden;
+}
+
+.track {
+  width: max-content;
+  height: var(--slide-h);
+  display: flex;
+  transform: translateX(calc(var(--active-slide) * -1 * var(--slide-w)));
+  transition: transform 260ms ease;
+}
+
+.deck:focus { outline: none; }
+
+.slide {
+  position: relative;
+  flex: 0 0 var(--slide-w);
+  width: var(--slide-w);
+  height: var(--slide-h);
+  padding: 56px 84px 58px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(23, 23, 27, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(23, 23, 27, 0.032) 1px, transparent 1px),
+    var(--bg);
+  background-size: 48px 48px, 48px 48px, auto;
+  page-break-after: always;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 28px;
+  border: 1px solid rgba(23, 23, 27, 0.10);
+  pointer-events: none;
+}
+
+.slide.dark {
+  color: #ffffff;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.052) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.046) 1px, transparent 1px),
+    radial-gradient(circle at 86% 14%, rgba(216, 56, 80, 0.25), transparent 32%),
+    #11141d;
+  background-size: 48px 48px, 48px 48px, auto, auto;
+}
+
+.slide.dark::before { border-color: rgba(255, 255, 255, 0.13); }
+
+.header {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 36px;
+  align-items: start;
+}
+
+.kicker {
+  margin: 0 0 16px;
+  color: var(--blue);
+  font-size: 21px;
+  line-height: 1;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.dark .kicker { color: #ff9aaa; }
+
+h1 {
+  margin: 0;
+  max-width: 1340px;
+  font-size: 52px;
+  line-height: 1.12;
+  font-weight: 900;
+}
+
+.lead {
+  margin: 14px 0 0;
+  max-width: 1240px;
+  color: var(--muted);
+  font-size: 23px;
+  line-height: 1.46;
+  font-weight: 600;
+}
+
+.dark .lead { color: rgba(255, 255, 255, 0.72); }
+
+.doc-meta {
+  min-width: 300px;
+  border-left: 1px solid var(--line);
+  padding-left: 26px;
+  color: var(--faint);
+  font-size: 17px;
+  line-height: 1.56;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.dark .doc-meta {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.footer {
+  position: absolute;
+  left: 84px;
+  right: 84px;
+  bottom: 32px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+  color: rgba(97, 101, 111, 0.88);
+  font-size: 15px;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.dark .footer { color: rgba(255, 255, 255, 0.58); }
+
+.page-no {
+  min-width: 90px;
+  text-align: right;
+  font-weight: 850;
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+  margin-top: 30px;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.dark .panel {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 12px 8px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.badge.red { background: var(--red-soft); color: var(--red); }
+.badge.green { background: var(--green-soft); color: var(--green); }
+.badge.amber { background: var(--amber-soft); color: var(--amber); }
+.badge.violet { background: var(--violet-soft); color: var(--violet); }
+.dark .badge { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 30px;
+  align-items: stretch;
+}
+
+.thesis-panel {
+  height: 674px;
+  padding: 34px 38px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.thesis-line {
+  font-size: 38px;
+  line-height: 1.22;
+  font-weight: 900;
+}
+
+.thesis-copy {
+  margin-top: 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.thesis-copy p {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.48;
+  font-weight: 650;
+}
+
+.summary-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-self: end;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.metric-card {
+  min-height: 0;
+  height: 288px;
+  padding: 24px 26px 22px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  align-items: start;
+}
+
+.metric-card .label {
+  color: var(--faint);
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.metric-card .value {
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: 62px;
+  line-height: 0.95;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.metric-card .value small {
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.metric-card .explain {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.44;
+  font-weight: 650;
+}
+
+.metric-card .source-mini {
+  align-self: end;
+  color: var(--faint);
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.signal-strip {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.signal-strip div {
+  min-height: 70px;
+  padding: 13px 16px;
+  background: rgba(255, 255, 255, 0.82);
+  border-right: 1px solid var(--line);
+}
+
+.signal-strip div:last-child { border-right: 0; }
+.signal-strip b { display: block; font-size: 18px; line-height: 1.16; }
+.signal-strip span { display: block; margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.2; }
+
+.dark .metric-card .label,
+.dark .metric-card .source-mini {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.dark .metric-card .value,
+.dark .metric-card .explain,
+.dark .thesis-line {
+  color: #ffffff;
+}
+
+.dark .thesis-copy p {
+  color: rgba(255, 255, 255, 0.68);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.dark .signal-strip div {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.flow-layout {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 30px;
+  height: 706px;
+}
+
+.funnel {
+  min-height: 0;
+  height: 706px;
+  padding: 22px;
+  display: grid;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.funnel-row {
+  display: grid;
+  grid-template-columns: 136px 1fr 140px;
+  gap: 12px;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.funnel-step {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.18;
+  font-weight: 900;
+  text-align: center;
+}
+
+.funnel-step.s1 { background: var(--red-soft); color: var(--red); }
+.funnel-step.s2 { background: var(--amber-soft); color: var(--amber); }
+.funnel-step.s3 { background: var(--blue-soft); color: var(--blue); }
+.funnel-step.s4 { background: var(--green-soft); color: var(--green); }
+
+.funnel-text {
+  padding: 15px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.funnel-text h3 {
+  margin: 0 0 7px;
+  font-size: 22px;
+  line-height: 1.22;
+}
+
+.funnel-text p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.32;
+  font-weight: 650;
+}
+
+.funnel-metric {
+  display: grid;
+  align-content: center;
+  justify-items: end;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-2);
+  text-align: right;
+}
+
+.funnel-metric b {
+  font-size: 27px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.funnel-metric span {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.timeline-panel {
+  min-height: 0;
+  height: 706px;
+  padding: 26px 28px;
+}
+
+.timeline-panel h2,
+.section-title {
+  margin: 0;
+  font-size: 29px;
+  line-height: 1.22;
+  font-weight: 900;
+}
+
+.timeline {
+  margin-top: 18px;
+  display: grid;
+  gap: 0;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.timeline-item time {
+  color: var(--blue);
+  font-size: 18px;
+  line-height: 1.18;
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-item strong {
+  display: block;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.timeline-item span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.34;
+  font-weight: 650;
+}
+
+.evidence-layout {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 30px;
+  height: 652px;
+}
+
+.chart-panel,
+.rank-panel {
+  min-height: 0;
+  height: 652px;
+  padding: 28px 32px;
+}
+
+.bar-list {
+  margin-top: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 174px 1fr 102px;
+  gap: 16px;
+  align-items: center;
+  min-height: 47px;
+}
+
+.bar-name {
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.22;
+  font-weight: 900;
+}
+
+.bar-track {
+  position: relative;
+  height: 18px;
+  border-radius: 999px;
+  background: #e5e3db;
+  overflow: hidden;
+}
+
+.bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--red), var(--blue));
+}
+
+.bar-num {
+  text-align: right;
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-note {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.note-box {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.note-box b {
+  display: block;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 950;
+  color: var(--red);
+}
+
+.note-box span {
+  display: block;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.rank-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.rank-card {
+  min-height: 92px;
+  padding: 16px 18px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.rank-card strong {
+  font-size: 20px;
+  line-height: 1.18;
+  font-weight: 900;
+}
+
+.rank-card p {
+  grid-column: 1 / -1;
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.28;
+  font-weight: 650;
+}
+
+.rank-value {
+  color: var(--blue);
+  font-size: 31px;
+  line-height: 0.95;
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
+}
+
+.sales-strip {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sales-strip div {
+  min-height: 72px;
+  padding: 14px 16px 12px;
+  border-right: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.70);
+}
+
+.sales-strip div:last-child { border-right: 0; }
+.sales-strip b { display: block; font-size: 24px; line-height: 1; font-weight: 950; }
+.sales-strip span { display: block; margin-top: 7px; color: var(--muted); font-size: 13px; line-height: 1.22; font-weight: 700; }
+
+.driver-board {
+  min-height: 708px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.driver-card {
+  position: relative;
+  padding: 30px 28px 26px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+}
+
+.driver-index {
+  color: var(--faint);
+  font-size: 17px;
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
+}
+
+.driver-card h3 {
+  margin: 18px 0 0;
+  font-size: 31px;
+  line-height: 1.18;
+  font-weight: 950;
+}
+
+.driver-card ul {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 13px;
+}
+
+.driver-card li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.36;
+  font-weight: 650;
+}
+
+.driver-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.driver-proof {
+  align-self: end;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.24;
+  font-weight: 900;
+}
+
+.driver-proof span {
+  display: block;
+  margin-top: 6px;
+  color: var(--faint);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.outlook-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.16fr;
+  gap: 30px;
+}
+
+.scenario-panel,
+.playbook-panel {
+  min-height: 704px;
+  padding: 32px;
+}
+
+.scenario-stack {
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+}
+
+.scenario-card {
+  display: grid;
+  grid-template-columns: 120px 1fr 120px;
+  gap: 18px;
+  align-items: center;
+  min-height: 128px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.scenario-card .case {
+  display: grid;
+  place-items: center;
+  height: 76px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.case.up { background: var(--green); }
+.case.base { background: var(--blue); }
+.case.down { background: var(--red); }
+
+.scenario-card h3 {
+  margin: 0;
+  font-size: 25px;
+  line-height: 1.18;
+}
+
+.scenario-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 650;
+}
+
+.scenario-card .prob {
+  text-align: right;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 950;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.playbook-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.playbook-card {
+  min-height: 188px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.playbook-card h3 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.18;
+}
+
+.playbook-card p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.34;
+  font-weight: 650;
+}
+
+.decision-bar {
+  margin-top: 18px;
+  padding: 22px 24px;
+  border: 1px solid rgba(216, 56, 80, 0.32);
+  border-radius: 8px;
+  background: var(--red-soft);
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.decision-bar b {
+  color: var(--red);
+  font-size: 24px;
+  line-height: 1.05;
+}
+
+.decision-bar span {
+  color: var(--ink);
+  font-size: 21px;
+  line-height: 1.34;
+  font-weight: 850;
+}
+
+.controls {
+  position: fixed;
+  right: 20px;
+  bottom: 18px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.controls:hover,
+.controls:focus-within { opacity: 0.78; }
+
+.controls button {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(23, 23, 27, 0.22);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media print {
+  html,
+  body {
+    display: block;
+    width: var(--slide-w);
+    height: auto;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .viewport {
+    width: var(--slide-w);
+    height: auto;
+    overflow: visible;
+  }
+
+  .deck {
+    width: var(--slide-w);
+    height: auto;
+    transform: none;
+    overflow: visible;
+  }
+
+  .track {
+    display: block;
+    width: var(--slide-w);
+    height: auto;
+    transform: none;
+  }
+
+  .slide {
+    flex: none;
+    break-after: page;
+  }
+
+  .controls { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="viewport">
+  <main class="deck" tabindex="0" aria-label="리센느 인기 급상승 원인 분석 덱">
+    <div class="track">
+
+      <section class="slide dark" data-slide="1">
+        <header class="header">
+          <div>
+            <p class="kicker">Executive Thesis</p>
+            <h1><span class="ko-keep">리센느 급상승 판단:</span> <span class="ko-keep">캐릭터 바이럴의</span> <span class="ko-keep">음원 역주행 전환</span></h1>
+            <p class="lead"><span class="ko-keep">2024년 공개곡</span> <span class="ko-keep">LOVE ATTACK</span> <span class="ko-keep">재부상은</span> <span class="ko-keep">유료 노출보다</span> <span class="ko-keep">원이 채널</span> <span class="ko-keep">거제 밈</span> <span class="ko-keep">멤버 케미</span> <span class="ko-keep">알고리즘 회전의</span> <span class="ko-keep">복합 효과</span></p>
+          </div>
+          <div class="doc-meta">
+            <div>RESCENE POPULARITY ANALYSIS</div>
+            <div>기획보고서 5장</div>
+            <div>분석 기준 2026.06.26</div>
+          </div>
+        </header>
+
+        <div class="body hero-grid">
+          <div class="panel thesis-panel">
+            <div>
+              <div class="badge red">핵심 결론</div>
+              <div class="thesis-line" style="margin-top:22px"><span class="ko-keep">리센느 인기는</span> <span class="ko-keep">곡의 즉시성보다</span> <span class="ko-keep">사람을 먼저 팔로우한</span> <span class="ko-keep">대중 발견형 성장</span></div>
+            </div>
+            <div class="thesis-copy">
+              <p><span class="ko-keep">첫 접점은</span> <span class="ko-keep">팀 세계관이 아니라</span> <span class="ko-keep">원이의 말투</span> <span class="ko-keep">지역성</span> <span class="ko-keep">생활형 콘텐츠</span> <span class="ko-keep">친근성</span></p>
+              <p><span class="ko-keep">차트 반응은</span> <span class="ko-keep">신곡 런칭형보다</span> <span class="ko-keep">카탈로그 재발견형</span> <span class="ko-keep">역주행 패턴</span></p>
+              <p><span class="ko-keep">사업적 의미는</span> <span class="ko-keep">멤버 개인 IP를</span> <span class="ko-keep">그룹 음악 소비로</span> <span class="ko-keep">전환한</span> <span class="ko-keep">저비용 고효율 사례</span></p>
+            </div>
+            <div class="summary-tags">
+              <span class="badge">대중 인지도</span>
+              <span class="badge red">차트 역주행</span>
+              <span class="badge green">팬덤 전환</span>
+              <span class="badge amber">콘텐츠 퍼널</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="metric-grid">
+              <div class="panel metric-card">
+                <div class="label">Domestic chart signal</div>
+                <div class="value num">#22</div>
+                <p class="explain"><span class="ko-keep">Melon TOP100</span> <span class="ko-keep">최고 확인</span> <span class="ko-keep">일간 #68</span> <span class="ko-keep">동시 보도</span></p>
+                <div class="source-mini">Dispatch, 2026.06.01</div>
+              </div>
+              <div class="panel metric-card">
+                <div class="label">Character funnel</div>
+                <div class="value num">106<small>만+</small></div>
+                <p class="explain"><span class="ko-keep">원이 개인 채널</span> <span class="ko-keep">구독자 규모</span> <span class="ko-keep">6월 하순 보도</span></p>
+                <div class="source-mini">TopStarNews search snapshot, 2026.06.23</div>
+              </div>
+              <div class="panel metric-card">
+                <div class="label">Global listener base</div>
+                <div class="value num">118<small>만</small></div>
+                <p class="explain"><span class="ko-keep">Spotify 월간 청취자</span> <span class="ko-keep">공개 프로필 기준</span></p>
+                <div class="source-mini">Spotify artist profile</div>
+              </div>
+              <div class="panel metric-card">
+                <div class="label">Recorded sales base</div>
+                <div class="value num">26.3<small>만</small></div>
+                <p class="explain"><span class="ko-keep">국내 앨범 누적 판매</span> <span class="ko-keep">집계형 팬덤 지표</span></p>
+                <div class="source-mini">Korean Sales, 2026.06.25</div>
+              </div>
+            </div>
+            <div class="signal-strip">
+              <div><b>상승 방식</b><span>콘텐츠 선행 <br />음원 후행</span></div>
+              <div><b>핵심 자산</b><span>멤버 캐릭터 <br />대화형 밈</span></div>
+              <div><b>음원 효과</b><span>LOVE ATTACK <br />중심 재청취</span></div>
+              <div><b>전환 과제</b><span>단기 관심 <br />팬덤 잔존</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <span>Source: Dispatch, StarNews, Spotify, Kworb, Korean Sales, Somako, TopStarNews search snapshot</span>
+          <span class="page-no">01 / 05</span>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="2">
+        <header class="header">
+          <div>
+            <p class="kicker">Growth Mechanism</p>
+            <h1><span class="ko-keep">인기 구조:</span> <span class="ko-keep">멤버 발견에서</span> <span class="ko-keep">그룹 소비로 이어진</span> <span class="ko-keep">4단계 퍼널</span></h1>
+            <p class="lead"><span class="ko-keep">초기 팬덤의 구매력보다</span> <span class="ko-keep">비팬층의 호기심 유입이</span> <span class="ko-keep">먼저 확대되고</span> <span class="ko-keep">이후 음원 차트와</span> <span class="ko-keep">단체 활동으로</span> <span class="ko-keep">연결된 흐름</span></p>
+          </div>
+          <div class="doc-meta">
+            <div>SCENARIO HARNESS</div>
+            <div>대상: 기획·마케팅 의사결정자</div>
+            <div>판단: 단기 화제성의 구조화</div>
+          </div>
+        </header>
+
+        <div class="body flow-layout">
+          <div class="panel funnel">
+            <div class="funnel-row">
+              <div class="funnel-step s1">1<br /><span class="ko-keep">개인 채널</span></div>
+              <div class="funnel-text">
+                <h3><span class="ko-keep">원이 개인 IP의</span> <span class="ko-keep">생활형 진입점</span></h3>
+                <p><span class="ko-keep">팀명보다</span> <span class="ko-keep">멤버 이름을</span> <span class="ko-keep">먼저 인지하는</span> <span class="ko-keep">역방향 발견</span> <span class="ko-keep">구조</span></p>
+              </div>
+              <div class="funnel-metric"><b class="num">50만</b><span>5월 말 채널 구독자<br />Somako 보도</span></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-step s2">2<br /><span class="ko-keep">밈 확산</span></div>
+              <div class="funnel-text">
+                <h3><span class="ko-keep">거제 사투리와</span> <span class="ko-keep">즉흥 대화가</span> <span class="ko-keep">짧은 영상 소재화</span></h3>
+                <p><span class="ko-keep">댄스 챌린지보다</span> <span class="ko-keep">대화 장면</span> <span class="ko-keep">감정 반응</span> <span class="ko-keep">관계성이</span> <span class="ko-keep">반복 소비</span></p>
+              </div>
+              <div class="funnel-metric"><b class="num">300만</b><span>대표 영상 조회수<br />Somako 사례</span></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-step s3">3<br /><span class="ko-keep">음원 전환</span></div>
+              <div class="funnel-text">
+                <h3><span class="ko-keep">LOVE ATTACK</span> <span class="ko-keep">재청취와</span> <span class="ko-keep">차트 재진입</span></h3>
+                <p><span class="ko-keep">개인 콘텐츠의</span> <span class="ko-keep">호감이</span> <span class="ko-keep">곡 검색</span> <span class="ko-keep">플레이리스트 추가</span> <span class="ko-keep">음방 클립 소비로</span> <span class="ko-keep">확장</span></p>
+              </div>
+              <div class="funnel-metric"><b class="num">#8</b><span>Soompi 주간 차트<br />2026.06.14</span></div>
+            </div>
+            <div class="funnel-row">
+              <div class="funnel-step s4">4<br /><span class="ko-keep">그룹 자산</span></div>
+              <div class="funnel-text">
+                <h3><span class="ko-keep">멤버 전원 노출과</span> <span class="ko-keep">카탈로그 스트리밍</span></h3>
+                <p><span class="ko-keep">원이 단일 화제에서</span> <span class="ko-keep">그룹 정체성</span> <span class="ko-keep">음반 구매</span> <span class="ko-keep">후속곡 기대감으로</span> <span class="ko-keep">확장 여지</span></p>
+              </div>
+              <div class="funnel-metric"><b class="num">3.1배</b><span>1주차 판매 증가<br />Scenedrome 대비 lip bomb</span></div>
+            </div>
+          </div>
+
+          <aside class="panel timeline-panel">
+            <h2><span class="ko-keep">타임라인으로 본</span> <span class="ko-keep">관심 증폭</span></h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <time>2025.08</time>
+                <div><strong>LOVE ATTACK 공개</strong><span><span class="ko-keep">초기 활동기에는</span> <span class="ko-keep">중소 기획사 신인곡</span> <span class="ko-keep">범주</span></span></div>
+              </div>
+              <div class="timeline-item">
+                <time>2026.02</time>
+                <div><strong>원이 개인 채널 개설</strong><span><span class="ko-keep">단체 홍보보다</span> <span class="ko-keep">멤버 캐릭터</span> <span class="ko-keep">선노출</span></span></div>
+              </div>
+              <div class="timeline-item">
+                <time>2026.05</time>
+                <div><strong>구독자 10만에서 50만대 진입</strong><span><span class="ko-keep">5월 4일 10만</span> <span class="ko-keep">5월 31일 50만</span> <span class="ko-keep">가속 구간</span></span></div>
+              </div>
+              <div class="timeline-item">
+                <time>2026.06</time>
+                <div><strong>국내 음원·유튜브 동시 반응</strong><span><span class="ko-keep">Melon TOP100</span> <span class="ko-keep">Apple Music Korea</span> <span class="ko-keep">YouTube Music</span> <span class="ko-keep">노출 확대</span></span></div>
+              </div>
+              <div class="timeline-item">
+                <time>2026.06</time>
+                <div><strong>그룹 단위 재조명</strong><span><span class="ko-keep">Soompi 주간 #8</span> <span class="ko-keep">Spotify 월간 118만</span> <span class="ko-keep">누적 판매 26.3만</span></span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <div class="footer">
+          <span>Source: Somako, Soompi, Dispatch, Korean Sales, Spotify artist profile</span>
+          <span class="page-no">02 / 05</span>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="3">
+        <header class="header">
+          <div>
+            <p class="kicker">Quant Evidence</p>
+            <h1><span class="ko-keep">수치 근거:</span> <span class="ko-keep">한 곡 역주행이</span> <span class="ko-keep">스트리밍·차트·판매</span> <span class="ko-keep">복합 신호로 확산</span></h1>
+            <p class="lead"><span class="ko-keep">국내 순위는</span> <span class="ko-keep">순간 화제성을</span> <span class="ko-keep">보여주고</span> <span class="ko-keep">Spotify와 앨범 판매는</span> <span class="ko-keep">반복 소비와</span> <span class="ko-keep">팬덤 전환 가능성을</span> <span class="ko-keep">보조 확인</span></p>
+          </div>
+          <div class="doc-meta">
+            <div>DATA FRAME</div>
+            <div>순위: 공개 보도 기준</div>
+            <div>스트리밍: Kworb 조회 기준</div>
+          </div>
+        </header>
+
+        <div class="body evidence-layout">
+          <div class="panel chart-panel">
+            <h2 class="section-title"><span class="ko-keep">Spotify 트랙별</span> <span class="ko-keep">일간 스트리밍 구조</span></h2>
+            <div class="bar-list">
+              <div class="bar-row">
+                <div class="bar-name">LOVE ATTACK</div>
+                <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+                <div class="bar-num">110,593</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-name">RUNAWAY</div>
+                <div class="bar-track"><div class="bar-fill" style="width:48%"></div></div>
+                <div class="bar-num">53,070</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-name">PINBALL</div>
+                <div class="bar-track"><div class="bar-fill" style="width:33%"></div></div>
+                <div class="bar-num">36,342</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-name">Deja Vu</div>
+                <div class="bar-track"><div class="bar-fill" style="width:24%"></div></div>
+                <div class="bar-num">26,692</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-name">YoYo</div>
+                <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+                <div class="bar-num">19,399</div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-name">Glow Up</div>
+                <div class="bar-track"><div class="bar-fill" style="width:12%"></div></div>
+                <div class="bar-num">13,262</div>
+              </div>
+            </div>
+            <div class="chart-note">
+              <div class="note-box"><b class="num">7,215만</b><span>Spotify 전체 누적 스트림</span></div>
+              <div class="note-box"><b class="num">34.7만</b><span>전체 일간 스트림</span></div>
+              <div class="note-box"><b class="num">31.9%</b><span>LOVE ATTACK 일간 비중</span></div>
+            </div>
+            <div class="sales-strip">
+              <div><b class="num">64,832</b><span>2024년 국내 판매량</span></div>
+              <div><b class="num">192,182</b><span>2025년 국내 판매량</span></div>
+              <div><b class="num">104,406</b><span>lip bomb 1주차 판매</span></div>
+              <div><b class="num">3.1배</b><span>Scenedrome 1주차 대비</span></div>
+            </div>
+          </div>
+
+          <div class="panel rank-panel">
+            <h2 class="section-title"><span class="ko-keep">국내 차트 침투와</span> <span class="ko-keep">확산 채널</span></h2>
+            <div class="rank-grid">
+              <div class="rank-card">
+                <strong>Melon TOP100</strong>
+                <div class="rank-value num">#22</div>
+                <p><span class="ko-keep">LOVE ATTACK</span> <span class="ko-keep">최고 순위 보도</span> <span class="ko-keep">일간 #68 동시 확인</span></p>
+              </div>
+              <div class="rank-card">
+                <strong>Bugs 실시간</strong>
+                <div class="rank-value num">#8</div>
+                <p><span class="ko-keep">대중 검색량과</span> <span class="ko-keep">팬덤 스트리밍이</span> <span class="ko-keep">함께 반영된</span> <span class="ko-keep">단기 피크</span></p>
+              </div>
+              <div class="rank-card">
+                <strong>Apple Music Korea</strong>
+                <div class="rank-value num">#10</div>
+                <p><span class="ko-keep">국내 플랫폼 외</span> <span class="ko-keep">프리미엄 스트리밍층</span> <span class="ko-keep">동반 반응</span></p>
+              </div>
+              <div class="rank-card">
+                <strong>YouTube Music</strong>
+                <div class="rank-value num">#11</div>
+                <p><span class="ko-keep">영상 알고리즘과</span> <span class="ko-keep">음원 소비의</span> <span class="ko-keep">직접 연결성</span></p>
+              </div>
+              <div class="rank-card">
+                <strong>FLO</strong>
+                <div class="rank-value num">#16</div>
+                <p><span class="ko-keep">국내 일상형 청취 플랫폼까지</span> <span class="ko-keep">확산된</span> <span class="ko-keep">대중 지표</span></p>
+              </div>
+              <div class="rank-card">
+                <strong>Genie</strong>
+                <div class="rank-value num">#34</div>
+                <p><span class="ko-keep">멜론·벅스 외</span> <span class="ko-keep">보조 플랫폼에서도</span> <span class="ko-keep">동시 포착</span></p>
+              </div>
+              <div class="rank-card">
+                <strong>Soompi 주간 차트</strong>
+                <div class="rank-value num">#8</div>
+                <p><span class="ko-keep">해외 K-pop 소비층의</span> <span class="ko-keep">주간 관심도</span> <span class="ko-keep">반영</span></p>
+              </div>
+              <div class="rank-card">
+                <strong>월간 청취자</strong>
+                <div class="rank-value num">118만</div>
+                <p><span class="ko-keep">단일 밈 이상의</span> <span class="ko-keep">글로벌 반복 청취</span> <span class="ko-keep">기반</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <span>Source: Dispatch, StarNews, Soompi, Spotify artist profile, Kworb, Korean Sales</span>
+          <span class="page-no">03 / 05</span>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="4">
+        <header class="header">
+          <div>
+            <p class="kicker">Why It Works</p>
+            <h1><span class="ko-keep">인기 원인:</span> <span class="ko-keep">완성형 세계관보다</span> <span class="ko-keep">인간형 진입점이</span> <span class="ko-keep">먼저 작동</span></h1>
+            <p class="lead"><span class="ko-keep">리센느의 차별성은</span> <span class="ko-keep">강한 콘셉트보다</span> <span class="ko-keep">낮은 진입장벽</span> <span class="ko-keep">높은 재가공성</span> <span class="ko-keep">멤버 관계성</span> <span class="ko-keep">음원 재발견성의</span> <span class="ko-keep">동시 결합</span></p>
+          </div>
+          <div class="doc-meta">
+            <div>DRIVER MAP</div>
+            <div>원인: 콘텐츠·곡·운영·팬덤</div>
+            <div>판단: 지속성 검증 필요</div>
+          </div>
+        </header>
+
+        <div class="body driver-board">
+          <div class="driver-card">
+            <div class="driver-index">DRIVER 01</div>
+            <h3><span class="ko-keep">멤버 캐릭터의</span> <span class="ko-keep">낮은 설명 비용</span></h3>
+            <ul>
+              <li><span class="ko-keep">원이의 말투</span> <span class="ko-keep">지역성</span> <span class="ko-keep">일상 반응이</span> <span class="ko-keep">즉시 이해 가능한</span> <span class="ko-keep">입구</span></li>
+              <li><span class="ko-keep">비팬층도</span> <span class="ko-keep">콘셉트 학습 없이</span> <span class="ko-keep">캐릭터 호감부터</span> <span class="ko-keep">형성</span></li>
+              <li><span class="ko-keep">채널 댓글과</span> <span class="ko-keep">짧은 클립이</span> <span class="ko-keep">그룹 검색으로</span> <span class="ko-keep">전환</span></li>
+            </ul>
+            <div class="driver-proof">106만+ 구독자 <span>개인 IP의 대중 접점</span></div>
+          </div>
+
+          <div class="driver-card">
+            <div class="driver-index">DRIVER 02</div>
+            <h3><span class="ko-keep">알고리즘 친화형</span> <span class="ko-keep">짧은 영상 소재</span></h3>
+            <ul>
+              <li><span class="ko-keep">춤보다 대화</span> <span class="ko-keep">상황극보다 실제 반응</span> <span class="ko-keep">재가공 난이도 낮음</span></li>
+              <li><span class="ko-keep">클립 단위</span> <span class="ko-keep">시청 완료율과</span> <span class="ko-keep">댓글 반응 유도</span> <span class="ko-keep">용이</span></li>
+              <li><span class="ko-keep">멤버 관계성 영상이</span> <span class="ko-keep">단체 인지로</span> <span class="ko-keep">확장 가능한</span> <span class="ko-keep">구조</span></li>
+            </ul>
+            <div class="driver-proof">300만 조회 영상 <span>Somako 보도 사례</span></div>
+          </div>
+
+          <div class="driver-card">
+            <div class="driver-index">DRIVER 03</div>
+            <h3><span class="ko-keep">곡의 재발견성과</span> <span class="ko-keep">카탈로그 흡수력</span></h3>
+            <ul>
+              <li><span class="ko-keep">LOVE ATTACK은</span> <span class="ko-keep">밝은 후렴</span> <span class="ko-keep">쉬운 반복구</span> <span class="ko-keep">클립 삽입 적합성</span></li>
+              <li><span class="ko-keep">Runaway</span> <span class="ko-keep">Pinball</span> <span class="ko-keep">Deja Vu까지</span> <span class="ko-keep">후속 청취 분산</span></li>
+              <li><span class="ko-keep">단일곡 화제에서</span> <span class="ko-keep">팀 사운드 탐색으로</span> <span class="ko-keep">이동 여지</span></li>
+            </ul>
+            <div class="driver-proof">상위 4곡 일간 55.6% <span>Kworb 기준 포트폴리오 청취</span></div>
+          </div>
+
+          <div class="driver-card">
+            <div class="driver-index">DRIVER 04</div>
+            <h3><span class="ko-keep">중소 기획사형</span> <span class="ko-keep">진정성 프리미엄</span></h3>
+            <ul>
+              <li><span class="ko-keep">과도한 대형 캠페인보다</span> <span class="ko-keep">발견감과 응원 심리가</span> <span class="ko-keep">강한 국면</span></li>
+              <li><span class="ko-keep">팬덤은</span> <span class="ko-keep">성장 서사 참여감</span> <span class="ko-keep">대중은</span> <span class="ko-keep">신선한 캐릭터 소비</span></li>
+              <li><span class="ko-keep">음방</span> <span class="ko-keep">인터뷰</span> <span class="ko-keep">단체 콘텐츠의</span> <span class="ko-keep">운영 속도가</span> <span class="ko-keep">지속성 좌우</span></li>
+            </ul>
+            <div class="driver-proof">2025 판매 19.2만 <span>2024 대비 약 3.0배</span></div>
+          </div>
+        </div>
+        <div class="footer">
+          <span>Source: Somako, Spotify, Kworb, Korean Sales, public chart reports</span>
+          <span class="page-no">04 / 05</span>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="5">
+        <header class="header">
+          <div>
+            <p class="kicker">Implication & Next Move</p>
+            <h1><span class="ko-keep">전망 판단:</span> <span class="ko-keep">밈 잔존기간 안에</span> <span class="ko-keep">팬덤 자산화가</span> <span class="ko-keep">핵심 과제</span></h1>
+            <p class="lead"><span class="ko-keep">현재 인기는</span> <span class="ko-keep">성과보다 기회의 형태</span> <span class="ko-keep">단기 차트 피크를</span> <span class="ko-keep">멤버 서사</span> <span class="ko-keep">카탈로그</span> <span class="ko-keep">후속 발매</span> <span class="ko-keep">팬덤 행동으로</span> <span class="ko-keep">연결하는 운영이</span> <span class="ko-keep">승부처</span></p>
+          </div>
+          <div class="doc-meta">
+            <div>PLANNING ASK</div>
+            <div>관점: 지속성·수익화·리스크</div>
+            <div>추천: 6주 전환 프로그램</div>
+          </div>
+        </header>
+
+        <div class="body outlook-layout">
+          <div class="panel scenario-panel">
+            <h2 class="section-title"><span class="ko-keep">향후 6~8주</span> <span class="ko-keep">시나리오 판단</span></h2>
+            <div class="scenario-stack">
+              <div class="scenario-card">
+                <div class="case up">상방</div>
+                <div>
+                  <h3><span class="ko-keep">후속 콘텐츠와</span> <span class="ko-keep">음원 재상승의</span> <span class="ko-keep">동시 발생</span></h3>
+                  <p><span class="ko-keep">채널 150만 근접</span> <span class="ko-keep">LOVE ATTACK</span> <span class="ko-keep">일간 Top50 안착</span> <span class="ko-keep">신규 발매 대기수요 확대</span></p>
+                </div>
+                <div class="prob num">25%</div>
+              </div>
+              <div class="scenario-card">
+                <div class="case base">기준</div>
+                <div>
+                  <h3><span class="ko-keep">대중 화제성은</span> <span class="ko-keep">완만 둔화</span> <span class="ko-keep">팬덤 지표는 유지</span></h3>
+                  <p><span class="ko-keep">월간 청취자 100만대 유지</span> <span class="ko-keep">앨범 구매층과</span> <span class="ko-keep">영상 구독층의</span> <span class="ko-keep">일부 교차</span></p>
+                </div>
+                <div class="prob num">55%</div>
+              </div>
+              <div class="scenario-card">
+                <div class="case down">하방</div>
+                <div>
+                  <h3><span class="ko-keep">원이 단일 밈으로</span> <span class="ko-keep">소비 후 이탈</span></h3>
+                  <p><span class="ko-keep">차트 반락</span> <span class="ko-keep">멤버 전원 인지도 미전환</span> <span class="ko-keep">후속곡 기대감 약화</span></p>
+                </div>
+                <div class="prob num">20%</div>
+              </div>
+            </div>
+            <div class="decision-bar">
+              <b>판단 기준</b>
+              <span><span class="ko-keep">구독자 증가율보다</span> <span class="ko-keep">음원 재청취</span> <span class="ko-keep">신규 팬덤 행동</span> <span class="ko-keep">단체 콘텐츠 반응률을</span> <span class="ko-keep">동시에 추적</span></span>
+            </div>
+          </div>
+
+          <div class="panel playbook-panel">
+            <h2 class="section-title"><span class="ko-keep">추천 실행안:</span> <span class="ko-keep">관심을 팬덤 자산으로</span> <span class="ko-keep">전환하는</span> <span class="ko-keep">4개 과제</span></h2>
+            <div class="playbook-grid">
+              <div class="playbook-card">
+                <span class="badge red">1순위</span>
+                <h3 style="margin-top:14px"><span class="ko-keep">멤버 전원 캐릭터</span> <span class="ko-keep">연결 콘텐츠</span></h3>
+                <p><span class="ko-keep">원이 단일 유입을</span> <span class="ko-keep">메이 리브 제나 지민으로</span> <span class="ko-keep">분산시키는</span> <span class="ko-keep">짧은 시리즈</span></p>
+              </div>
+              <div class="playbook-card">
+                <span class="badge">2순위</span>
+                <h3 style="margin-top:14px"><span class="ko-keep">LOVE ATTACK</span> <span class="ko-keep">재해석 패키지</span></h3>
+                <p><span class="ko-keep">라이브 클립</span> <span class="ko-keep">댄스 프랙티스</span> <span class="ko-keep">밴드 버전</span> <span class="ko-keep">팬 참여형 숏폼</span> <span class="ko-keep">동시 배치</span></p>
+              </div>
+              <div class="playbook-card">
+                <span class="badge green">3순위</span>
+                <h3 style="margin-top:14px"><span class="ko-keep">신곡 전환 시점</span> <span class="ko-keep">선제 고정</span></h3>
+                <p><span class="ko-keep">바이럴 피크 이후</span> <span class="ko-keep">4~6주 내</span> <span class="ko-keep">프리릴리즈 또는</span> <span class="ko-keep">협업 콘텐츠로</span> <span class="ko-keep">대기수요 보존</span></p>
+              </div>
+              <div class="playbook-card">
+                <span class="badge amber">관리</span>
+                <h3 style="margin-top:14px"><span class="ko-keep">밈 과소비</span> <span class="ko-keep">리스크 통제</span></h3>
+                <p><span class="ko-keep">사투리와 순수함만</span> <span class="ko-keep">반복 소비되는</span> <span class="ko-keep">프레이밍을 줄이고</span> <span class="ko-keep">음악·무대 역량</span> <span class="ko-keep">동시 노출</span></p>
+              </div>
+            </div>
+            <div class="sales-strip" style="grid-template-columns: repeat(4, 1fr); margin-top:18px">
+              <div><b class="num">6주</b><span>핵심 전환 기간</span></div>
+              <div><b class="num">4종</b><span>콘텐츠 포맷</span></div>
+              <div><b class="num">3개</b><span>핵심 추적 지표</span></div>
+              <div><b class="num">1개</b><span>후속 발매 앵커</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <span>Planning note: 수치 근거는 공개 보도와 공개 프로필 기반, 실시간 차트는 변동 가능</span>
+          <span class="page-no">05 / 05</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+<div class="controls" aria-hidden="true">
+  <button type="button" data-prev title="이전 장">‹</button>
+  <button type="button" data-next title="다음 장">›</button>
+</div>
+<script>
+(() => {
+  const root = document.documentElement;
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const deck = document.querySelector(".deck");
+  let index = 0;
+
+  function setScale() {
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    root.style.setProperty("--deck-scale", String(scale));
+  }
+
+  function go(next) {
+    index = Math.max(0, Math.min(slides.length - 1, next));
+    root.style.setProperty("--active-slide", String(index));
+  }
+
+  window.__openDesignDeck = { go, count: slides.length };
+  setScale();
+  go(0);
+  deck.focus({ preventScroll: true });
+
+  window.addEventListener("resize", setScale);
+  document.querySelector("[data-prev]").addEventListener("click", () => go(index - 1));
+  document.querySelector("[data-next]").addEventListener("click", () => go(index + 1));
+  window.addEventListener("keydown", (event) => {
+    if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+      event.preventDefault();
+      go(index + 1);
+    }
+    if (["ArrowLeft", "PageUp", "Backspace"].includes(event.key)) {
+      event.preventDefault();
+      go(index - 1);
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      go(0);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      go(slides.length - 1);
+    }
+  });
+})();
+</script>
+</body>
+</html>
