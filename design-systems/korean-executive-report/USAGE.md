@@ -8,6 +8,15 @@ Recommended usage in prompts:
 Apply design-systems/korean-executive-report/DESIGN.md and tokens.css. Use a 1920x1080 canvas. Make the deck feel like a premium Korean executive report, not a startup pitch deck.
 ```
 
+All local HTML decks must use the autoscale preview wrapper:
+
+```text
+.viewport > .deck > .track > .slide
+```
+
+The slide coordinate system remains 1920×1080, but the browser preview scales the deck
+to fit the current window and must not expose neighboring slides.
+
 Do not use this for consumer marketing posters unless the user asks for that tone.
 
 ## Reference Sources

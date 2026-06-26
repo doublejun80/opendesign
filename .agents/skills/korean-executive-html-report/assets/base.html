@@ -10,10 +10,44 @@
   </style>
 </head>
 <body>
-  <main class="deck">
-    {{SLIDES}}
-  </main>
+  <div class="viewport">
+    <main class="deck">
+      <div class="track">
+        {{SLIDES}}
+      </div>
+    </main>
+  </div>
   <script>
+    (function () {
+      const root = document.documentElement;
+      const deck = document.querySelector(".deck");
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      let activeIndex = 0;
+
+      function setScale() {
+        const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080, 1);
+        root.style.setProperty("--kr-deck-scale", String(scale));
+      }
+
+      function render() {
+        if (deck) deck.style.setProperty("--kr-active-slide", String(activeIndex));
+      }
+
+      function go(delta) {
+        activeIndex = Math.max(0, Math.min(slides.length - 1, activeIndex + delta));
+        render();
+      }
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") go(1);
+        if (event.key === "ArrowLeft" || event.key === "PageUp") go(-1);
+      });
+
+      window.addEventListener("resize", setScale);
+      setScale();
+      render();
+      window.__krDeckGo = go;
+    })();
     {{NAVIGATION_JS}}
   </script>
 </body>

@@ -74,6 +74,27 @@ aspect-ratio: 16 / 9
 ```
 
 Each slide should be one `.slide` section with `data-slide`.
+The 1920×1080 canvas must be wrapped in a viewport autoscale runtime so the browser
+shows one complete slide at any window size instead of exposing the next slide or
+horizontal scrollbars.
+
+Required DOM shape:
+
+```html
+<div class="viewport">
+  <main class="deck">
+    <div class="track">
+      <section class="slide" data-slide="1">...</section>
+      <section class="slide" data-slide="2">...</section>
+    </div>
+  </main>
+</div>
+```
+
+The `.deck` remains a 1920×1080 coordinate space. The outer `.viewport` scales it with
+`transform: scale(...)`. Do not put raw 1920px slides directly in a `100vw` horizontal
+scroll container for local preview, because that causes partial neighboring slides to
+show on smaller browser windows.
 
 ## Report Structure
 
@@ -199,13 +220,17 @@ Avoid:
 - Use semantic HTML sections.
 - Keep style tokens aligned with `design-systems/korean-executive-report/tokens.css`.
 - Use CSS grid and flex for robust alignment.
+- Use the standard `.viewport > .deck > .track > .slide` autoscale runtime from the
+  design system unless a task explicitly targets raw export markup only.
 - Include Korean typography defaults: `word-break: keep-all`, `overflow-wrap: normal`,
   `line-break: strict`, and `letter-spacing: 0` for slide text.
 - Provide `.ko-keep { display: inline-block; white-space: nowrap; }` for Korean
   phrases that must not split, and reserve `.ko-allow-break` for URLs, IDs,
   filenames, and long English strings.
 - Include print styles for PDF export.
-- Include simple keyboard navigation if multiple slides are in one HTML.
+- Include simple keyboard navigation if multiple slides are in one HTML. Keyboard
+  navigation should move the `.track` by slide index, not rely on body-level horizontal
+  scrolling in preview mode.
 - Do not depend on external CDN assets unless explicitly requested.
 
 ## Slide Quality Checklist
@@ -225,6 +250,8 @@ Before finalizing, check:
    pre-mapped genre list?
 10. Does it still work if exported as PNG/PDF?
 11. Are the source notes separated from final copy?
+12. Does local browser preview autoscale to one full slide without exposing neighboring
+    slides at common window sizes such as 1366×768?
 
 Run the browser QA scripts before finalizing:
 

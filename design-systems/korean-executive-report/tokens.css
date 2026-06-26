@@ -58,18 +58,32 @@ body {
   color: var(--kr-ink);
   height: 100vh;
   overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.viewport {
+  width: calc(var(--kr-slide-w) * var(--kr-deck-scale, 1));
+  height: calc(var(--kr-slide-h) * var(--kr-deck-scale, 1));
+  overflow: hidden;
+  position: relative;
 }
 
 .deck {
-  width: 100vw;
-  height: 100vh;
+  width: var(--kr-slide-w);
+  height: var(--kr-slide-h);
   margin: 0;
+  overflow: hidden;
+  transform: scale(var(--kr-deck-scale, 1));
+  transform-origin: top left;
+}
+
+.track {
+  width: max-content;
+  height: var(--kr-slide-h);
   display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  transform: translateX(calc(var(--kr-active-slide, 0) * -1 * var(--kr-slide-w)));
+  transition: transform 280ms ease;
 }
 
 .deck:focus { outline: none; }
@@ -89,8 +103,6 @@ body {
   background: radial-gradient(circle at 88% 12%, rgba(36, 87, 197, 0.10), transparent 28%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .slide.dark {
@@ -244,19 +256,34 @@ body {
 .phase p { font-size: 25px; line-height: 1.48; color: var(--kr-muted); }
 
 @media print {
-  body { background: white; height: auto; overflow: visible; }
+  body {
+    display: block;
+    background: white;
+    height: auto;
+    overflow: visible;
+  }
+  .viewport {
+    width: var(--kr-slide-w);
+    height: auto;
+    overflow: visible;
+  }
   .deck {
+    transform: none;
     display: block;
     width: var(--kr-slide-w);
     height: auto;
     margin: 0;
     overflow: visible;
-    scroll-snap-type: none;
+  }
+  .track {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    transform: none;
   }
   .slide {
     flex: none;
     page-break-after: always;
     break-after: page;
-    scroll-snap-align: none;
   }
 }

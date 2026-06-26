@@ -87,6 +87,11 @@ Avoid:
 ## 5. Layout
 
 Fixed 1920×1080 canvas.  
+For browser preview, this fixed canvas must be wrapped in an autoscaling viewport so
+the complete slide fits the current window. The slide itself stays 1920×1080 for
+export fidelity; only the outer preview layer scales. Do not expose neighboring slides
+in normal preview.
+
 Use consistent margins:
 
 - Outer margin: 84px to 112px
@@ -167,7 +172,9 @@ evidence only where it improves judgment without diluting the master visual lang
 
 Primary target is 1920×1080.  
 Secondary target is PDF/PNG export.  
-Mobile responsiveness is not required.
+Mobile reflow is not required, but browser-window autoscale is required. A local HTML
+deck should show exactly one full 16:9 slide at common window sizes, including 1366×768,
+without horizontal body scroll or partial next-slide exposure.
 
 ## 11. Agent Prompt Guide
 
@@ -181,5 +188,6 @@ When generating a deck:
 5. Keep final copy tight, Korean-native, and report-fragment style.
 6. Validate sentence endings, Korean line breaks, visual density, Refero-master fidelity,
    and slide overflow.
-7. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
+7. Validate browser-window autoscale in addition to export overflow.
+8. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
    requested image URLs/screenshots in a slot that fits the selected visual language.
