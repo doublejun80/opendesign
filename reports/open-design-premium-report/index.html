@@ -65,18 +65,32 @@ body {
   color: var(--kr-ink);
   height: 100vh;
   overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.viewport {
+  width: calc(var(--kr-slide-w) * var(--kr-deck-scale, 1));
+  height: calc(var(--kr-slide-h) * var(--kr-deck-scale, 1));
+  overflow: hidden;
+  position: relative;
 }
 
 .deck {
-  width: 100vw;
-  height: 100vh;
+  width: var(--kr-slide-w);
+  height: var(--kr-slide-h);
   margin: 0;
+  overflow: hidden;
+  transform: scale(var(--kr-deck-scale, 1));
+  transform-origin: top left;
+}
+
+.track {
+  width: max-content;
+  height: var(--kr-slide-h);
   display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  transform: translateX(calc(var(--kr-active-slide, 0) * -1 * var(--kr-slide-w)));
+  transition: transform 280ms ease;
 }
 
 .deck:focus { outline: none; }
@@ -96,8 +110,6 @@ body {
   background: radial-gradient(circle at 88% 12%, rgba(36, 87, 197, 0.10), transparent 28%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .slide.dark {
@@ -207,6 +219,43 @@ body {
   color: rgba(104,112,124,.86);
 }
 
+.sk-brand-footer {
+  position: absolute;
+  right: var(--kr-margin-x);
+  bottom: 28px;
+  width: 82px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.sk-brand-footer img {
+  display: block;
+  max-width: 72px;
+  max-height: 58px;
+  object-fit: contain;
+}
+
+.sk-brand-footer.text {
+  width: auto;
+  height: auto;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--kr-ink);
+}
+
+.dark .sk-brand-footer.text {
+  color: #ffffff;
+}
+
+.footer-note.has-brand {
+  right: calc(var(--kr-margin-x) + 112px);
+}
+
 .matrix {
   display: grid;
   border: 1px solid var(--kr-line);
@@ -251,20 +300,35 @@ body {
 .phase p { font-size: 25px; line-height: 1.48; color: var(--kr-muted); }
 
 @media print {
-  body { background: white; height: auto; overflow: visible; }
+  body {
+    display: block;
+    background: white;
+    height: auto;
+    overflow: visible;
+  }
+  .viewport {
+    width: var(--kr-slide-w);
+    height: auto;
+    overflow: visible;
+  }
   .deck {
+    transform: none;
     display: block;
     width: var(--kr-slide-w);
     height: auto;
     margin: 0;
     overflow: visible;
-    scroll-snap-type: none;
+  }
+  .track {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    transform: none;
   }
   .slide {
     flex: none;
     page-break-after: always;
     break-after: page;
-    scroll-snap-align: none;
   }
 }
 
@@ -273,6 +337,8 @@ body {
   --kr-radius-sm: 12px;
   --kr-radius-md: 18px;
   --kr-radius-lg: 26px;
+  --kr-deck-scale: 1;
+  --kr-active-slide: 0;
 }
 
 body {
@@ -282,40 +348,35 @@ body {
   color: var(--kr-ink);
   height: 100vh;
   overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.viewport {
+  width: calc(var(--kr-slide-w) * var(--kr-deck-scale, 1));
+  height: calc(var(--kr-slide-h) * var(--kr-deck-scale, 1));
+  overflow: hidden;
+  position: relative;
 }
 
 .deck {
-  width: 100vw;
-  height: 100vh;
+  width: var(--kr-slide-w);
+  height: var(--kr-slide-h);
   margin: 0;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  overflow: hidden;
+  transform: scale(var(--kr-deck-scale, 1));
+  transform-origin: top left;
 }
 
 .deck:focus { outline: none; }
 .deck::-webkit-scrollbar { display: none; }
 
-.deck-progress {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 20;
-  width: 100%;
-  height: 3px;
-  background: rgba(17, 24, 39, .12);
-  pointer-events: none;
-}
-
-.progress-bar {
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--kr-blue), #ff7a00);
-  transition: width .24s ease;
+.deck > .track {
+  width: max-content;
+  height: var(--kr-slide-h);
+  display: flex;
+  transform: translateX(calc(var(--kr-active-slide, 0) * -1 * var(--kr-slide-w)));
+  transition: transform 280ms ease;
 }
 
 .slide {
@@ -327,8 +388,6 @@ body {
   background: linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,0) 44%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .slide::after {
@@ -699,27 +758,38 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 
 @media print {
   body { background: white; height: auto; overflow: visible; }
-  .deck-progress { display: none; }
+  .viewport {
+    width: var(--kr-slide-w);
+    height: auto;
+    overflow: visible;
+  }
   .deck {
     display: block;
     width: var(--kr-slide-w);
     height: auto;
     margin: 0;
     overflow: visible;
-    scroll-snap-type: none;
+    transform: none;
+  }
+  .deck > .track {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    transform: none;
+    transition: none;
   }
   .slide {
     flex: none;
     page-break-after: always;
     break-after: page;
-    scroll-snap-align: none;
   }
 }
 </style>
 </head>
 <body>
-<div class="deck-progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
-<main class="deck" id="deck" tabindex="0" aria-label="Korean executive report deck">
+<div class="viewport">
+  <main class="deck" tabindex="0" aria-label="Korean executive report deck">
+    <div class="track">
 
 <section class="slide visual dark" data-slide="0">
 
@@ -936,20 +1006,22 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
     <span class="source-label source-mobbin">mobbin · Mobbin MCP shipped screens</span></div>
   <div class="footer-note"><span>Open Design 기반 임원보고 덱 고도화</span><span>7/7</span></div>
 </section>
-</main>
+    </div>
+  </main>
+</div>
 <script>
-const deck = document.getElementById('deck');
+const root = document.documentElement;
+const deck = document.querySelector('.deck');
 const slides = [...document.querySelectorAll('.slide')];
-const progressBar = document.getElementById('progressBar');
 let current = 0;
 
 function clampSlide(n) {
   return Math.max(0, Math.min(slides.length - 1, n));
 }
 
-function updateProgress() {
-  if (!progressBar || slides.length === 0) return;
-  progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+function setScale() {
+  const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  root.style.setProperty('--kr-deck-scale', String(Math.max(0.1, scale)));
 }
 
 function replaceHash() {
@@ -968,27 +1040,14 @@ function indexFromHash() {
 
 function show(n, options = {}) {
   const { updateHash = true } = options;
-  current = Math.max(0, Math.min(slides.length - 1, n));
-  slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-  updateProgress();
+  const parsed = Number.isFinite(Number(n)) ? Number(n) : 0;
+  current = clampSlide(parsed);
+  root.style.setProperty('--kr-active-slide', String(current));
+  slides.forEach((slide, index) => {
+    slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+  });
   if (updateHash) replaceHash();
 }
-
-function syncFromScroll() {
-  if (!deck || slides.length === 0) return;
-  const slideWidth = slides[0].getBoundingClientRect().width || deck.clientWidth || 1;
-  current = clampSlide(Math.round(deck.scrollLeft / slideWidth));
-  updateProgress();
-}
-
-let scrollFrame = 0;
-deck?.addEventListener('scroll', () => {
-  if (scrollFrame) return;
-  scrollFrame = requestAnimationFrame(() => {
-    scrollFrame = 0;
-    syncFromScroll();
-  });
-});
 
 window.addEventListener('keydown', event => {
   if (event.target?.closest?.('input, textarea, select, [contenteditable="true"]')) return;
@@ -1015,11 +1074,16 @@ window.addEventListener('hashchange', () => {
   if (hashed !== null) show(hashed, { updateHash: false });
 });
 
+window.addEventListener('resize', setScale);
+document.fonts?.ready?.then(setScale).catch(() => {});
+window.__openDesignDeck = { go: show, count: slides.length, get current() { return current; } };
+
+setScale();
 const hashed = indexFromHash();
 if (hashed !== null) {
   show(hashed, { updateHash: false });
 } else {
-  updateProgress();
+  show(0, { updateHash: false });
 }
 deck?.focus({ preventScroll: true });
 </script>

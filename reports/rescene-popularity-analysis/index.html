@@ -8,8 +8,8 @@
 :root {
   --slide-w: 1920px;
   --slide-h: 1080px;
-  --deck-scale: 1;
-  --active-slide: 0;
+  --kr-deck-scale: 1;
+  --kr-active-slide: 0;
   --font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --bg: #f7f6f2;
   --paper: #ffffff;
@@ -63,8 +63,8 @@ body {
 }
 
 .viewport {
-  width: calc(var(--slide-w) * var(--deck-scale));
-  height: calc(var(--slide-h) * var(--deck-scale));
+  width: calc(var(--slide-w) * var(--kr-deck-scale));
+  height: calc(var(--slide-h) * var(--kr-deck-scale));
   overflow: hidden;
   position: relative;
 }
@@ -77,7 +77,7 @@ body {
 .deck {
   width: var(--slide-w);
   height: var(--slide-h);
-  transform: scale(var(--deck-scale));
+  transform: scale(var(--kr-deck-scale));
   transform-origin: top left;
   overflow: hidden;
 }
@@ -86,7 +86,7 @@ body {
   width: max-content;
   height: var(--slide-h);
   display: flex;
-  transform: translateX(calc(var(--active-slide) * -1 * var(--slide-w)));
+  transform: translateX(calc(var(--kr-active-slide) * -1 * var(--slide-w)));
   transition: transform 260ms ease;
 }
 
@@ -1384,20 +1384,35 @@ h1 {
 
   function setScale() {
     const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    root.style.setProperty("--deck-scale", String(scale));
+    root.style.setProperty("--kr-deck-scale", String(scale));
   }
 
   function go(next) {
     index = Math.max(0, Math.min(slides.length - 1, next));
-    root.style.setProperty("--active-slide", String(index));
+    root.style.setProperty("--kr-active-slide", String(index));
+    try {
+      history.replaceState(null, "", `#/${index + 1}`);
+    } catch {
+      // Ignore file-history restrictions.
+    }
+  }
+
+  function indexFromHash() {
+    const match = location.hash.match(/^#\/?(\d+)$/);
+    if (!match) return null;
+    return Math.max(0, Math.min(slides.length - 1, Number(match[1]) - 1));
   }
 
   window.__openDesignDeck = { go, count: slides.length };
   setScale();
-  go(0);
+  go(indexFromHash() ?? 0);
   deck.focus({ preventScroll: true });
 
   window.addEventListener("resize", setScale);
+  window.addEventListener("hashchange", () => {
+    const hashed = indexFromHash();
+    if (hashed !== null) go(hashed);
+  });
   document.querySelector("[data-prev]").addEventListener("click", () => go(index - 1));
   document.querySelector("[data-next]").addEventListener("click", () => go(index + 1));
   window.addEventListener("keydown", (event) => {

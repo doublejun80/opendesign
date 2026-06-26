@@ -1,0 +1,84 @@
+{
+  "title": "Open Design GitHub 감리 하네스 예시",
+  "audience": "저장소 운영자, 보고서 생성 담당자, 코드 리뷰어",
+  "decisionAsk": "GitHub 추적 보고서 런타임 통일과 보고서 유형 분리 승인",
+  "tone": "한국어 임원보고형 코드 감리",
+  "facts": [
+    "조치 전 origin/main 기준 추적 파일 129개",
+    "GitHub 추적 보고서 5개",
+    "조치 전 npm run validate 통과",
+    "조치 전 npm test는 rescene 런타임 계약 충돌로 실패",
+    "수정 후 npm test, validate, overflow QA 통과"
+  ],
+  "references": [
+    {
+      "source": "manual",
+      "title": "2026-06-27 origin/main GitHub 감리 결과",
+      "takeaways": [
+        "GitHub 스냅샷은 필수 파일 구조는 양호",
+        "테스트 기준과 최신 보고서 런타임이 충돌",
+        "보고서 유형과 제작 메타 정리 필요"
+      ]
+    },
+    {
+      "source": "open-design",
+      "title": "Korean executive HTML report workspace",
+      "takeaways": [
+        "1920x1080 고정 캔버스",
+        "viewport, deck, track 기반 autoscale 구조",
+        "slides.json, content.json, README.md 동시 보존"
+      ]
+    }
+  ],
+  "slides": [
+    {
+      "kicker": "FOLDER AUDIT",
+      "title": "GitHub 감리 결과: 구조는 양호했고 실패 원인은 런타임 계약 충돌",
+      "pattern": "cards",
+      "cards": [
+        {
+          "metric": "129",
+          "title": "추적 파일 구조 양호",
+          "body": "스킬, 디자인 시스템, 생성기, 검증기, 카탈로그가 GitHub 기준으로 연결된 상태"
+        },
+        {
+          "metric": "5",
+          "title": "추적 보고서 모두 완비",
+          "body": "5개 보고서가 index, slides, content, README 구조를 유지하나 유형 분류는 부족"
+        },
+        {
+          "metric": "1건",
+          "title": "조치 전 테스트 실패",
+          "body": "테스트는 구형 id deck 기준, rescene은 신형 autoscale 기준이라 계약 충돌 발생"
+        }
+      ]
+    },
+    {
+      "kicker": "정리 승인안",
+      "title": "승인 요청: 런타임 통일 반영, 교육자료 분리 후속 정리",
+      "pattern": "risk-control",
+      "risks": [
+        {
+          "risk": "구조 감리: 샘플·실제 분석·교육자료 혼재",
+          "control": "reports 안에서 정식 보고서, 샘플, 교육 덱을 명확히 분리",
+          "owner": "Repo"
+        },
+        {
+          "risk": "런타임 감리: 구형 가로 스크롤과 신형 화면 맞춤 혼재",
+          "control": "생성기, 테스트, 추적 보고서를 공통 화면 맞춤 기준으로 통일 반영",
+          "owner": "Runtime"
+        },
+        {
+          "risk": "콘텐츠 감리: 개인 로컬 경로와 제작 메타 노출",
+          "control": "교육자료 content와 화면 문구에서 개인 경로, MCP 상태 설명 제거",
+          "owner": "Content"
+        },
+        {
+          "risk": "검증 감리: export 성공을 런타임 통일 증거로 오판",
+          "control": "런타임 계약은 npm test, 화면 잘림은 overflow export로 분리 검증",
+          "owner": "QA"
+        }
+      ]
+    }
+  ]
+}

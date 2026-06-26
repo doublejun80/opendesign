@@ -25,13 +25,17 @@ function assertIncludes(haystack, needle, message) {
   assert.ok(haystack.includes(needle), `${message}\nExpected to include: ${needle}`);
 }
 
-function assertHorizontalDeckRuntime(html, label) {
-  assertIncludes(html, 'id="deck"', `${label} should expose a deck runtime root`);
-  assertIncludes(html, 'scroll-snap-type: x mandatory;', `${label} should use horizontal scroll snapping`);
-  assertIncludes(html, 'overflow-y: hidden;', `${label} should prevent vertical document-style scrolling`);
-  assertIncludes(html, 'scroll-snap-align: start;', `${label} should snap each slide as one screen`);
-  assertIncludes(html, "inline: 'start'", `${label} should move keyboard navigation horizontally`);
+function assertAutoscaleDeckRuntime(html, label, options = {}) {
+  assertIncludes(html, 'class="viewport"', `${label} should expose the autoscale viewport`);
+  assertIncludes(html, '--kr-deck-scale', `${label} should define the shared deck scale variable`);
+  assertIncludes(html, '--kr-active-slide', `${label} should define the shared active slide variable`);
+  assertIncludes(html, 'transform: scale(var(--kr-deck-scale', `${label} should scale the fixed 1920x1080 deck`);
+  assertIncludes(html, 'translateX(calc(var(--kr-active-slide', `${label} should navigate slides by transform`);
+  assertIncludes(html, 'window.__openDesignDeck', `${label} should expose deck navigation for QA/export`);
   assertIncludes(html, "location.hash", `${label} should support hash deep links`);
+  if (options.requireTrack !== false) {
+    assertIncludes(html, 'class="track"', `${label} should wrap slides in a track`);
+  }
 }
 
 const richBrief = {
@@ -128,7 +132,7 @@ const createResult = run(['scripts/create-report.mjs', richBriefPath, richOutDir
 assert.equal(createResult.status, 0, createResult.stderr || createResult.stdout);
 
 const generatedHtml = fs.readFileSync(path.join(richOutDir, 'index.html'), 'utf-8');
-assertHorizontalDeckRuntime(generatedHtml, 'generated report');
+assertAutoscaleDeckRuntime(generatedHtml, 'generated report');
 assertIncludes(generatedHtml, 'class="issue-tree', 'issue-tree pattern should render a dedicated issue tree layout');
 assertIncludes(generatedHtml, 'class="visual-hero', 'visual-hero pattern should render a high-impact visual layout');
 assertIncludes(generatedHtml, '<img src="https://framerusercontent.com/images/JVUac5pbNNM6iJYJShMDHhTUPUc.png', 'visual layouts should render reference images');
@@ -265,10 +269,21 @@ assert.equal(
   'sample deck should live under reports/sample-executive-report'
 );
 
-for (const reportName of fs.readdirSync(path.join(root, 'reports'))) {
+const trackedReportHtml = spawnSync('git', ['ls-files', 'reports/*/index.html'], {
+  cwd: root,
+  encoding: 'utf-8'
+});
+const reportHtmlFiles = trackedReportHtml.status === 0 && trackedReportHtml.stdout.trim()
+  ? trackedReportHtml.stdout.trim().split('\n')
+  : fs.readdirSync(path.join(root, 'reports'))
+    .map(reportName => path.join('reports', reportName, 'index.html'))
+    .filter(reportHtmlPath => fs.existsSync(path.join(root, reportHtmlPath)));
+
+for (const reportHtmlFile of reportHtmlFiles) {
+  const reportName = path.dirname(reportHtmlFile).replace(/^reports\//, '');
   const reportHtmlPath = path.join(root, 'reports', reportName, 'index.html');
   if (!fs.existsSync(reportHtmlPath)) continue;
-  assertHorizontalDeckRuntime(
+  assertAutoscaleDeckRuntime(
     fs.readFileSync(reportHtmlPath, 'utf-8'),
     `reports/${reportName}/index.html`
   );

@@ -27,6 +27,8 @@
       --lime: #e4f222;
       --font: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Inter, system-ui, sans-serif;
       --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --kr-deck-scale: 1;
+      --kr-active-slide: 0;
     }
 
     * { box-sizing: border-box; }
@@ -44,39 +46,38 @@
       overflow: hidden;
     }
 
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    .viewport {
+      width: calc(var(--w) * var(--kr-deck-scale, 1));
+      height: calc(var(--h) * var(--kr-deck-scale, 1));
+      overflow: hidden;
+      position: relative;
+    }
+
     .deck {
-      width: 100vw;
-      height: 100vh;
+      width: var(--w);
+      height: var(--h);
       margin: 0;
-      display: flex;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
+      transform: scale(var(--kr-deck-scale, 1));
+      transform-origin: top left;
       scrollbar-width: none;
+    }
+
+    .deck > .track {
+      width: max-content;
+      height: var(--h);
+      display: flex;
+      transform: translateX(calc(var(--kr-active-slide, 0) * -1 * var(--w)));
+      transition: transform 280ms ease;
     }
 
     .deck:focus { outline: none; }
     .deck::-webkit-scrollbar { display: none; }
-
-    .deck-progress {
-      position: fixed;
-      left: 0;
-      top: 0;
-      z-index: 20;
-      width: 100%;
-      height: 3px;
-      background: rgba(23, 25, 28, 0.14);
-      pointer-events: none;
-    }
-
-    .progress-bar {
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, var(--blue), var(--red));
-      transition: width .24s ease;
-    }
 
     .slide {
       position: relative;
@@ -91,8 +92,6 @@
         var(--paper);
       background-size: 48px 48px;
       page-break-after: always;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
     }
 
     .slide.dark {
@@ -899,27 +898,38 @@
 
     @media print {
       body { background: white; height: auto; overflow: visible; }
-      .deck-progress { display: none; }
+      .viewport {
+        width: var(--w);
+        height: auto;
+        overflow: visible;
+      }
       .deck {
         display: block;
         width: var(--w);
         height: auto;
         margin: 0;
         overflow: visible;
-        scroll-snap-type: none;
+        transform: none;
+      }
+      .deck > .track {
+        display: block;
+        width: var(--w);
+        height: auto;
+        transform: none;
+        transition: none;
       }
       .slide {
         flex: none;
         page-break-after: always;
         break-after: page;
-        scroll-snap-align: none;
       }
     }
   </style>
 </head>
 <body>
-<div class="deck-progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
-<main class="deck ko-sentence-ok" id="deck" tabindex="0" aria-label="Korean executive report deck">
+<div class="viewport">
+<main class="deck ko-sentence-ok" tabindex="0" aria-label="Korean executive report deck">
+<div class="track">
 
   <section class="slide cover" data-slide="1">
     <div class="top"><div class="track"><span class="dot"></span>AI Agent Quality Training</div><div>01 / 16</div></div>
@@ -1274,20 +1284,22 @@ metric: {RaiT 지표}
     <div class="footer"><span>다음 행동: 팀별 1개 업무를 골라 테스트 플랜과 Judge Prompt 작성</span><span>16</span></div>
   </section>
 
+</div>
 </main>
+</div>
 <script>
-  const deck = document.getElementById("deck");
+  const root = document.documentElement;
+  const deck = document.querySelector(".deck");
   const slides = [...document.querySelectorAll(".slide")];
-  const progressBar = document.getElementById("progressBar");
   let current = 0;
 
   function clampSlide(next) {
     return Math.max(0, Math.min(slides.length - 1, next));
   }
 
-  function updateProgress() {
-    if (!progressBar || slides.length === 0) return;
-    progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+  function setScale() {
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    root.style.setProperty("--kr-deck-scale", String(Math.max(0.1, scale)));
   }
 
   function replaceHash() {
@@ -1304,28 +1316,15 @@ metric: {RaiT 지표}
     return clampSlide(Number(match[1]) - 1);
   }
 
-  function go(next) {
-    current = clampSlide(next);
-    slides[current].scrollIntoView({ behavior: "smooth", inline: 'start', block: "nearest" });
-    updateProgress();
-    replaceHash();
-  }
-
-  function syncFromScroll() {
-    if (!deck || slides.length === 0) return;
-    const slideWidth = slides[0].getBoundingClientRect().width || deck.clientWidth || 1;
-    current = clampSlide(Math.round(deck.scrollLeft / slideWidth));
-    updateProgress();
-  }
-
-  let scrollFrame = 0;
-  deck?.addEventListener("scroll", () => {
-    if (scrollFrame) return;
-    scrollFrame = requestAnimationFrame(() => {
-      scrollFrame = 0;
-      syncFromScroll();
+  function go(next, options = {}) {
+    const { updateHash = true } = options;
+    current = clampSlide(Number.isFinite(Number(next)) ? Number(next) : 0);
+    root.style.setProperty("--kr-active-slide", String(current));
+    slides.forEach((slide, index) => {
+      slide.setAttribute("aria-hidden", index === current ? "false" : "true");
     });
-  });
+    if (updateHash) replaceHash();
+  }
 
   window.addEventListener("keydown", (event) => {
     if (event.target?.closest?.("input, textarea, select, [contenteditable='true']")) return;
@@ -1349,19 +1348,20 @@ metric: {RaiT 지표}
 
   window.addEventListener("hashchange", () => {
     const hashed = indexFromHash();
-    if (hashed !== null) {
-      current = hashed;
-      slides[current].scrollIntoView({ behavior: "smooth", inline: 'start', block: "nearest" });
-      updateProgress();
-    }
+    if (hashed !== null) go(hashed, { updateHash: false });
   });
 
+  window.addEventListener("resize", setScale);
+  document.fonts?.ready?.then(setScale).catch(() => {});
+  window.__openDesignDeck = { go, count: slides.length, get current() { return current; } };
+
+  setScale();
   const hashed = indexFromHash();
   if (hashed !== null) {
-    current = hashed;
-    slides[current].scrollIntoView({ behavior: "auto", inline: 'start', block: "nearest" });
+    go(hashed, { updateHash: false });
+  } else {
+    go(0, { updateHash: false });
   }
-  updateProgress();
   deck?.focus({ preventScroll: true });
 </script>
 </body>

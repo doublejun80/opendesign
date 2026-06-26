@@ -123,6 +123,12 @@ if (!skipPng) {
   for (let i = 0; i < slides.length; i += 1) {
     const fileName = `slide-${String(i + 1).padStart(2, '0')}.png`;
     const filePath = path.join(outDir, fileName);
+    await page.evaluate(index => {
+      window.__openDesignDeck?.go?.(index, { updateHash: false });
+      document.documentElement.style.setProperty('--kr-active-slide', String(index));
+      document.documentElement.style.setProperty('--active-slide', String(index));
+    }, i);
+    await page.waitForTimeout(80);
     await slides[i].screenshot({ path: filePath });
     exported.push(fileName);
   }

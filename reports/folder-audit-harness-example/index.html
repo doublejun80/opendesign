@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>레퍼런스 기반 보고 덱 검토</title>
+<title>Open Design GitHub 감리 하네스 예시</title>
 <style>
 :root {
   /*
@@ -791,118 +791,89 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
   <main class="deck" tabindex="0" aria-label="Korean executive report deck">
     <div class="track">
 
-<section class="slide dark" data-slide="0">
+<section class="slide" data-slide="0">
 
-  <div class="kicker">EXECUTIVE ASK</div>
-  <h1 class="title">레퍼런스는 화면 복제보다 판단 구조 보강 재료</h1>
-  <p class="subtitle">Lazyweb 맥락·근거, Mobbin 도형·레이아웃 구조 참고 / 최종 장표는 한국어 임원보고 문법</p>
-  <div class="title-meta">
-    <span>전략 담당 임원</span>
-    <span>2026-06-26</span>
-  </div>
+  <div class="kicker">FOLDER AUDIT</div>
+  <h1 class="title">GitHub 감리 결과: 구조는 양호했고 실패 원인은 런타임 계약 충돌</h1>
+  <div class="grid-3 body-area">
+    <article class="card solid">
+      <div class="metric">129</div>
+      <h3>추적 파일 구조 양호</h3>
+      <p>스킬, 디자인 시스템, 생성기, 검증기, 카탈로그가 GitHub 기준으로 연결된 상태</p>
+    </article>
+    <article class="card solid">
+      <div class="metric">5</div>
+      <h3>추적 보고서 모두 완비</h3>
+      <p>5개 보고서가 index, slides, content, README 구조를 유지하나 유형 분류는 부족</p>
+    </article>
+    <article class="card solid">
+      <div class="metric">1건</div>
+      <h3>조치 전 테스트 실패</h3>
+      <p>테스트는 구형 id deck 기준, rescene은 신형 autoscale 기준이라 계약 충돌 발생</p>
+    </article></div>
   <div class="source-strip" aria-label="reference sources">
-    <span class="source-label source-lazyweb">lazyweb · B2B approval workflow examples</span>
-    <span class="source-label source-mobbin">mobbin · Decision matrix and status pattern</span></div>
-  <div class="footer-note"><span>레퍼런스 기반 보고 덱 검토</span><span>1/4</span></div>
+    <span class="source-label source-manual">manual · 2026-06-27 origin/main GitHub 감리 결과</span>
+    <span class="source-label source-open-design">open-design · Korean executive HTML report workspace</span></div>
+  <div class="footer-note"><span>Open Design GitHub 감리 하네스 예시</span><span>1/2</span></div>
 </section>
 
 <section class="slide" data-slide="1">
 
-  <div class="kicker">ISSUE TREE</div>
-  <h1 class="title">자료 부족보다 판단 기준 분산</h1>
-  <div class="issue-tree body-area">
-    <div class="issue-root">
-      <span class="small-label">핵심 쟁점</span>
-      <strong>판단 지연</strong>
-    </div>
-    <div class="issue-branches">
-    <article class="issue-branch">
-      <h3>자료 수집</h3>
-      <ul><li>출처 분산</li><li>최신성 확인 지연</li></ul>
-    </article>
-    <article class="issue-branch">
-      <h3>비교 기준</h3>
-      <ul><li>항목 불일치</li><li>가중치 미정</li></ul>
-    </article>
-    <article class="issue-branch">
-      <h3>승인 흐름</h3>
-      <ul><li>책임자 확인 지연</li><li>근거 누락</li></ul>
-    </article></div>
-  </div>
-  <div class="source-strip" aria-label="reference sources">
-    <span class="source-label source-lazyweb">lazyweb · B2B approval workflow examples</span>
-    <span class="source-label source-mobbin">mobbin · Decision matrix and status pattern</span></div>
-  <div class="footer-note"><span>레퍼런스 기반 보고 덱 검토</span><span>2/4</span></div>
-</section>
-
-<section class="slide" data-slide="2">
-
-  <div class="kicker">RISK &amp; CONTROL</div>
-  <h1 class="title">PoC 범위 축소와 통제 기준 선고정</h1>
+  <div class="kicker">정리 승인안</div>
+  <h1 class="title">승인 요청: 런타임 통일 반영, 교육자료 분리 후속 정리</h1>
   <div class="risk-grid body-area">
     <article class="risk-row">
       <div class="risk-index">01</div>
       <div>
         <span class="small-label">Risk</span>
-        <strong>레퍼런스 오해석</strong>
+        <strong>구조 감리: 샘플·실제 분석·교육자료 혼재</strong>
       </div>
       <div>
         <span class="small-label">Control</span>
-        <p>출처와 적용 원칙 분리 기록</p>
+        <p>reports 안에서 정식 보고서, 샘플, 교육 덱을 명확히 분리</p>
       </div>
-      <div class="owner">전략팀</div>
+      <div class="owner">Repo</div>
     </article>
     <article class="risk-row">
       <div class="risk-index">02</div>
       <div>
         <span class="small-label">Risk</span>
-        <strong>장표 과밀</strong>
+        <strong>런타임 감리: 구형 가로 스크롤과 신형 화면 맞춤 혼재</strong>
       </div>
       <div>
         <span class="small-label">Control</span>
-        <p>슬라이드당 메시지 3개 이하 유지</p>
+        <p>생성기, 테스트, 추적 보고서를 공통 화면 맞춤 기준으로 통일 반영</p>
       </div>
-      <div class="owner">작성자</div>
+      <div class="owner">Runtime</div>
     </article>
     <article class="risk-row">
       <div class="risk-index">03</div>
       <div>
         <span class="small-label">Risk</span>
-        <strong>이미지 장식화</strong>
+        <strong>콘텐츠 감리: 개인 로컬 경로와 제작 메타 노출</strong>
       </div>
       <div>
         <span class="small-label">Control</span>
-        <p>의사결정 흐름 설명 시에만 사용</p>
+        <p>교육자료 content와 화면 문구에서 개인 경로, MCP 상태 설명 제거</p>
       </div>
-      <div class="owner">디자인 검토</div>
+      <div class="owner">Content</div>
+    </article>
+    <article class="risk-row">
+      <div class="risk-index">04</div>
+      <div>
+        <span class="small-label">Risk</span>
+        <strong>검증 감리: export 성공을 런타임 통일 증거로 오판</strong>
+      </div>
+      <div>
+        <span class="small-label">Control</span>
+        <p>런타임 계약은 npm test, 화면 잘림은 overflow export로 분리 검증</p>
+      </div>
+      <div class="owner">QA</div>
     </article></div>
   <div class="source-strip" aria-label="reference sources">
-    <span class="source-label source-lazyweb">lazyweb · B2B approval workflow examples</span>
-    <span class="source-label source-mobbin">mobbin · Decision matrix and status pattern</span></div>
-  <div class="footer-note"><span>레퍼런스 기반 보고 덱 검토</span><span>3/4</span></div>
-</section>
-
-<section class="slide" data-slide="3">
-
-  <div class="kicker">APPENDIX</div>
-  <h1 class="title">레퍼런스는 구조 추출 근거로만 관리</h1>
-  <div class="appendix-grid body-area">
-    <article class="appendix-item">
-      <span>Lazyweb</span>
-      <strong>맥락, 용어, 사례, 근거 후보</strong>
-    </article>
-    <article class="appendix-item">
-      <span>Mobbin</span>
-      <strong>카드 밀도, 도형 연결, 상태 라벨, 이미지 배치</strong>
-    </article>
-    <article class="appendix-item">
-      <span>적용 원칙</span>
-      <strong>결론 먼저, 근거 분리, 요청 명확화</strong>
-    </article></div>
-  <div class="source-strip" aria-label="reference sources">
-    <span class="source-label source-lazyweb">lazyweb · B2B approval workflow examples</span>
-    <span class="source-label source-mobbin">mobbin · Decision matrix and status pattern</span></div>
-  <div class="footer-note"><span>레퍼런스 기반 보고 덱 검토</span><span>4/4</span></div>
+    <span class="source-label source-manual">manual · 2026-06-27 origin/main GitHub 감리 결과</span>
+    <span class="source-label source-open-design">open-design · Korean executive HTML report workspace</span></div>
+  <div class="footer-note"><span>Open Design GitHub 감리 하네스 예시</span><span>2/2</span></div>
 </section>
     </div>
   </main>

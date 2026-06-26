@@ -17,6 +17,7 @@ try {
 
 fs.mkdirSync(outDir, { recursive: true });
 fs.mkdirSync(path.join(outDir, 'assets'), { recursive: true });
+fs.writeFileSync(path.join(outDir, 'assets', '.gitkeep'), '', { flag: 'a' });
 
 const escapeHtml = (value = '') => String(value)
   .replaceAll('&', '&amp;')
@@ -239,6 +240,8 @@ ${tokenCss}
   --kr-radius-sm: 12px;
   --kr-radius-md: 18px;
   --kr-radius-lg: 26px;
+  --kr-deck-scale: 1;
+  --kr-active-slide: 0;
 }
 
 body {
@@ -248,40 +251,35 @@ body {
   color: var(--kr-ink);
   height: 100vh;
   overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.viewport {
+  width: calc(var(--kr-slide-w) * var(--kr-deck-scale, 1));
+  height: calc(var(--kr-slide-h) * var(--kr-deck-scale, 1));
+  overflow: hidden;
+  position: relative;
 }
 
 .deck {
-  width: 100vw;
-  height: 100vh;
+  width: var(--kr-slide-w);
+  height: var(--kr-slide-h);
   margin: 0;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  overflow: hidden;
+  transform: scale(var(--kr-deck-scale, 1));
+  transform-origin: top left;
 }
 
 .deck:focus { outline: none; }
 .deck::-webkit-scrollbar { display: none; }
 
-.deck-progress {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 20;
-  width: 100%;
-  height: 3px;
-  background: rgba(17, 24, 39, .12);
-  pointer-events: none;
-}
-
-.progress-bar {
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--kr-blue), #ff7a00);
-  transition: width .24s ease;
+.deck > .track {
+  width: max-content;
+  height: var(--kr-slide-h);
+  display: flex;
+  transform: translateX(calc(var(--kr-active-slide, 0) * -1 * var(--kr-slide-w)));
+  transition: transform 280ms ease;
 }
 
 .slide {
@@ -293,8 +291,6 @@ body {
   background: linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,0) 44%), var(--kr-bg);
   overflow: hidden;
   page-break-after: always;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .slide::after {
@@ -665,37 +661,47 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 
 @media print {
   body { background: white; height: auto; overflow: visible; }
-  .deck-progress { display: none; }
+  .viewport {
+    width: var(--kr-slide-w);
+    height: auto;
+    overflow: visible;
+  }
   .deck {
     display: block;
     width: var(--kr-slide-w);
     height: auto;
     margin: 0;
     overflow: visible;
-    scroll-snap-type: none;
+    transform: none;
+  }
+  .deck > .track {
+    display: block;
+    width: var(--kr-slide-w);
+    height: auto;
+    transform: none;
+    transition: none;
   }
   .slide {
     flex: none;
     page-break-after: always;
     break-after: page;
-    scroll-snap-align: none;
   }
 }
 `;
 
 const js = `
-const deck = document.getElementById('deck');
+const root = document.documentElement;
+const deck = document.querySelector('.deck');
 const slides = [...document.querySelectorAll('.slide')];
-const progressBar = document.getElementById('progressBar');
 let current = 0;
 
 function clampSlide(n) {
   return Math.max(0, Math.min(slides.length - 1, n));
 }
 
-function updateProgress() {
-  if (!progressBar || slides.length === 0) return;
-  progressBar.style.width = \`\${((current + 1) / slides.length) * 100}%\`;
+function setScale() {
+  const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  root.style.setProperty('--kr-deck-scale', String(Math.max(0.1, scale)));
 }
 
 function replaceHash() {
@@ -714,27 +720,14 @@ function indexFromHash() {
 
 function show(n, options = {}) {
   const { updateHash = true } = options;
-  current = Math.max(0, Math.min(slides.length - 1, n));
-  slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-  updateProgress();
+  const parsed = Number.isFinite(Number(n)) ? Number(n) : 0;
+  current = clampSlide(parsed);
+  root.style.setProperty('--kr-active-slide', String(current));
+  slides.forEach((slide, index) => {
+    slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+  });
   if (updateHash) replaceHash();
 }
-
-function syncFromScroll() {
-  if (!deck || slides.length === 0) return;
-  const slideWidth = slides[0].getBoundingClientRect().width || deck.clientWidth || 1;
-  current = clampSlide(Math.round(deck.scrollLeft / slideWidth));
-  updateProgress();
-}
-
-let scrollFrame = 0;
-deck?.addEventListener('scroll', () => {
-  if (scrollFrame) return;
-  scrollFrame = requestAnimationFrame(() => {
-    scrollFrame = 0;
-    syncFromScroll();
-  });
-});
 
 window.addEventListener('keydown', event => {
   if (event.target?.closest?.('input, textarea, select, [contenteditable="true"]')) return;
@@ -761,11 +754,16 @@ window.addEventListener('hashchange', () => {
   if (hashed !== null) show(hashed, { updateHash: false });
 });
 
+window.addEventListener('resize', setScale);
+document.fonts?.ready?.then(setScale).catch(() => {});
+window.__openDesignDeck = { go: show, count: slides.length, get current() { return current; } };
+
+setScale();
 const hashed = indexFromHash();
 if (hashed !== null) {
   show(hashed, { updateHash: false });
 } else {
-  updateProgress();
+  show(0, { updateHash: false });
 }
 deck?.focus({ preventScroll: true });
 `;
@@ -779,10 +777,13 @@ const html = `<!doctype html>
 <style>${css}</style>
 </head>
 <body>
-<div class="deck-progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
-<main class="deck" id="deck" tabindex="0" aria-label="Korean executive report deck">
+<div class="viewport">
+  <main class="deck" tabindex="0" aria-label="Korean executive report deck">
+    <div class="track">
 ${brief.slides.map(renderSlide).join('\n')}
-</main>
+    </div>
+  </main>
+</div>
 <script>${js}</script>
 </body>
 </html>`;
@@ -790,5 +791,21 @@ ${brief.slides.map(renderSlide).join('\n')}
 fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf-8');
 fs.writeFileSync(path.join(outDir, 'slides.json'), JSON.stringify(brief.slides, null, 2), 'utf-8');
 fs.writeFileSync(path.join(outDir, 'content.json'), JSON.stringify(brief, null, 2), 'utf-8');
-fs.writeFileSync(path.join(outDir, 'README.md'), `# ${brief.title}\n\nGenerated Korean executive HTML report deck.\n\nOpen \`index.html\` in a browser.\n`, 'utf-8');
+fs.writeFileSync(path.join(outDir, 'README.md'), `# ${brief.title}
+
+Korean executive HTML report deck generated from a structured brief.
+
+## Files
+
+- \`index.html\`: browser-ready 1920x1080 autoscale deck
+- \`slides.json\`: rendered slide data
+- \`content.json\`: source brief and references
+- \`assets/\`: local report assets
+
+## QA
+
+\`\`\`bash
+node scripts/export-deck.mjs ${path.join(outDir, 'index.html')} exports/${path.basename(outDir)} --check-overflow --no-pdf
+\`\`\`
+`, 'utf-8');
 console.log(`Generated ${path.join(outDir, 'index.html')}`);

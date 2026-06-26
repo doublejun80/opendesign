@@ -1,4 +1,4 @@
-# AI 기반 IT 구매 자동화 PoC 검토
+# Open Design GitHub 감리 하네스 예시
 
 Korean executive HTML report deck generated from a structured brief.
 
@@ -12,5 +12,5 @@ Korean executive HTML report deck generated from a structured brief.
 ## QA
 
 ```bash
-node scripts/export-deck.mjs reports/sample-executive-report/index.html exports/sample-executive-report --check-overflow --no-pdf
+node scripts/export-deck.mjs reports/folder-audit-harness-example/index.html exports/folder-audit-harness-example --check-overflow --no-pdf
 ```
