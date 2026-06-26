@@ -27,7 +27,9 @@ the strongest one. Do not ask the user to pick visual options by default.
 
 Warm off-white, grid texture, dark canvas, and tinted backgrounds are opt-in styles.
 Use them only when the user requests that tone or a selected master reference requires
-it. The local browser preview background must not accidentally appear gray or dim.
+it. Do not make one slide dark or tinted while the rest of the deck is white unless the
+user explicitly asked for a separate cover treatment. The local browser preview
+background must not accidentally appear gray or dim.
 Use no more than two accents per slide.
 If company colors are provided, use them first. If not, choose colors from the selected
 reference direction and preserve their roles: CTA-only colors stay CTA/status-only, risk
@@ -67,6 +69,10 @@ titles. Keep phrases such as `작성 누락 방지`, `구매 검토 근거 확�
 `업무 콘솔 설계` together with `.ko-keep` or equivalent markup when a break
 would feel unnatural. Short final-line tails such as `설계한다.` or `필요하다.`
 are typography failures.
+For dense Korean subtitles, break the rhythm with comma, middle dot, slash, or arrow
+separators when three or more meaning chunks appear. Avoid long run-on subtitles with
+no breathing points. Reject awkward noun compounds such as `전망 판단`; prefer
+`후속 운영 기준`, `지속 조건`, `전환 기준`, or `관리 포인트` depending on the slide role.
 
 ## 4. Component Styling
 
@@ -97,6 +103,10 @@ Avoid:
 - childish gradients
 - repeated flat card grids on every slide
 - arbitrary table alignment
+- low-contrast pale text on gray or translucent panels
+- vertical spreading of Korean body text with `space-between`, `1fr`, or large gaps
+- stacked number labels where the number and Korean label are separated by excessive
+  vertical distance
 
 ## 5. Layout
 
@@ -112,6 +122,19 @@ Use consistent margins:
 - Header zone: 120px to 180px
 - Body grid: 2–4 columns depending on message
 - Footer/source zone: 36px to 60px
+
+### Korean Dense Layout Guardrails
+
+- Related Korean text must stay visually grouped. Do not stretch three short lines from
+  top to bottom just to fill a card.
+- If a card has spare vertical space, leave it blank or use a number, chart, divider, or
+  source label. Do not distribute body copy evenly across the height.
+- Step labels should read as one unit, such as `1 개인 채널`; avoid placing the number
+  high and the label far below.
+- In KPI strips, use a white or very light cell background with dark text. Avoid white
+  text on gray, translucent, or low-contrast backgrounds.
+- If any browser comment or screenshot points to clipping, the deck is not complete
+  even when automated overflow passes. Inspect the affected slide at the same viewport.
 
 ### Brand Footer
 

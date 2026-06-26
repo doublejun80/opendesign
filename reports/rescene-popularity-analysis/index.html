@@ -13,10 +13,10 @@
   --font-sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --bg: #f7f6f2;
   --paper: #ffffff;
-  --paper-2: #f0eee8;
+  --paper-2: #f4f2ec;
   --ink: #17171b;
-  --muted: #61656f;
-  --faint: #8a8f99;
+  --muted: #50545e;
+  --faint: #767c87;
   --line: rgba(23, 23, 27, 0.16);
   --line-strong: rgba(23, 23, 27, 0.30);
   --blue: #2457c5;
@@ -115,18 +115,6 @@ body {
   pointer-events: none;
 }
 
-.slide.dark {
-  color: #ffffff;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.052) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.046) 1px, transparent 1px),
-    radial-gradient(circle at 86% 14%, rgba(216, 56, 80, 0.25), transparent 32%),
-    #11141d;
-  background-size: 48px 48px, 48px 48px, auto, auto;
-}
-
-.slide.dark::before { border-color: rgba(255, 255, 255, 0.13); }
-
 .header {
   position: relative;
   z-index: 1;
@@ -145,8 +133,6 @@ body {
   text-transform: uppercase;
 }
 
-.dark .kicker { color: #ff9aaa; }
-
 h1 {
   margin: 0;
   max-width: 1340px;
@@ -164,8 +150,6 @@ h1 {
   font-weight: 600;
 }
 
-.dark .lead { color: rgba(255, 255, 255, 0.72); }
-
 .doc-meta {
   min-width: 300px;
   border-left: 1px solid var(--line);
@@ -175,11 +159,6 @@ h1 {
   line-height: 1.56;
   text-align: right;
   font-variant-numeric: tabular-nums;
-}
-
-.dark .doc-meta {
-  border-color: rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.58);
 }
 
 .footer {
@@ -196,8 +175,6 @@ h1 {
   line-height: 1.45;
   font-variant-numeric: tabular-nums;
 }
-
-.dark .footer { color: rgba(255, 255, 255, 0.58); }
 
 .page-no {
   min-width: 90px;
@@ -218,12 +195,6 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-.dark .panel {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: none;
-}
-
 .badge {
   display: inline-flex;
   align-items: center;
@@ -242,8 +213,6 @@ h1 {
 .badge.green { background: var(--green-soft); color: var(--green); }
 .badge.amber { background: var(--amber-soft); color: var(--amber); }
 .badge.violet { background: var(--violet-soft); color: var(--violet); }
-.dark .badge { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
-
 .num {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
@@ -257,10 +226,11 @@ h1 {
 }
 
 .thesis-panel {
-  height: 674px;
+  min-height: 674px;
   padding: 34px 38px;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .thesis-line {
@@ -270,26 +240,58 @@ h1 {
 }
 
 .thesis-copy {
-  margin-top: 22px;
+  margin-top: 0;
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
 .thesis-copy p {
   margin: 0;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
   font-size: 20px;
-  line-height: 1.48;
+  line-height: 1.36;
   font-weight: 650;
+}
+
+.thesis-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.thesis-matrix div {
+  min-height: 92px;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-2);
+}
+
+.thesis-matrix b {
+  display: block;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.thesis-matrix span {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 700;
 }
 
 .summary-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  align-self: end;
+  margin-top: auto;
 }
 
 .metric-grid {
@@ -357,33 +359,13 @@ h1 {
 .signal-strip div {
   min-height: 70px;
   padding: 13px 16px;
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--paper);
   border-right: 1px solid var(--line);
 }
 
 .signal-strip div:last-child { border-right: 0; }
-.signal-strip b { display: block; font-size: 18px; line-height: 1.16; }
+.signal-strip b { display: block; color: var(--ink); font-size: 18px; line-height: 1.16; }
 .signal-strip span { display: block; margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.2; }
-
-.dark .metric-card .label,
-.dark .metric-card .source-mini {
-  color: rgba(255, 255, 255, 0.58);
-}
-
-.dark .metric-card .value,
-.dark .metric-card .explain,
-.dark .thesis-line {
-  color: #ffffff;
-}
-
-.dark .thesis-copy p {
-  color: rgba(255, 255, 255, 0.68);
-  border-color: rgba(255, 255, 255, 0.16);
-}
-
-.dark .signal-strip div {
-  background: rgba(255, 255, 255, 0.88);
-}
 
 .flow-layout {
   display: grid;
@@ -410,15 +392,24 @@ h1 {
 }
 
 .funnel-step {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
   color: var(--ink);
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.18;
   font-weight: 900;
   text-align: center;
+}
+
+.funnel-step .step-no {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
 }
 
 .funnel-step.s1 { background: var(--red-soft); color: var(--red); }
@@ -475,7 +466,7 @@ h1 {
 .timeline-panel {
   min-height: 0;
   height: 706px;
-  padding: 26px 28px;
+  padding: 24px 28px;
 }
 
 .timeline-panel h2,
@@ -487,7 +478,7 @@ h1 {
 }
 
 .timeline {
-  margin-top: 18px;
+  margin-top: 14px;
   display: grid;
   gap: 0;
 }
@@ -497,7 +488,7 @@ h1 {
   grid-template-columns: 104px 1fr;
   gap: 16px;
   align-items: start;
-  padding: 12px 0;
+  padding: 10px 0;
   border-top: 1px solid var(--line);
 }
 
@@ -511,16 +502,16 @@ h1 {
 
 .timeline-item strong {
   display: block;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.25;
 }
 
 .timeline-item span {
   display: block;
-  margin-top: 5px;
+  margin-top: 4px;
   color: var(--muted);
-  font-size: 15px;
-  line-height: 1.34;
+  font-size: 14px;
+  line-height: 1.28;
   font-weight: 650;
 }
 
@@ -678,21 +669,23 @@ h1 {
 .sales-strip span { display: block; margin-top: 7px; color: var(--muted); font-size: 13px; line-height: 1.22; font-weight: 700; }
 
 .driver-board {
-  min-height: 708px;
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
+  align-items: start;
 }
 
 .driver-card {
   position: relative;
-  padding: 30px 28px 26px;
+  padding: 28px 28px 24px;
   border-radius: 8px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.86);
   box-shadow: var(--shadow);
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
 }
 
 .driver-index {
@@ -714,7 +707,7 @@ h1 {
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 13px;
+  gap: 16px;
 }
 
 .driver-card li {
@@ -738,8 +731,7 @@ h1 {
 }
 
 .driver-proof {
-  align-self: end;
-  margin-top: 18px;
+  margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid var(--line);
   color: var(--ink);
@@ -760,11 +752,13 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1.16fr;
   gap: 30px;
+  height: 704px;
 }
 
 .scenario-panel,
 .playbook-panel {
-  min-height: 704px;
+  min-height: 0;
+  height: 704px;
   padding: 32px;
 }
 
@@ -947,12 +941,12 @@ h1 {
   <main class="deck" tabindex="0" aria-label="리센느 인기 급상승 원인 분석 덱">
     <div class="track">
 
-      <section class="slide dark" data-slide="1">
+      <section class="slide" data-slide="1">
         <header class="header">
           <div>
             <p class="kicker">Executive Thesis</p>
-            <h1><span class="ko-keep">리센느 급상승 판단:</span> <span class="ko-keep">캐릭터 바이럴의</span> <span class="ko-keep">음원 역주행 전환</span></h1>
-            <p class="lead"><span class="ko-keep">2024년 공개곡</span> <span class="ko-keep">LOVE ATTACK</span> <span class="ko-keep">재부상은</span> <span class="ko-keep">유료 노출보다</span> <span class="ko-keep">원이 채널</span> <span class="ko-keep">거제 밈</span> <span class="ko-keep">멤버 케미</span> <span class="ko-keep">알고리즘 회전의</span> <span class="ko-keep">복합 효과</span></p>
+            <h1><span class="ko-keep">급상승 요인:</span> <span class="ko-keep">캐릭터 유입이</span> <span class="ko-keep">음원 소비로 전환</span></h1>
+            <p class="lead"><span class="ko-keep">LOVE ATTACK 재부상:</span> <span class="ko-keep">원이 채널 유입</span> / <span class="ko-keep">거제 밈 확산</span> / <span class="ko-keep">멤버 케미 노출</span> / <span class="ko-keep">알고리즘 재청취</span></p>
           </div>
           <div class="doc-meta">
             <div>RESCENE POPULARITY ANALYSIS</div>
@@ -965,12 +959,17 @@ h1 {
           <div class="panel thesis-panel">
             <div>
               <div class="badge red">핵심 결론</div>
-              <div class="thesis-line" style="margin-top:22px"><span class="ko-keep">리센느 인기는</span> <span class="ko-keep">곡의 즉시성보다</span> <span class="ko-keep">사람을 먼저 팔로우한</span> <span class="ko-keep">대중 발견형 성장</span></div>
+              <div class="thesis-line" style="margin-top:22px"><span class="ko-keep">곡보다 사람을</span> <span class="ko-keep">먼저 발견한</span> <span class="ko-keep">대중 유입형 성장</span></div>
             </div>
             <div class="thesis-copy">
-              <p><span class="ko-keep">첫 접점은</span> <span class="ko-keep">팀 세계관이 아니라</span> <span class="ko-keep">원이의 말투</span> <span class="ko-keep">지역성</span> <span class="ko-keep">생활형 콘텐츠</span> <span class="ko-keep">친근성</span></p>
-              <p><span class="ko-keep">차트 반응은</span> <span class="ko-keep">신곡 런칭형보다</span> <span class="ko-keep">카탈로그 재발견형</span> <span class="ko-keep">역주행 패턴</span></p>
-              <p><span class="ko-keep">사업적 의미는</span> <span class="ko-keep">멤버 개인 IP를</span> <span class="ko-keep">그룹 음악 소비로</span> <span class="ko-keep">전환한</span> <span class="ko-keep">저비용 고효율 사례</span></p>
+              <p><span class="ko-keep">첫 접점:</span> <span class="ko-keep">팀 세계관보다</span> <span class="ko-keep">말투·지역성·생활감</span></p>
+              <p><span class="ko-keep">차트 반응:</span> <span class="ko-keep">신곡 런칭보다</span> <span class="ko-keep">카탈로그 재발견</span></p>
+              <p><span class="ko-keep">사업 의미:</span> <span class="ko-keep">개인 IP 유입을</span> <span class="ko-keep">그룹 음악 소비로 전환</span></p>
+            </div>
+            <div class="thesis-matrix">
+              <div><b>유입 경로</b><span>유튜브·숏폼 중심<br />비팬층 첫 접점</span></div>
+              <div><b>전환 지표</b><span>차트 재진입<br />월간 청취자 확대</span></div>
+              <div><b>운영 과제</b><span>멤버 전원 노출<br />후속 발매 연결</span></div>
             </div>
             <div class="summary-tags">
               <span class="badge">대중 인지도</span>
@@ -1008,10 +1007,10 @@ h1 {
               </div>
             </div>
             <div class="signal-strip">
-              <div><b>상승 방식</b><span>콘텐츠 선행 <br />음원 후행</span></div>
-              <div><b>핵심 자산</b><span>멤버 캐릭터 <br />대화형 밈</span></div>
-              <div><b>음원 효과</b><span>LOVE ATTACK <br />중심 재청취</span></div>
-              <div><b>전환 과제</b><span>단기 관심 <br />팬덤 잔존</span></div>
+              <div><b>상승 방식</b><span>콘텐츠 선행 / 음원 후행</span></div>
+              <div><b>핵심 자산</b><span>멤버 캐릭터 / 대화형 밈</span></div>
+              <div><b>음원 효과</b><span>LOVE ATTACK 중심 재청취</span></div>
+              <div><b>전환 과제</b><span>단기 관심의 팬덤 잔존</span></div>
             </div>
           </div>
         </div>
@@ -1025,11 +1024,11 @@ h1 {
         <header class="header">
           <div>
             <p class="kicker">Growth Mechanism</p>
-            <h1><span class="ko-keep">인기 구조:</span> <span class="ko-keep">멤버 발견에서</span> <span class="ko-keep">그룹 소비로 이어진</span> <span class="ko-keep">4단계 퍼널</span></h1>
-            <p class="lead"><span class="ko-keep">초기 팬덤의 구매력보다</span> <span class="ko-keep">비팬층의 호기심 유입이</span> <span class="ko-keep">먼저 확대되고</span> <span class="ko-keep">이후 음원 차트와</span> <span class="ko-keep">단체 활동으로</span> <span class="ko-keep">연결된 흐름</span></p>
+            <h1><span class="ko-keep">소비 구조:</span> <span class="ko-keep">개인 채널 유입,</span> <span class="ko-keep">그룹 음악 소비로 연결</span></h1>
+            <p class="lead"><span class="ko-keep">비팬층 호기심 유입</span> → <span class="ko-keep">짧은 영상 반복</span> → <span class="ko-keep">LOVE ATTACK 재청취</span> → <span class="ko-keep">그룹 자산 탐색</span></p>
           </div>
           <div class="doc-meta">
-            <div>SCENARIO HARNESS</div>
+            <div>GROWTH FRAME</div>
             <div>대상: 기획·마케팅 의사결정자</div>
             <div>판단: 단기 화제성의 구조화</div>
           </div>
@@ -1038,7 +1037,7 @@ h1 {
         <div class="body flow-layout">
           <div class="panel funnel">
             <div class="funnel-row">
-              <div class="funnel-step s1">1<br /><span class="ko-keep">개인 채널</span></div>
+              <div class="funnel-step s1"><span class="step-no">1</span><span class="ko-keep">개인 채널</span></div>
               <div class="funnel-text">
                 <h3><span class="ko-keep">원이 개인 IP의</span> <span class="ko-keep">생활형 진입점</span></h3>
                 <p><span class="ko-keep">팀명보다</span> <span class="ko-keep">멤버 이름을</span> <span class="ko-keep">먼저 인지하는</span> <span class="ko-keep">역방향 발견</span> <span class="ko-keep">구조</span></p>
@@ -1046,7 +1045,7 @@ h1 {
               <div class="funnel-metric"><b class="num">50만</b><span>5월 말 채널 구독자<br />Somako 보도</span></div>
             </div>
             <div class="funnel-row">
-              <div class="funnel-step s2">2<br /><span class="ko-keep">밈 확산</span></div>
+              <div class="funnel-step s2"><span class="step-no">2</span><span class="ko-keep">밈 확산</span></div>
               <div class="funnel-text">
                 <h3><span class="ko-keep">거제 사투리와</span> <span class="ko-keep">즉흥 대화가</span> <span class="ko-keep">짧은 영상 소재화</span></h3>
                 <p><span class="ko-keep">댄스 챌린지보다</span> <span class="ko-keep">대화 장면</span> <span class="ko-keep">감정 반응</span> <span class="ko-keep">관계성이</span> <span class="ko-keep">반복 소비</span></p>
@@ -1054,7 +1053,7 @@ h1 {
               <div class="funnel-metric"><b class="num">300만</b><span>대표 영상 조회수<br />Somako 사례</span></div>
             </div>
             <div class="funnel-row">
-              <div class="funnel-step s3">3<br /><span class="ko-keep">음원 전환</span></div>
+              <div class="funnel-step s3"><span class="step-no">3</span><span class="ko-keep">음원 전환</span></div>
               <div class="funnel-text">
                 <h3><span class="ko-keep">LOVE ATTACK</span> <span class="ko-keep">재청취와</span> <span class="ko-keep">차트 재진입</span></h3>
                 <p><span class="ko-keep">개인 콘텐츠의</span> <span class="ko-keep">호감이</span> <span class="ko-keep">곡 검색</span> <span class="ko-keep">플레이리스트 추가</span> <span class="ko-keep">음방 클립 소비로</span> <span class="ko-keep">확장</span></p>
@@ -1062,7 +1061,7 @@ h1 {
               <div class="funnel-metric"><b class="num">#8</b><span>Soompi 주간 차트<br />2026.06.14</span></div>
             </div>
             <div class="funnel-row">
-              <div class="funnel-step s4">4<br /><span class="ko-keep">그룹 자산</span></div>
+              <div class="funnel-step s4"><span class="step-no">4</span><span class="ko-keep">그룹 자산</span></div>
               <div class="funnel-text">
                 <h3><span class="ko-keep">멤버 전원 노출과</span> <span class="ko-keep">카탈로그 스트리밍</span></h3>
                 <p><span class="ko-keep">원이 단일 화제에서</span> <span class="ko-keep">그룹 정체성</span> <span class="ko-keep">음반 구매</span> <span class="ko-keep">후속곡 기대감으로</span> <span class="ko-keep">확장 여지</span></p>
@@ -1092,7 +1091,7 @@ h1 {
               </div>
               <div class="timeline-item">
                 <time>2026.06</time>
-                <div><strong>그룹 단위 재조명</strong><span><span class="ko-keep">Soompi 주간 #8</span> <span class="ko-keep">Spotify 월간 118만</span> <span class="ko-keep">누적 판매 26.3만</span></span></div>
+                <div><strong>그룹 단위 재조명</strong><span><span class="ko-keep">Soompi #8</span> / <span class="ko-keep">Spotify 118만</span> / <span class="ko-keep">판매 26.3만</span></span></div>
               </div>
             </div>
           </aside>
@@ -1107,8 +1106,8 @@ h1 {
         <header class="header">
           <div>
             <p class="kicker">Quant Evidence</p>
-            <h1><span class="ko-keep">수치 근거:</span> <span class="ko-keep">한 곡 역주행이</span> <span class="ko-keep">스트리밍·차트·판매</span> <span class="ko-keep">복합 신호로 확산</span></h1>
-            <p class="lead"><span class="ko-keep">국내 순위는</span> <span class="ko-keep">순간 화제성을</span> <span class="ko-keep">보여주고</span> <span class="ko-keep">Spotify와 앨범 판매는</span> <span class="ko-keep">반복 소비와</span> <span class="ko-keep">팬덤 전환 가능성을</span> <span class="ko-keep">보조 확인</span></p>
+            <h1><span class="ko-keep">확산 근거:</span> <span class="ko-keep">스트리밍·차트·판매</span> <span class="ko-keep">동시 개선</span></h1>
+            <p class="lead"><span class="ko-keep">국내 순위는 화제성,</span> <span class="ko-keep">Spotify는 반복 청취,</span> <span class="ko-keep">앨범 판매는 팬덤 전환의</span> <span class="ko-keep">보조 지표</span></p>
           </div>
           <div class="doc-meta">
             <div>DATA FRAME</div>
@@ -1221,8 +1220,8 @@ h1 {
         <header class="header">
           <div>
             <p class="kicker">Why It Works</p>
-            <h1><span class="ko-keep">인기 원인:</span> <span class="ko-keep">완성형 세계관보다</span> <span class="ko-keep">인간형 진입점이</span> <span class="ko-keep">먼저 작동</span></h1>
-            <p class="lead"><span class="ko-keep">리센느의 차별성은</span> <span class="ko-keep">강한 콘셉트보다</span> <span class="ko-keep">낮은 진입장벽</span> <span class="ko-keep">높은 재가공성</span> <span class="ko-keep">멤버 관계성</span> <span class="ko-keep">음원 재발견성의</span> <span class="ko-keep">동시 결합</span></p>
+            <h1><span class="ko-keep">상승 요인:</span> <span class="ko-keep">낮은 진입장벽과</span> <span class="ko-keep">재가공성 결합</span></h1>
+            <p class="lead"><span class="ko-keep">멤버 캐릭터</span> / <span class="ko-keep">짧은 영상 소재</span> / <span class="ko-keep">곡 재발견성</span> / <span class="ko-keep">성장 서사 참여감</span></p>
           </div>
           <div class="doc-meta">
             <div>DRIVER MAP</div>
@@ -1286,8 +1285,8 @@ h1 {
         <header class="header">
           <div>
             <p class="kicker">Implication & Next Move</p>
-            <h1><span class="ko-keep">전망 판단:</span> <span class="ko-keep">밈 잔존기간 안에</span> <span class="ko-keep">팬덤 자산화가</span> <span class="ko-keep">핵심 과제</span></h1>
-            <p class="lead"><span class="ko-keep">현재 인기는</span> <span class="ko-keep">성과보다 기회의 형태</span> <span class="ko-keep">단기 차트 피크를</span> <span class="ko-keep">멤버 서사</span> <span class="ko-keep">카탈로그</span> <span class="ko-keep">후속 발매</span> <span class="ko-keep">팬덤 행동으로</span> <span class="ko-keep">연결하는 운영이</span> <span class="ko-keep">승부처</span></p>
+            <h1><span class="ko-keep">후속 운영 기준:</span> <span class="ko-keep">화제성을</span> <span class="ko-keep">팬덤 행동으로 전환</span></h1>
+            <p class="lead"><span class="ko-keep">단기 차트 피크 이후,</span> <span class="ko-keep">멤버 서사</span> / <span class="ko-keep">카탈로그 재청취</span> / <span class="ko-keep">후속 발매 기대감</span> <span class="ko-keep">동시 관리</span></p>
           </div>
           <div class="doc-meta">
             <div>PLANNING ASK</div>

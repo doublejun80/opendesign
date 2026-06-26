@@ -15,11 +15,12 @@
     "rationale": [
       "수치가 많은 주제라 흰 캔버스, 얇은 표선, 고대비 타이포가 가독성에 유리",
       "Bento Insight Grid의 KPI 밀도와 보고서형 표 정렬을 결합",
-      "아이돌 주제의 팬덤성을 살리되 장식적 팬페이지처럼 보이지 않도록 절제"
+      "아이돌 주제의 팬덤성을 살리되 장식적 팬페이지처럼 보이지 않도록 절제",
+      "장표 전체를 흰 계열 배경으로 통일하고, 단발성 다크 커버를 배제"
     ],
     "rejectedAlternatives": [
       "팬덤형 핑크 그래픽: 전문 보고서 신뢰도 저하",
-      "다크 콘서트 비주얼: 수치와 표 읽기 불리",
+      "다크 콘서트 비주얼: 수치와 표 읽기 불리, 장표 간 배경 통일성 저하",
       "SaaS 대시보드형: 음악·콘텐츠 맥락이 약해짐"
     ],
     "palette": {
@@ -40,6 +41,11 @@
         "source": "design-systems/korean-executive-report",
         "template": "Korean Executive Report",
         "takeaway": "1920x1080 고정 캔버스, 한국어 keep-all 조판, 보고서형 문체"
+      },
+      {
+        "source": "references/korean-business-qa/korean-report-writing-style.md",
+        "template": "Korean Expression RAG Cards",
+        "takeaway": "어색한 명사 결합 제거, 긴 소제목 호흡 분리, 세로 분산 조판 금지"
       }
     ]
   },
