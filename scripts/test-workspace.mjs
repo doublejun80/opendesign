@@ -264,9 +264,9 @@ assert.equal(
 
 assert.equal(fs.existsSync(path.join(root, 'index.html')), false, 'root index.html should not remain as a sample deck');
 assert.equal(
-  fs.existsSync(path.join(root, 'reports', 'sample-executive-report', 'index.html')),
+  fs.existsSync(path.join(richOutDir, 'index.html')),
   true,
-  'sample deck should live under reports/sample-executive-report'
+  'sample deck generation should produce an index.html in the requested output directory'
 );
 
 const trackedReportHtml = spawnSync('git', ['ls-files', 'reports/*/index.html'], {
@@ -275,9 +275,7 @@ const trackedReportHtml = spawnSync('git', ['ls-files', 'reports/*/index.html'],
 });
 const reportHtmlFiles = trackedReportHtml.status === 0 && trackedReportHtml.stdout.trim()
   ? trackedReportHtml.stdout.trim().split('\n')
-  : fs.readdirSync(path.join(root, 'reports'))
-    .map(reportName => path.join('reports', reportName, 'index.html'))
-    .filter(reportHtmlPath => fs.existsSync(path.join(root, reportHtmlPath)));
+  : [];
 
 for (const reportHtmlFile of reportHtmlFiles) {
   const reportName = path.dirname(reportHtmlFile).replace(/^reports\//, '');

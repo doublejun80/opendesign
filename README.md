@@ -27,7 +27,7 @@ npm run references:apply -- examples/sample-report-brief.json examples/lazyweb-r
 npm run export:sample -- --dry-run --check-overflow
 ```
 
-생성 결과:
+생성 결과는 로컬 산출물입니다. `reports/`와 `exports/`는 `.gitignore` 대상이며 GitHub에는 올리지 않습니다.
 
 ```text
 reports/sample-executive-report/index.html
@@ -60,8 +60,7 @@ reports/sample-executive-report/slides.json
 | `scripts/export-deck.mjs` | Playwright 기반 PNG/PDF export와 overflow 점검을 수행합니다. |
 | `scripts/test-workspace.mjs` | 생성기, 검증기, export dry-run을 확인하는 회귀 테스트입니다. |
 | `examples/lazyweb-reference-results.json` | Lazyweb MCP 결과 형태를 흉내 낸 레퍼런스 병합 예시입니다. |
-| `reports/sample-executive-report/index.html` | 실제 렌더링 가능한 샘플 HTML 덱입니다. |
-| `reports/open-design-premium-report/index.html` | Open Design 템플릿/스킬/시스템과 Mobbin 이미지 레퍼런스를 반영한 고급 샘플 덱입니다. |
+| `examples/*.json` | 보고서 생성 입력 브리프입니다. 실제 HTML 결과물은 로컬 `reports/`에 생성됩니다. |
 
 ## 권장 워크플로우
 
@@ -129,6 +128,7 @@ Mobbin MCP가 연결되면 같은 스크립트에 `--source mobbin`을 넣어 �
 ## 출력 원칙
 
 - 결과물은 기본적으로 `index.html` 하나로 열려야 합니다.
+- `reports/`와 `exports/`는 생성 결과물이므로 GitHub 추적 대상에서 제외합니다.
 - 각 슬라이드는 `1920×1080` 고정 캔버스를 기준으로 합니다.
 - 한국어 줄바꿈, 숫자 강조, 제목-본문 밀도, 의사결정 문법을 우선합니다.
 - 불필요한 3D, 과한 그라데이션, 의미 없는 아이콘 남발은 금지합니다.
