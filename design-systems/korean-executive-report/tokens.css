@@ -212,6 +212,43 @@ body {
   color: rgba(104,112,124,.86);
 }
 
+.sk-brand-footer {
+  position: absolute;
+  right: var(--kr-margin-x);
+  bottom: 28px;
+  width: 82px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.sk-brand-footer img {
+  display: block;
+  max-width: 72px;
+  max-height: 58px;
+  object-fit: contain;
+}
+
+.sk-brand-footer.text {
+  width: auto;
+  height: auto;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--kr-ink);
+}
+
+.dark .sk-brand-footer.text {
+  color: #ffffff;
+}
+
+.footer-note.has-brand {
+  right: calc(var(--kr-margin-x) + 112px);
+}
+
 .matrix {
   display: grid;
   border: 1px solid var(--kr-line);

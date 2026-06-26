@@ -75,6 +75,7 @@ Use:
 - editorial source/evidence panels
 - source labels for Refero, official brand, or user-provided references
 - simple semantic shapes for flow, decision, risk, and status
+- bottom-right SK brand footer for SK AX/default Korean business reports
 
 Avoid:
 
@@ -98,6 +99,29 @@ Use consistent margins:
 - Header zone: 120px to 180px
 - Body grid: 2–4 columns depending on message
 - Footer/source zone: 36px to 60px
+
+### Brand Footer
+
+For SK AX and default internal Korean business reports, place the SK logo or SK AX lockup
+at the bottom-right of every slide. Keep this as a quiet brand layer, separate from the
+slide's main message. The footer area must remain clear of conclusion boxes, source
+labels, charts, and page numbers.
+
+Use `design-systems/korean-executive-report/assets/sk-logo.png` as the shared source
+asset when available, copied into each report's local `assets/` folder. Use text fallback
+only for internal drafts when the image asset is unavailable.
+
+## 5-1. Default Workflow Structure
+
+Default report generation follows this order:
+
+1. Korean report logic and audience action
+2. McKinsey-style slide role routing from `references/report-logic/`
+3. Modu-style Korean business QA from `references/korean-business-qa/`
+4. Optional layout references such as Guizang, only when the message benefits
+5. HTML autoscale, Korean line-break audit, overflow export QA
+
+Guizang remains a layout-reference library, not the default master style.
 
 ## 6. Depth
 
@@ -181,13 +205,16 @@ without horizontal body scroll or partial next-slide exposure.
 When generating a deck:
 
 1. Convert source notes into a Korean executive outline first.
-2. If a Refero master exists, lock its visual taste before choosing slide layouts.
-3. Choose each slide layout from the scenario and report logic, not from a fixed
+2. Route each slide through the report-logic reference, then run the Korean business
+   QA gate before export.
+3. If a Refero master exists, lock its visual taste before choosing slide layouts.
+4. Choose each slide layout from the scenario and report logic, not from a fixed
    slide-number template.
-4. Generate HTML only after the message structure is clear.
-5. Keep final copy tight, Korean-native, and report-fragment style.
-6. Validate sentence endings, Korean line breaks, visual density, Refero-master fidelity,
+5. Generate HTML only after the message structure is clear.
+6. Keep final copy tight, Korean-native, and report-fragment style.
+7. Place SK brand in the bottom-right footer for SK AX/default Korean reports.
+8. Validate sentence endings, Korean line breaks, visual density, Refero-master fidelity,
    and slide overflow.
-7. Validate browser-window autoscale in addition to export overflow.
-8. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
+9. Validate browser-window autoscale in addition to export overflow.
+10. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
    requested image URLs/screenshots in a slot that fits the selected visual language.

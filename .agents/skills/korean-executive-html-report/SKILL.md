@@ -154,6 +154,45 @@ If no company brand guide is supplied, choose a conservative Korean-friendly fon
 and a reference-backed palette. Record the chosen direction and rejected alternatives in
 `content.json` when references materially influenced the deck.
 
+## Default Korean Report Pipeline
+
+Use this pipeline for every Korean business-report deck unless the user explicitly
+requests another process.
+
+1. Korean report logic first: identify audience, job-to-be-done, one-message-per-slide,
+   and the action the reader should take after reading.
+2. Apply the McKinsey-style template router from
+   `references/report-logic/mckinsey-template-router.md` to choose the slide role:
+   summary, issue tree, option matrix, roadmap, KPI, risk, or handoff.
+3. Apply the modu-style Korean business QA gate from
+   `references/korean-business-qa/modu-qa-rules.md` before finalizing copy and layout:
+   audience fit, Korean phrasing, AI-slop removal, overflow risk, source separation,
+   and handoff clarity.
+4. Use Guizang and other layout libraries only as optional layout references when they
+   help the specific slide message. They are not the default visual master and must not
+   override Korean report grammar, SK AX brand placement, or the selected reference.
+5. Build HTML with the autoscale runtime, export screenshots, run Korean line-break
+   audit, and fix overflow before claiming completion.
+
+Do not expose these pipeline names as large production labels in the final slides.
+If a trace is useful, record it in `content.json` or README.
+
+## SK AX Brand Layer
+
+For SK AX or default Korean business-report work, place the SK logo or SK AX lockup in
+the bottom-right footer area on every slide unless the user gives a different brand
+rule. Treat it as a quiet operating layer, not a decorative header.
+
+Implementation requirements:
+
+- Use the shared asset `design-systems/korean-executive-report/assets/sk-logo.png`
+  when available, copied into the report's local `assets/` folder.
+- Place it with `.sk-brand-footer` or an equivalent class anchored to the lower right.
+- Keep enough footer safe area so the logo never overlaps conclusions, sources, charts,
+  or page numbers.
+- If an official image is unavailable, use a text fallback such as `SK AX` only for
+  internal drafts and record the fallback in `content.json`.
+
 ## Korean Writing Rules
 
 - Use idiomatic Korean, not translated English prose.

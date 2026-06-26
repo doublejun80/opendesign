@@ -19,6 +19,35 @@ to fit the current window and must not expose neighboring slides.
 
 Do not use this for consumer marketing posters unless the user asks for that tone.
 
+## Default Workflow
+
+Use the workspace references in this order for Korean report decks:
+
+1. `references/report-logic/mckinsey-template-router.md`
+   - choose slide role: summary, issue tree, option matrix, roadmap, KPI, risk, handoff
+2. `references/korean-business-qa/modu-qa-rules.md`
+   - check Korean tone, audience fit, source separation, overflow risk, and AI-slop
+3. `references/layout-library/`
+   - use Guizang or other layout libraries only as optional layout references
+
+This workflow applies structure and QA. It does not copy the visual style, code, or
+licensed assets of the external projects.
+
+## SK Brand Footer
+
+For SK AX or default internal Korean business reports, place the SK logo in the
+bottom-right footer area on every slide:
+
+```html
+<div class="sk-brand-footer">
+  <img src="assets/sk-logo.png" alt="SK" />
+</div>
+```
+
+Use `design-systems/korean-executive-report/assets/sk-logo.png` as the shared source
+asset and copy it into the report's `assets/` folder. Keep enough footer safe area so
+the logo does not touch conclusion boxes, sources, or page numbers.
+
 ## Reference Sources
 
 When Refero, official brand, user-provided, or explicitly requested references are
