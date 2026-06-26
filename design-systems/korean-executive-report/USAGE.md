@@ -25,9 +25,11 @@ Use the workspace references in this order for Korean report decks:
 
 1. `references/report-logic/mckinsey-template-router.md`
    - choose slide role: summary, issue tree, option matrix, roadmap, KPI, risk, handoff
-2. `references/korean-business-qa/modu-qa-rules.md`
+2. `references/korean-business-qa/korean-report-writing-style.md`
+   - rewrite source facts into Korean report titles, subtitles, labels, and action copy
+3. `references/korean-business-qa/modu-qa-rules.md`
    - check Korean tone, audience fit, source separation, overflow risk, and AI-slop
-3. `references/layout-library/`
+4. `references/layout-library/`
    - use Guizang or other layout libraries only as optional layout references
 
 This workflow applies structure and QA. It does not copy the visual style, code, or

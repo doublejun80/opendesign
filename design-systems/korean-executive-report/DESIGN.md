@@ -51,6 +51,14 @@ Default Korean report copy should be fragment-style, not sentence-style. Use com
 keywords, noun phrases, status labels, and slash-separated contrasts. Avoid endings such
 as `한다`, `이다`, `필요하다`, `요구한다`, `남긴다`, `관리해야 한다`, and `우선이다`
 unless the user explicitly asks for prose.
+Slide titles must be Korean report judgment phrases, not literal English-to-Korean
+translations. Before writing a title, define the slide's reader, decision, reason, and
+action. Prefer endings such as `적용 방향`, `검토 기준`, `우선순위`, `전환 기준`,
+`운영 기준`, `검증 범위`, `선행 확인`, `확대 조건`, and `보류 항목`.
+Avoid translated or casual endings such as `바뀜`, `잠금`, `대기`, `가능`,
+`하는 것`, and `할 것`. Rewrite source wording into Korean workplace language:
+`작업 경계` becomes `파일 역할` or `산출물 범위`, `접근 가능 기능` becomes
+`즉시 사용 가능 항목`, and `닫힌 베타` becomes `제한 공개 항목`.
 Korean line breaks must preserve reading units across every text block, not only slide
 titles. Keep phrases such as `작성 누락 방지`, `구매 검토 근거 확보`, and
 `업무 콘솔 설계` together with `.ko-keep` or equivalent markup when a break
@@ -117,9 +125,10 @@ Default report generation follows this order:
 
 1. Korean report logic and audience action
 2. McKinsey-style slide role routing from `references/report-logic/`
-3. Modu-style Korean business QA from `references/korean-business-qa/`
-4. Optional layout references such as Guizang, only when the message benefits
-5. HTML autoscale, Korean line-break audit, overflow export QA
+3. Korean title/copy rewriting from `references/korean-business-qa/korean-report-writing-style.md`
+4. Modu-style Korean business QA from `references/korean-business-qa/`
+5. Optional layout references such as Guizang, only when the message benefits
+6. HTML autoscale, Korean line-break audit, overflow export QA
 
 Guizang remains a layout-reference library, not the default master style.
 
@@ -133,6 +142,7 @@ Shadow must be minimal and functional.
 Do:
 
 - Lead with decision or implication.
+- Make titles read like Korean business judgment, not translated product-copy.
 - Separate facts, interpretation, and ask.
 - Make one element dominant per slide.
 - Show tradeoffs visually.
@@ -140,6 +150,8 @@ Do:
 Don't:
 
 - Hide the conclusion in the body.
+- Use casual or translated labels such as `바뀜`, `잠금`, `대기`, `작업 경계`,
+  `접근 가능 기능`, or `닫힌 베타` as final report language.
 - Use too many colors.
 - Fill every gap.
 - Make it look like a SaaS dashboard unless required.
@@ -207,14 +219,16 @@ When generating a deck:
 1. Convert source notes into a Korean executive outline first.
 2. Route each slide through the report-logic reference, then run the Korean business
    QA gate before export.
-3. If a Refero master exists, lock its visual taste before choosing slide layouts.
-4. Choose each slide layout from the scenario and report logic, not from a fixed
+3. Rewrite source facts into Korean report title/copy using the message contract:
+   reader, decision, reason, action.
+4. If a Refero master exists, lock its visual taste before choosing slide layouts.
+5. Choose each slide layout from the scenario and report logic, not from a fixed
    slide-number template.
-5. Generate HTML only after the message structure is clear.
-6. Keep final copy tight, Korean-native, and report-fragment style.
-7. Place SK brand in the bottom-right footer for SK AX/default Korean reports.
-8. Validate sentence endings, Korean line breaks, visual density, Refero-master fidelity,
+6. Generate HTML only after the message structure is clear.
+7. Keep final copy tight, Korean-native, and report-fragment style.
+8. Place SK brand in the bottom-right footer for SK AX/default Korean reports.
+9. Validate sentence endings, Korean line breaks, title naturalness, visual density, Refero-master fidelity,
    and slide overflow.
-9. Validate browser-window autoscale in addition to export overflow.
-10. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
+10. Validate browser-window autoscale in addition to export overflow.
+11. If a slide needs visual proof, use Refero, official brand, user-provided, or explicitly
    requested image URLs/screenshots in a slot that fits the selected visual language.

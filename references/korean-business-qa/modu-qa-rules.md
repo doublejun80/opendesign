@@ -4,6 +4,17 @@ Run these checks before final delivery of Korean report HTML.
 
 ## Copy QA
 
+- Message contract: each slide must define reader, decision, reason, and action before
+  title writing. If these are unclear, the slide is not ready for layout.
+- Title naturalness: titles must read like Korean business judgment. Avoid literal
+  translations and casual endings such as `바뀜`, `잠금`, `대기`, `가능`, `하는 것`,
+  and standalone `현황`, `개요`, `이슈`.
+- Workplace wording: replace `작업 경계` with `파일 역할` or `산출물 범위`,
+  `접근 가능 기능` with `즉시 사용 가능 항목`, `닫힌 베타` with `제한 공개 항목`,
+  `기능 채택` with `업무 적용` or `적용 후보`, and `적용 전 잠금` with
+  `확인 후 적용`.
+- Subtitle role: subtitle copy must add reason, scope, condition, or evidence, not
+  rephrase the title.
 - Sentence endings: avoid `한다`, `이다`, `필요하다`, `요구한다`, `남긴다`,
   `우선이다` unless prose is explicitly requested.
 - Korean rhythm: keep meaning units together with `.ko-keep` or equivalent markup.

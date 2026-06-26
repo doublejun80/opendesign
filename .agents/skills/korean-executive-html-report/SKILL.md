@@ -164,14 +164,19 @@ requests another process.
 2. Apply the McKinsey-style template router from
    `references/report-logic/mckinsey-template-router.md` to choose the slide role:
    summary, issue tree, option matrix, roadmap, KPI, risk, or handoff.
-3. Apply the modu-style Korean business QA gate from
+3. Apply Korean report-writing rules from
+   `references/korean-business-qa/korean-report-writing-style.md`. Build a message
+   contract for every slide before writing the title: reader, decision, reason, action.
+   Translate product/source facts into Korean business-report language, not literal
+   Korean from English.
+4. Apply the modu-style Korean business QA gate from
    `references/korean-business-qa/modu-qa-rules.md` before finalizing copy and layout:
    audience fit, Korean phrasing, AI-slop removal, overflow risk, source separation,
    and handoff clarity.
-4. Use Guizang and other layout libraries only as optional layout references when they
+5. Use Guizang and other layout libraries only as optional layout references when they
    help the specific slide message. They are not the default visual master and must not
    override Korean report grammar, SK AX brand placement, or the selected reference.
-5. Build HTML with the autoscale runtime, export screenshots, run Korean line-break
+6. Build HTML with the autoscale runtime, export screenshots, run Korean line-break
    audit, and fix overflow before claiming completion.
 
 Do not expose these pipeline names as large production labels in the final slides.
@@ -198,6 +203,24 @@ Implementation requirements:
 - Use idiomatic Korean, not translated English prose.
 - Put the conclusion in the slide title when possible.
 - Keep the main sentence under 42 Korean characters when possible.
+- Before writing any slide title, define the slide's message contract:
+  `reader`, `decision`, `reason`, and `action`. If the contract is unclear, rewrite
+  the slide logic before designing the visual.
+- Titles must be Korean business-report judgment phrases, not translated English
+  sentence structures. Prefer title endings such as `적용 방향`, `검토 기준`,
+  `우선순위`, `전환 기준`, `운영 기준`, `검증 범위`, `선행 확인`,
+  `확대 조건`, `보류 항목`, and `전달 포인트`.
+- Avoid weak or translated title endings such as `바뀜`, `잠금`, `대기`, `가능`,
+  `하는 것`, `할 것`, and standalone `이슈`, `현황`, or `개요`.
+- Rewrite literal English structures into Korean workplace language:
+  `작업 경계` → `파일 역할` or `산출물 범위`,
+  `접근 가능 기능` → `즉시 사용 가능 항목`,
+  `닫힌 베타` → `제한 공개 항목`,
+  `적용 전 잠금` → `확인 후 적용`,
+  `시작 전 잠글 것` → `확대 적용 전 선행 확인`,
+  `기능 채택` → `업무 적용` or `적용 후보`.
+- Subtitles must add condition, reason, scope, or evidence. They must not merely repeat
+  the title in a longer sentence.
 - Default to Korean executive-report fragments: keyword, noun phrase, slash-separated
   contrast, and compact status labels. Unless the user explicitly asks for prose,
   avoid sentence endings such as `한다`, `이다`, `필요하다`, `요구한다`, `남긴다`,
@@ -277,19 +300,22 @@ Avoid:
 Before finalizing, check:
 
 1. Does every slide have a single top-line message?
-2. Can a Korean executive understand the slide in 5 seconds?
-3. Are numbers and decisions visually separated?
-4. Does the report contain at least one visual structure beyond cards?
-5. Is the Korean copy natural?
-6. Is the copy in report-fragment style rather than schoolbook sentence style?
-7. Are Korean line breaks native-looking, with no split eojeol or detached 조사?
-8. If a Refero master reference was specified, did the deck preserve its visible taste,
+2. Is the title a Korean judgment/action phrase rather than literal translation?
+3. Did you remove translated wording such as `바뀜`, `잠금`, `대기`,
+   `접근 가능`, and `작업 경계` unless quoted as source material?
+4. Can a Korean executive or business reader understand the slide in 5 seconds?
+5. Are numbers and decisions visually separated?
+6. Does the report contain at least one visual structure beyond cards?
+7. Is the Korean copy natural?
+8. Is the copy in report-fragment style rather than schoolbook sentence style?
+9. Are Korean line breaks native-looking, with no split eojeol or detached 조사?
+10. If a Refero master reference was specified, did the deck preserve its visible taste,
    density, line/surface/spacing feel, typography rhythm, and memorable visual devices?
-9. Are slide layouts driven by the user's scenario and report logic instead of a fixed
+11. Are slide layouts driven by the user's scenario and report logic instead of a fixed
    pre-mapped genre list?
-10. Does it still work if exported as PNG/PDF?
-11. Are the source notes separated from final copy?
-12. Does local browser preview autoscale to one full slide without exposing neighboring
+12. Does it still work if exported as PNG/PDF?
+13. Are the source notes separated from final copy?
+14. Does local browser preview autoscale to one full slide without exposing neighboring
     slides at common window sizes such as 1366×768?
 
 Run the browser QA scripts before finalizing:
