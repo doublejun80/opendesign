@@ -175,6 +175,16 @@ All table-like structures use role-based alignment:
 Do not mix alignments in the same role. If a table feels flat, convert the message into
 a timeline, matrix, or classification board rather than changing alignment randomly.
 
+### Button / Chip Centering
+
+- 버튼, 칩, 배지, pill, 상태 라벨의 글자는 가로·세로 정중앙을 기본값으로 한다.
+- HTML은 `inline-flex` 또는 Grid, `align-items: center`, `justify-content: center`,
+  동일한 상하 패딩, `line-height: 1`을 사용한다.
+- PPT/PPTX는 배경과 텍스트를 단일 도형으로 만들고 `center / middle`, text inset
+  `0`을 적용한다. 별도 텍스트박스를 배경 위에 겹치지 않는다.
+- 코드상 중앙값이어도 최종 렌더에서 글씨가 아래나 위로 치우쳐 보이면 실패다.
+- 개별 요소에 `top`, `translateY`, 비대칭 패딩을 주는 임시 보정을 금지한다.
+
 ## 6. Depth
 
 Use subtle borders and background layers.  

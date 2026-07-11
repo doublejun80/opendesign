@@ -25,6 +25,21 @@ function assertIncludes(haystack, needle, message) {
   assert.ok(haystack.includes(needle), `${message}\nExpected to include: ${needle}`);
 }
 
+function cssRule(source, selector) {
+  const escaped = selector.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+  const match = source.match(new RegExp(escaped + '\\s*\\{([^}]*)\\}'));
+  assert.ok(match, 'Expected CSS rule for ' + selector);
+  return match[1];
+}
+
+function assertCenteredControlRule(source, selector) {
+  const rule = cssRule(source, selector);
+  assertIncludes(rule, 'display: inline-flex', selector + ' should use inline-flex');
+  assertIncludes(rule, 'align-items: center', selector + ' should center vertically');
+  assertIncludes(rule, 'justify-content: center', selector + ' should center horizontally');
+  assertIncludes(rule, 'line-height: 1', selector + ' should avoid baseline drift');
+}
+
 function assertAutoscaleDeckRuntime(html, label, options = {}) {
   assertIncludes(html, 'class="viewport"', `${label} should expose the autoscale viewport`);
   assertIncludes(html, '--kr-deck-scale', `${label} should define the shared deck scale variable`);
@@ -141,6 +156,14 @@ assertIncludes(generatedHtml, 'class="risk-grid', 'risk-control pattern should r
 assertIncludes(generatedHtml, 'class="appendix-grid', 'appendix pattern should render a dedicated appendix layout');
 assertIncludes(generatedHtml, 'source-label source-lazyweb', 'Lazyweb references should be preserved as source labels');
 assertIncludes(generatedHtml, 'source-label source-mobbin', 'Mobbin references should be preserved as source labels');
+assertCenteredControlRule(generatedHtml, '.title-meta span');
+assertCenteredControlRule(generatedHtml, '.owner');
+
+const designTokens = fs.readFileSync(
+  path.join(root, 'design-systems/korean-executive-report/tokens.css'),
+  'utf-8'
+);
+assertCenteredControlRule(designTokens, '.badge');
 
 const lazywebRawPath = path.join(tmpRoot, 'lazyweb-results.json');
 writeJson(lazywebRawPath, {

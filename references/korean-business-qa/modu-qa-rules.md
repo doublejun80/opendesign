@@ -51,6 +51,12 @@ Run these checks before final delivery of Korean report HTML.
 - Tables must be readable at 1920x1080 and after browser autoscale.
 - Table headers are centered; body text is left-aligned; numeric cells are right-aligned;
   status chips are centered.
+- Every button, chip, badge, pill, and status label is visually centered on both axes.
+  HTML controls use flex/grid centering, equal vertical padding, and `line-height: 1`.
+  PPT/PPTX controls use one text-bearing shape with center/middle alignment and zero
+  text insets. A separate text box over a button background is a QA failure.
+- Rendered appearance is authoritative. Reject any control whose label looks low or high,
+  even when the source properties claim centered alignment.
 - Same-role columns must use the same alignment across a table.
 
 ## Evidence QA

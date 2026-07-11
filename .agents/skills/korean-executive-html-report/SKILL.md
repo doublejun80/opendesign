@@ -295,6 +295,19 @@ For any table-like structure, align by cell role:
 - Numbers: right / middle with tabular numerals
 - Chips and badges: center / middle inside the chip
 
+### Centered Control Contract — Hard Requirement
+
+- Center every button, chip, badge, pill, and status label both horizontally and
+  vertically. Treat any visibly low or high label as a failed slide.
+- Build HTML controls with `inline-flex` or Grid, `align-items: center`,
+  `justify-content: center`, equal top/bottom padding, and `line-height: 1`.
+  Do not use `top`, `translateY`, or asymmetric padding to nudge individual labels.
+- Build PPT/PPTX controls as one shape containing its text. Set
+  `alignment: center`, `verticalAlignment: middle`, and text insets to zero.
+  Do not overlay a separate text box on a button background.
+- Judge the rendered slide, not only the source properties. Rework the component when
+  the rendered top and bottom whitespace are visibly asymmetric.
+
 Do not mix left, center, and right alignment arbitrarily within the same column. If a
 table becomes visually flat or crowded, convert it into a timeline, matrix, or card grid
 instead of adding more text to cells.
@@ -349,9 +362,11 @@ Before finalizing, check:
     slides at common window sizes such as 1366×768?
 15. Are table headers centered, body cells left-aligned, numeric cells right-aligned,
     and status chips centered according to their role?
-16. Is the background intentionally white or intentionally designed, with no accidental
+16. Are all buttons, chips, badges, pills, and status labels visually centered in both
+    axes in the rendered output?
+17. Is the background intentionally white or intentionally designed, with no accidental
     gray/dim canvas?
-17. Did the Scenario Harness and the three writer passes run before final export?
+18. Did the Scenario Harness and the three writer passes run before final export?
 
 Run the browser QA scripts before finalizing:
 

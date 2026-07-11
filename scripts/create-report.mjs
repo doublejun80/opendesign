@@ -375,9 +375,14 @@ body {
 }
 
 .title-meta span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   border: 1px solid rgba(255,255,255,.18);
   padding: 12px 18px;
   border-radius: 999px;
+  line-height: 1;
 }
 
 .body-area { margin-top: 54px; position: relative; z-index: 1; }
@@ -606,7 +611,20 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 .risk-index { font-size: 34px; color: var(--kr-blue); font-weight: 900; }
 .risk-row strong { display: block; font-size: 28px; line-height: 1.3; word-break: keep-all; }
 .risk-row p { margin: 6px 0 0; font-size: 25px; line-height: 1.42; color: var(--kr-muted); word-break: keep-all; }
-.owner { justify-self: end; padding: 10px 16px; border-radius: 999px; background: var(--kr-blue-soft); color: var(--kr-blue); font-size: 22px; font-weight: 850; }
+.owner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--kr-blue-soft);
+  color: var(--kr-blue);
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 850;
+}
 
 .appendix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .appendix-item { min-height: 210px; padding: 30px; }
