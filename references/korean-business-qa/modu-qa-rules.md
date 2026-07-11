@@ -57,6 +57,8 @@ Run these checks before final delivery of Korean report HTML.
   text insets. A separate text box over a button background is a QA failure.
 - Rendered appearance is authoritative. Reject any control whose label looks low or high,
   even when the source properties claim centered alignment.
+- Keep labels intended as one line on one line. Shorten button, chip, badge, status, or
+  phase `EXIT` copy before reducing type size; reject any wrapped one-line control.
 - Same-role columns must use the same alignment across a table.
 
 ## Evidence QA

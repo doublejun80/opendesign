@@ -307,6 +307,9 @@ For any table-like structure, align by cell role:
   Do not overlay a separate text box on a button background.
 - Judge the rendered slide, not only the source properties. Rework the component when
   the rendered top and bottom whitespace are visibly asymmetric.
+- Keep every control label intended as one line on one line, including buttons, chips,
+  badges, pills, status labels, and phase `EXIT` labels. Shorten the copy before
+  reducing font size. Any wrapped one-line control is a QA failure.
 
 Do not mix left, center, and right alignment arbitrarily within the same column. If a
 table becomes visually flat or crowded, convert it into a timeline, matrix, or card grid
