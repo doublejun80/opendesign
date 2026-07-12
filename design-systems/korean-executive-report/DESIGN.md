@@ -264,6 +264,11 @@ scenario determines each slide's logic.
 
 ## 9. Open Design Source Stack
 
+Source metadata is off-canvas by default. Preserve it in `content.json`, README, or
+speaker notes, but do not place source/query/tool labels in the slide footer. Only an
+explicit user request or legal/compliance requirement enables visible citations; use a
+dedicated source/appendix slide before considering a bottom strip.
+
 Before generating a polished deck, consider these Open Design source categories:
 
 | Source | Use |

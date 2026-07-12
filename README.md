@@ -96,7 +96,7 @@ Lazyweb과 Mobbin MCP가 연결되어 있다면 결과를 그대로 복제하지
 }
 ```
 
-생성된 HTML은 이 정보를 하단 출처 라벨로 남깁니다. Mobbin에서 가져온 도형과 이미지는 장식이 아니라 비교, 승인 흐름, 상태, 리스크를 설명할 때만 사용합니다.
+생성된 HTML은 이 정보를 `content.json` 또는 입력 브리프에 보존하되 슬라이드 화면에는 기본 노출하지 않습니다. 화면 표시가 명시적으로 필요한 경우에만 브리프에 `"showSourcesOnSlide": true`를 지정합니다. Mobbin에서 가져온 도형과 이미지는 장식이 아니라 비교, 승인 흐름, 상태, 리스크를 설명할 때만 사용합니다.
 
 Lazyweb/Mobbin MCP가 원시 JSON을 반환했다면 아래처럼 먼저 브리프에 병합합니다. `imageUrl`, `image_url`, `images[].url`은 `references[].images[]`로 보존되고, 기존 `visual-hero` 장표가 있으면 이미지 레일 `visuals`에도 자동으로 채워집니다.
 

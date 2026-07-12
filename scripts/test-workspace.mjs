@@ -25,6 +25,10 @@ function assertIncludes(haystack, needle, message) {
   assert.ok(haystack.includes(needle), `${message}\nExpected to include: ${needle}`);
 }
 
+function assertExcludes(haystack, needle, message) {
+  assert.ok(!haystack.includes(needle), `${message}\nExpected to exclude: ${needle}`);
+}
+
 function cssRule(source, selector) {
   const escaped = selector.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
   const match = source.match(new RegExp(escaped + '\\s*\\{([^}]*)\\}'));
@@ -154,8 +158,17 @@ assertIncludes(generatedHtml, '<img src="https://framerusercontent.com/images/JV
 assertIncludes(generatedHtml, 'class="bento-synthesis', 'bento-synthesis pattern should render a bento layout');
 assertIncludes(generatedHtml, 'class="risk-grid', 'risk-control pattern should render a dedicated risk grid layout');
 assertIncludes(generatedHtml, 'class="appendix-grid', 'appendix pattern should render a dedicated appendix layout');
-assertIncludes(generatedHtml, 'source-label source-lazyweb', 'Lazyweb references should be preserved as source labels');
-assertIncludes(generatedHtml, 'source-label source-mobbin', 'Mobbin references should be preserved as source labels');
+assertExcludes(generatedHtml, 'source-label source-lazyweb', 'Source labels should be hidden on slides by default');
+assertExcludes(generatedHtml, 'source-label source-mobbin', 'Source labels should be hidden on slides by default');
+
+const sourcedBriefPath = path.join(tmpRoot, 'sourced-brief.json');
+const sourcedOutDir = path.join(tmpRoot, 'sourced-report');
+writeJson(sourcedBriefPath, { ...richBrief, showSourcesOnSlide: true });
+const sourcedResult = run(['scripts/create-report.mjs', sourcedBriefPath, sourcedOutDir]);
+assert.equal(sourcedResult.status, 0, sourcedResult.stderr || sourcedResult.stdout);
+const sourcedHtml = fs.readFileSync(path.join(sourcedOutDir, 'index.html'), 'utf-8');
+assertIncludes(sourcedHtml, 'source-label source-lazyweb', 'Explicit source-label opt-in should render Lazyweb references');
+assertIncludes(sourcedHtml, 'source-label source-mobbin', 'Explicit source-label opt-in should render Mobbin references');
 assertCenteredControlRule(generatedHtml, '.title-meta span');
 assertCenteredControlRule(generatedHtml, '.owner');
 

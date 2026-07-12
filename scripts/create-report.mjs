@@ -31,6 +31,7 @@ const slugClass = (value = 'manual') => String(value)
   .replace(/^-|-$/g, '') || 'manual';
 
 function renderSourceLabels() {
+  if (brief.showSourcesOnSlide !== true) return '';
   if (!Array.isArray(brief.references) || brief.references.length === 0) return '';
 
   const labels = brief.references.map(reference => `

@@ -76,8 +76,10 @@ Run these checks before final delivery of Korean report HTML.
 
 - Current facts, product announcements, prices, policies, and public references require
   official or primary-source verification.
-- Put visible sources in small footer text only when useful. Keep detailed source notes
-  in `content.json` and README.
+- Keep detailed source notes in `content.json`, README, or speaker notes. Do not render
+  source/query/tool metadata as a bottom strip by default. Show sources only when the
+  user explicitly requests them or legal/compliance requirements make them mandatory;
+  prefer a dedicated source/appendix slide over a footer strip.
 
 ## Export QA
 

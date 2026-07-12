@@ -521,15 +521,23 @@ When references are used, add a `references` array to `content.json`:
 ```
 
 For ordinary reference screens, do not copy them directly. Convert them into Korean
-executive-report grammar and preserve only compact source labels in the final HTML.
+executive-report grammar and preserve source metadata outside the slide canvas.
 For a Refero master reference, do not clone the original brand/content, but do preserve
 the master sample's visual taste, density, rhythm, and memorable devices.
 If images are useful, prefer Refero, official brand images, user-provided images, or local
 reference assets from sources the user explicitly requested. Place them in image rails,
-evidence panels, appendix thumbnails, or master-reference-compatible visual slots with
-source labels.
+evidence panels, appendix thumbnails, or master-reference-compatible visual slots
+without visible source labels unless explicitly required.
 
 ## Open Design Source Stack
+
+### Source Visibility Contract — Hard Requirement
+
+Preserve source, query, image URL, and tool metadata in `content.json`, README, or
+speaker notes. Do not show this metadata on the slide by default, and never add a
+bottom source strip merely because references exist. Visible citations require an
+explicit user request or a legal/compliance need; prefer a dedicated source/appendix
+slide over a footer strip.
 
 Before creating a final deck, consider these source pages and translate their principles into the local report:
 
