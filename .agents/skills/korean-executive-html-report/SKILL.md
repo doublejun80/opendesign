@@ -322,6 +322,19 @@ For any table-like structure, align by cell role:
 - Shorten or relocate copy that does not fit. Do not change one instance's component
   height or internal spacing to accommodate longer text.
 
+### Main Content Vertical Balance — Hard Requirement
+
+- Define the main zone as the space between the header boundary and the top edge of the
+  bottom message band. Center the primary content bounding box vertically in that zone.
+- Calculate `mainTop = zoneTop + (zoneHeight - mainContentHeight) / 2`. Do not place
+  the main content by eye or anchor it to the top.
+- Exclude decorative backgrounds, footers, page numbers, and brand marks when measuring
+  the primary content bounding box.
+- Keep rendered top and bottom whitespace within 4px of each other. Treat a larger
+  difference as a failed slide.
+- When content does not fit, shorten copy, change the structure, or split the slide.
+  Do not reduce type or push the main content toward the bottom.
+
 Do not mix left, center, and right alignment arbitrarily within the same column. If a
 table becomes visually flat or crowded, convert it into a timeline, matrix, or card grid
 instead of adding more text to cells.
@@ -380,9 +393,11 @@ Before finalizing, check:
     axes in the rendered output?
 17. Do repeated message bands and conclusion boxes use identical outer frames and
     title/body slots, with the copy group vertically centered regardless of language?
-18. Is the background intentionally white or intentionally designed, with no accidental
+18. Is the primary content vertically centered between the header and bottom message
+    band, with rendered top and bottom whitespace differing by no more than 4px?
+19. Is the background intentionally white or intentionally designed, with no accidental
     gray/dim canvas?
-19. Did the Scenario Harness and the three writer passes run before final export?
+20. Did the Scenario Harness and the three writer passes run before final export?
 
 Run the browser QA scripts before finalizing:
 

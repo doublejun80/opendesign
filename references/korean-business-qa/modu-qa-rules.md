@@ -65,6 +65,11 @@ Run these checks before final delivery of Korean report HTML.
 - Vertically center the combined title/body group in each repeated message component.
   Reject top-aligned groups, content-dependent gaps, and a second line pushed toward the
   bottom edge.
+- Center the primary content bounding box vertically between the header boundary and the
+  top of the bottom message band. Compute the position rather than placing it by eye.
+- Exclude decorative backgrounds, footers, page numbers, and brand marks from the main
+  content bounds. Reject slides whose rendered top and bottom whitespace differs by more
+  than 4px.
 - Same-role columns must use the same alignment across a table.
 
 ## Evidence QA

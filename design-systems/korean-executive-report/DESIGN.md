@@ -194,6 +194,16 @@ a timeline, matrix, or classification board rather than changing alignment rando
 - 긴 문구는 축약하거나 본문으로 이동한다. 한 인스턴스만 자동 높이 또는 별도 간격을
   적용하지 않는다.
 
+### Main Content Vertical Balance
+
+- 헤더 하단과 바텀 메시지 상단 사이를 메인 존으로 정의한다.
+- 실제 핵심 콘텐츠 외곽을 메인 존 안에서 세로 중앙에 둔다.
+- 시작점은 `zoneTop + (zoneHeight - contentHeight) / 2`로 계산한다.
+- 배경 장식, 푸터, 페이지 번호, 브랜드 표식은 콘텐츠 높이에서 제외한다.
+- 렌더 기준 위·아래 여백 차이는 최대 4px만 허용한다.
+- 콘텐츠가 넘치면 문구 축약, 구조 변경, 장표 분리를 우선한다. 글꼴 축소나 하단 밀어내기로
+  해결하지 않는다.
+
 ## 6. Depth
 
 Use subtle borders and background layers.  
