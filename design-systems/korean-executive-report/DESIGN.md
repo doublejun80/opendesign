@@ -185,6 +185,15 @@ a timeline, matrix, or classification board rather than changing alignment rando
 - 코드상 중앙값이어도 최종 렌더에서 글씨가 아래나 위로 치우쳐 보이면 실패다.
 - 개별 요소에 `top`, `translateY`, 비대칭 패딩을 주는 임시 보정을 금지한다.
 
+### Repeated Message Band Geometry
+
+- 장표마다 반복되는 메시지 밴드, 결론 박스, 하단 콜아웃은 같은 외곽 크기와
+  같은 제목·본문 슬롯을 사용한다.
+- 제목과 본문을 하나의 그룹으로 보고 컨테이너 안에서 세로 중앙 정렬한다.
+- 한글, 영어, 혼합 문구에 따라 높이, 패딩, 제목 크기, 본문 크기, 행간을 바꾸지 않는다.
+- 긴 문구는 축약하거나 본문으로 이동한다. 한 인스턴스만 자동 높이 또는 별도 간격을
+  적용하지 않는다.
+
 ## 6. Depth
 
 Use subtle borders and background layers.  

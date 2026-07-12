@@ -311,6 +311,17 @@ For any table-like structure, align by cell role:
   badges, pills, status labels, and phase `EXIT` labels. Shorten the copy before
   reducing font size. Any wrapped one-line control is a QA failure.
 
+### Repeated Message Band Contract — Hard Requirement
+
+- Give repeated message bands, conclusion boxes, and bottom callouts the same fixed
+  frame and the same title/body slot geometry across every slide.
+- Vertically center the combined title-and-body group inside the component. Do not
+  top-align the group or push the second line downward with content-dependent spacing.
+- Keep container height, padding, title size, body size, and title-to-body gap identical
+  for Korean, English, and mixed-language copy. Never auto-size the component by language.
+- Shorten or relocate copy that does not fit. Do not change one instance's component
+  height or internal spacing to accommodate longer text.
+
 Do not mix left, center, and right alignment arbitrarily within the same column. If a
 table becomes visually flat or crowded, convert it into a timeline, matrix, or card grid
 instead of adding more text to cells.
@@ -367,9 +378,11 @@ Before finalizing, check:
     and status chips centered according to their role?
 16. Are all buttons, chips, badges, pills, and status labels visually centered in both
     axes in the rendered output?
-17. Is the background intentionally white or intentionally designed, with no accidental
+17. Do repeated message bands and conclusion boxes use identical outer frames and
+    title/body slots, with the copy group vertically centered regardless of language?
+18. Is the background intentionally white or intentionally designed, with no accidental
     gray/dim canvas?
-18. Did the Scenario Harness and the three writer passes run before final export?
+19. Did the Scenario Harness and the three writer passes run before final export?
 
 Run the browser QA scripts before finalizing:
 

@@ -59,6 +59,12 @@ Run these checks before final delivery of Korean report HTML.
   even when the source properties claim centered alignment.
 - Keep labels intended as one line on one line. Shorten button, chip, badge, status, or
   phase `EXIT` copy before reducing type size; reject any wrapped one-line control.
+- Repeated message bands, conclusion boxes, and bottom callouts must use identical
+  outer frames and identical title/body slots across slides. Language and copy length
+  must not change their height or internal spacing.
+- Vertically center the combined title/body group in each repeated message component.
+  Reject top-aligned groups, content-dependent gaps, and a second line pushed toward the
+  bottom edge.
 - Same-role columns must use the same alignment across a table.
 
 ## Evidence QA
