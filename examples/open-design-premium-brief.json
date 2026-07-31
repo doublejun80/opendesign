@@ -7,8 +7,7 @@
     "Open Design 슬라이드 솔루션은 아웃라인을 디자인된 HTML 덱으로 바꾸고 PDF/PPTX export 흐름을 전제로 한다.",
     "Open Design 템플릿 카탈로그는 슬라이드, 이미지, 비디오, 프로토타입 템플릿을 분리해 제공한다.",
     "Open Design 스킬 카탈로그는 디자인 브리프, 정교화, export 같은 작업 중 로드되는 지시 스킬을 전제로 한다.",
-    "Mobbin MCP는 shipped product screen을 에이전트가 참고해 추측 기반 디자인을 줄이는 방향을 제시한다.",
-    "Lazyweb은 Codex 등 에이전트가 실제 화면과 리서치 기반 워크플로를 참고하도록 돕는 디자인 리서치 도구다."
+    "Refero MCP는 스타일·실제 화면·흐름을 분리 조사해 추측 기반 디자인을 줄이는 방향을 제시한다."
   ],
   "references": [
     {
@@ -49,21 +48,12 @@
       ]
     },
     {
-      "source": "lazyweb",
-      "title": "Design Research Agent",
-      "url": "https://www.lazyweb.com/",
+      "source": "refero",
+      "title": "Refero MCP style, screen, and flow research",
+      "url": "https://refero.design/",
       "takeaways": [
-        "실제 화면과 리서치 기반 워크플로로 디자인 취향을 보강",
-        "맥락 탐색과 벤치마크 수집을 먼저 수행"
-      ]
-    },
-    {
-      "source": "mobbin",
-      "title": "Mobbin MCP shipped screens",
-      "url": "https://mobbin.com/mcp",
-      "takeaways": [
-        "실제 출시된 화면을 가져와 추측 기반 디자인을 줄임",
-        "KYC, 가격, 플랜, checkout 같은 패턴을 이미지와 함께 합성"
+        "스타일을 먼저 잠그고 화면과 흐름으로 구체화",
+        "실제 서비스 레퍼런스로 추측 기반 디자인을 줄임"
       ]
     }
   ],
@@ -71,26 +61,26 @@
     {
       "kicker": "EXECUTIVE ASK",
       "title": "보고 덱 제작: 템플릿·스킬·시스템·실제 화면 통합",
-      "subtitle": "단순 카드형 HTML을 넘어 Open Design 템플릿, 디자인 스킬, 시각 시스템, Lazyweb/Mobbin 레퍼런스 연결",
+      "subtitle": "단순 카드형 HTML을 넘어 Open Design 템플릿, 디자인 스킬, 시각 시스템, Refero 레퍼런스 연결",
       "pattern": "visual-hero",
       "points": [
         "Open Design 템플릿으로 장표 장르 선결정",
-        "Lazyweb/Mobbin으로 실제 화면 근거 확보",
+        "Refero로 시각 언어와 실제 화면 근거 확보",
         "최종 장표는 한국어 임원보고 문법으로 재작성"
       ],
       "visuals": [
         {
-          "source": "mobbin",
+          "source": "refero",
           "title": "Security verification",
           "url": "https://framerusercontent.com/images/kcnStR0tdHeMYjrBQdsicWi1U.png?height=2556&width=1179"
         },
         {
-          "source": "mobbin",
+          "source": "refero",
           "title": "Identity verification",
           "url": "https://framerusercontent.com/images/JVUac5pbNNM6iJYJShMDHhTUPUc.png?height=2556&width=1180"
         },
         {
-          "source": "mobbin",
+          "source": "refero",
           "title": "Plan selection",
           "url": "https://framerusercontent.com/images/xX0wjzJWFUGCJkCfpsH9KNuhIk.png?height=2436&width=1125"
         }
@@ -119,7 +109,7 @@
         {
           "label": "References",
           "value": "실제 화면",
-          "body": "Lazyweb/Mobbin 화면은 이미지 레일·흐름·라벨·밀도에만 반영"
+          "body": "Refero 화면은 이미지 레일·흐름·라벨·밀도에만 반영"
         }
       ]
     },
@@ -127,7 +117,7 @@
       "kicker": "REFERENCE SYNTHESIS",
       "title": "실제 화면은 장식이 아닌 판단 흐름 근거",
       "pattern": "visual-hero",
-      "subtitle": "Mobbin 공개 MCP 페이지의 KYC·플랜 화면을 이미지 레일로 배치 / 본문은 적용 원칙만 유지",
+      "subtitle": "Refero에서 조사한 KYC·플랜 화면을 이미지 레일로 배치 / 본문은 적용 원칙만 유지",
       "points": [
         "이미지는 근거 / 본문은 판단",
         "모바일 화면은 흐름·상태·CTA 밀도 증거",
@@ -135,12 +125,12 @@
       ],
       "visuals": [
         {
-          "source": "mobbin",
+          "source": "refero",
           "title": "KYC country selector",
           "url": "https://framerusercontent.com/images/JVUac5pbNNM6iJYJShMDHhTUPUc.png?height=2556&width=1180"
         },
         {
-          "source": "mobbin",
+          "source": "refero",
           "title": "Plan card hierarchy",
           "url": "https://framerusercontent.com/images/xX0wjzJWFUGCJkCfpsH9KNuhIk.png?height=2436&width=1125"
         }
@@ -198,7 +188,7 @@
       "phases": [
         {
           "title": "1단계 레퍼런스 수집",
-          "body": "Lazyweb 맥락·사례 탐색 / Mobbin 실제 화면 패턴 확보"
+          "body": "Refero 스타일·화면·흐름 조사와 레퍼런스 잠금"
         },
         {
           "title": "2단계 스타일 선택",
@@ -226,7 +216,7 @@
         },
         {
           "title": "요청 2",
-          "body": "Lazyweb/Mobbin 레퍼런스를 content.json에 출처와 이미지로 기록",
+          "body": "Refero 레퍼런스를 content.json에 출처와 이미지로 기록",
           "metric": "추적"
         },
         {

@@ -13,7 +13,7 @@ Codex에서 한국어 임원보고/전략보고/검토보고를 **PPT 네이티�
 2. Open Design 방식의 `SKILL.md`, `DESIGN.md`, `tokens.css`, `components.html` 구조를 둔다.
 3. 결과물을 `1920×1080` 고정 HTML 덱으로 생성한다.
 4. Playwright 기반으로 PNG/PDF export를 준비한다.
-5. Mobbin/Lazyweb/Refero 같은 레퍼런스 공급원은 선택적으로 붙이고, 보고서 출력 엔진은 HTML/CSS 중심으로 고정한다.
+5. Refero MCP를 기본 레퍼런스 공급원으로 사용하고, 보고서 출력 엔진은 HTML/CSS 중심으로 고정한다.
 
 ## 빠른 시작
 
@@ -23,7 +23,7 @@ npm run validate
 npm test
 npm run sample
 npm run sample:premium
-npm run references:apply -- examples/sample-report-brief.json examples/lazyweb-reference-results.json /tmp/lazyweb-brief.json --source lazyweb
+npm run references:apply -- examples/sample-report-brief.json examples/refero-reference-results.json /tmp/refero-brief.json --source refero
 npm run export:sample -- --dry-run --check-overflow
 ```
 
@@ -53,13 +53,13 @@ reports/sample-executive-report/slides.json
 | `design-systems/korean-executive-report/tokens.css` | 16:9 HTML 패널 공통 디자인 토큰입니다. |
 | `prompts/01_create_report.md` | 보고자료 최초 생성 프롬프트입니다. |
 | `prompts/02_refine_report.md` | 생성물 수정 프롬프트입니다. |
-| `prompts/05_lazyweb_mobbin_reference_workflow.md` | Lazyweb/Mobbin 레퍼런스를 보고서 입력으로 정리하는 프롬프트입니다. |
+| `prompts/04_refero_reference_workflow.md` | Refero 레퍼런스를 보고서 입력으로 정리하는 프롬프트입니다. |
 | `scripts/create-report.mjs` | JSON 브리프를 HTML 덱으로 바꾸는 예시 스크립트입니다. |
-| `scripts/apply-reference-results.mjs` | Lazyweb/Mobbin MCP 원시 결과를 `references`와 `visuals`로 병합합니다. |
+| `scripts/apply-reference-results.mjs` | Refero MCP 원시 결과를 `references`와 `visuals`로 병합합니다. |
 | `scripts/report-schema.mjs` | 지원 패턴과 브리프 구조를 검증하는 스키마 도우미입니다. |
 | `scripts/export-deck.mjs` | Playwright 기반 PNG/PDF export와 overflow 점검을 수행합니다. |
 | `scripts/test-workspace.mjs` | 생성기, 검증기, export dry-run을 확인하는 회귀 테스트입니다. |
-| `examples/lazyweb-reference-results.json` | Lazyweb MCP 결과 형태를 흉내 낸 레퍼런스 병합 예시입니다. |
+| `examples/refero-reference-results.json` | Refero MCP 결과 형태를 흉내 낸 레퍼런스 병합 예시입니다. |
 | `examples/*.json` | 보고서 생성 입력 브리프입니다. 실제 HTML 결과물은 로컬 `reports/`에 생성됩니다. |
 
 ## 권장 워크플로우
@@ -75,37 +75,31 @@ reports/sample-executive-report/slides.json
 → PNG/PDF/PPTX export
 ```
 
-## Lazyweb / Mobbin 레퍼런스 사용
+## Refero 레퍼런스 사용
 
-Lazyweb과 Mobbin MCP가 연결되어 있다면 결과를 그대로 복제하지 말고 `content.json` 또는 입력 브리프의 `references` 배열로 요약해 넣습니다.
+Refero MCP를 기본 리서치 경로로 사용합니다. 스타일 조사 후 화면·흐름을 보강하고,
+원본을 복제하지 않은 채 `content.json` 또는 입력 브리프의 `references` 배열로 요약합니다.
 
 ```json
 {
   "references": [
     {
-      "source": "lazyweb",
-      "title": "approval workflow examples",
-      "takeaways": ["승인 흐름 단계", "자료 근거 배치"]
-    },
-    {
-      "source": "mobbin",
-      "title": "decision matrix pattern",
-      "takeaways": ["추천안 강조 컬럼", "상태 라벨과 도형 연결"]
+      "source": "refero",
+      "title": "approval workflow reference lock",
+      "takeaways": ["승인 흐름 단계", "자료 근거 배치", "절제된 상태 라벨"]
     }
   ]
 }
 ```
 
-생성된 HTML은 이 정보를 `content.json` 또는 입력 브리프에 보존하되 슬라이드 화면에는 기본 노출하지 않습니다. 화면 표시가 명시적으로 필요한 경우에만 브리프에 `"showSourcesOnSlide": true`를 지정합니다. Mobbin에서 가져온 도형과 이미지는 장식이 아니라 비교, 승인 흐름, 상태, 리스크를 설명할 때만 사용합니다.
+생성된 HTML은 이 정보를 `content.json` 또는 입력 브리프에 보존하되 슬라이드 화면에는 기본 노출하지 않습니다. 화면 표시가 명시적으로 필요한 경우에만 브리프에 `"showSourcesOnSlide": true`를 지정합니다. Refero에서 조사한 화면과 시각 장치는 장식이 아니라 비교, 승인 흐름, 상태, 리스크를 설명할 때만 사용합니다.
 
-Lazyweb/Mobbin MCP가 원시 JSON을 반환했다면 아래처럼 먼저 브리프에 병합합니다. `imageUrl`, `image_url`, `images[].url`은 `references[].images[]`로 보존되고, 기존 `visual-hero` 장표가 있으면 이미지 레일 `visuals`에도 자동으로 채워집니다.
+Refero MCP가 원시 JSON을 반환했다면 아래처럼 먼저 브리프에 병합합니다. `imageUrl`, `image_url`, `images[].url`은 `references[].images[]`로 보존되고, 기존 `visual-hero` 장표가 있으면 이미지 레일 `visuals`에도 자동으로 채워집니다.
 
 ```bash
-npm run references:apply -- <brief.json> <lazyweb-results.json> <merged-brief.json> --source lazyweb
+npm run references:apply -- <brief.json> <refero-results.json> <merged-brief.json> --source refero
 node scripts/create-report.mjs <merged-brief.json> reports/<report-slug>
 ```
-
-Mobbin MCP가 연결되면 같은 스크립트에 `--source mobbin`을 넣어 사용합니다.
 
 ## Open Design 스타일 적용
 
@@ -122,7 +116,7 @@ Mobbin MCP가 연결되면 같은 스크립트에 `--source mobbin`을 넣어 �
 1. Templates에서 장표 장르를 고릅니다.
 2. Skills에서 작업 방식을 고릅니다.
 3. Systems에서 시각 언어를 고릅니다.
-4. Lazyweb/Mobbin에서 실제 화면 이미지와 패턴을 가져옵니다.
+4. Refero에서 시각 언어와 실제 화면 패턴을 조사합니다.
 5. 최종 HTML은 `visual-hero`, `bento-synthesis`, `matrix`, `roadmap` 등으로 조판합니다.
 
 ## 출력 원칙

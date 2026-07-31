@@ -12,8 +12,6 @@ export const supportedPatterns = new Set([
 ]);
 
 export const knownReferenceSources = new Set([
-  'lazyweb',
-  'mobbin',
   'refero',
   'open-design',
   'manual',

@@ -1,0 +1,27 @@
+{
+  "query": "AI 구매 자동화 도입 검토",
+  "results": [
+    {
+      "title": "Procurement approval visual direction",
+      "url": "https://refero.design/",
+      "summary": "승인 단계와 근거가 한 화면에서 읽히는 업무 콘솔의 시각 언어를 조사합니다.",
+      "imageUrl": "https://example.com/procurement-flow.png",
+      "takeaways": [
+        "승인 단계와 책임자를 함께 표시",
+        "비교 근거는 메시지와 분리",
+        "상태 색상은 의미별로 제한"
+      ]
+    },
+    {
+      "name": "Supplier risk control screen pattern",
+      "link": "https://refero.design/",
+      "description": "공급사 리스크와 통제 방안을 같은 정보 계층 안에서 비교합니다.",
+      "images": [
+        {
+          "title": "Supplier risk control grid",
+          "url": "https://example.com/supplier-risk.png"
+        }
+      ]
+    }
+  ]
+}

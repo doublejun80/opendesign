@@ -3,12 +3,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertValidBrief } from './report-schema.mjs';
 
-const knownSources = new Set(['lazyweb', 'mobbin', 'refero', 'open-design', 'manual', 'user']);
+const knownSources = new Set(['refero', 'open-design', 'manual', 'user']);
 
 function usage() {
   return [
     'Usage:',
-    '  node scripts/apply-reference-results.mjs <brief.json> <reference-results.json> [out.json] [--source lazyweb]',
+    '  node scripts/apply-reference-results.mjs <brief.json> <reference-results.json> [out.json] [--source refero]',
     '',
     'The reference-results file may be a raw MCP response array or an object with results/items/data.'
   ].join('\n');
@@ -16,7 +16,7 @@ function usage() {
 
 function parseArgs(argv) {
   const positional = [];
-  const options = { source: 'lazyweb' };
+  const options = { source: 'refero' };
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -142,7 +142,7 @@ function normalizeTakeaways(item) {
 }
 
 export function normalizeReferenceResults(raw, options = {}) {
-  const source = normalizeSource(options.source || raw?.source || 'lazyweb');
+  const source = normalizeSource(options.source || raw?.source || 'refero');
 
   return resultItems(raw).map((item, index) => {
     const title = firstString(

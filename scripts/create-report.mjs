@@ -660,8 +660,7 @@ li { font-size: 31px; line-height: 1.65; margin-bottom: 12px; word-break: keep-a
 }
 
 .dark .source-label { color: rgba(255,255,255,.74); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
-.source-lazyweb { border-color: rgba(36,87,197,.32); }
-.source-mobbin { border-color: rgba(183,121,31,.32); }
+.source-refero { border-color: rgba(8,125,123,.42); }
 
 .footer-note {
   position: absolute;

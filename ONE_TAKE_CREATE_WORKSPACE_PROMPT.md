@@ -10,7 +10,7 @@ Open Design + Codex 기반으로 한국어 임원보고/전략보고/검토보�
 - PPT 네이티브 대신 HTML/CSS/JS 기반 1920×1080 보고 패널을 생성한다.
 - 한국어 보고 문법, 한글 타이포, 임원보고 구조를 Codex가 계속 기억하게 한다.
 - Open Design 스타일의 SKILL.md, DESIGN.md, tokens.css, components.html, prompt, script 구조를 포함한다.
-- 나중에 Mobbin/Lazyweb/Refero 같은 레퍼런스 MCP를 붙일 수 있게 reference prompt도 만든다.
+- Refero MCP를 기본 레퍼런스 경로로 고정하고, 스타일·화면·흐름 조사 프롬프트를 만든다.
 - 샘플 보고 덱을 하나 생성한다.
 
 생성할 폴더 구조:
@@ -48,7 +48,7 @@ open_design_korean_report_workspace/
     01_create_report.md
     02_refine_report.md
     03_convert_export.md
-    04_mobbin_reference_optional.md
+    04_refero_reference_workflow.md
   examples/
     sample-report-brief.json
     sample-outline.md

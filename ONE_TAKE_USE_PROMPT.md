@@ -29,7 +29,7 @@ reports/<영문-slug>/README.md
 7. 장표마다 `data-slide` 속성을 넣고, 키보드 좌우 이동이 되게 해줘.
 8. 각 슬라이드는 1920×1080 캔버스 기준으로 잘리지 않게 만들어줘.
 9. Open Design의 templates/skills/systems/slides 원칙을 적용해 단순 카드형이 아니라 조판된 덱으로 만들어줘.
-10. Lazyweb/Mobbin 레퍼런스가 있으면 references 배열로 요약하고, 이미지 URL은 visual-hero나 evidence rail에 실제로 반영해줘.
+10. `refero-design` Skill과 Refero MCP를 기본으로 사용해 스타일→화면→흐름 순서로 조사하고, 선택한 레퍼런스 잠금과 이미지 URL을 references 배열에 남겨줘.
 11. 완료 후 브라우저에서 확인할 파일 경로와 수정 가능한 지점을 알려줘.
 
 금지:

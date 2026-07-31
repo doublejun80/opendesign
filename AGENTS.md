@@ -1,5 +1,18 @@
 # Codex Project Instructions: Korean Executive HTML Report
 
+## Refero 기본 레퍼런스 경로
+
+시각 설계, 장표 디자인, UI 목업, 디자인 검수는 `refero-design` Skill을 기본으로 사용한다.
+Refero MCP가 연결된 경우에는 다음 순서를 기본 규칙으로 고정한다.
+
+1. `refero_search_styles`와 `refero_get_style`로 시각 언어와 레퍼런스 잠금
+2. `refero_search_screens`와 `refero_get_screen`으로 화면 구조·정보 밀도·시각 장치 조사
+3. 다단계 흐름이 필요할 때만 `refero_search_flows`와 `refero_get_flow` 적용
+4. 레퍼런스 잠금과 주요 설계 결정을 `content.json.references`에 기록
+5. 렌더 화면을 레퍼런스 잠금 기준으로 검수
+
+다른 레퍼런스 MCP는 기본 경로나 보조 경로로 사용하지 않는다. 사용자가 명시적으로 요청한 경우에만 예외적으로 사용한다.
+
 이 프로젝트는 한국어 임원보고/전략보고/검토보고를 16:9 HTML 패널로 생성하기 위한 전용 작업공간이다.
 목표는 두 가지를 동시에 만족하는 것이다.
 

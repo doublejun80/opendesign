@@ -68,14 +68,9 @@ const richBrief = {
   ],
   references: [
     {
-      source: 'lazyweb',
-      title: 'B2B approval workflow examples',
-      takeaways: ['좌우 대비형 검토 흐름', '상태 라벨 밀도']
-    },
-    {
-      source: 'mobbin',
-      title: 'Decision matrix screen pattern',
-      takeaways: ['추천안을 한 컬럼에 고정', '도형은 판단 흐름 표시용으로 제한']
+      source: 'refero',
+      title: 'B2B approval workflow reference lock',
+      takeaways: ['좌우 대비형 검토 흐름', '상태 라벨 밀도', '절제된 색상 역할']
     }
   ],
   slides: [
@@ -94,16 +89,16 @@ const richBrief = {
       kicker: 'VISUAL SYSTEM',
       title: '레퍼런스 화면은 별도 이미지 레일로 보여주고, 판단 메시지는 분리합니다',
       pattern: 'visual-hero',
-      subtitle: 'Open Design 템플릿 원칙과 Mobbin/Lazyweb 화면 자료를 같은 캔버스에서 결합합니다.',
+      subtitle: 'Refero 레퍼런스 잠금과 Open Design 템플릿 원칙을 같은 캔버스에서 결합합니다.',
       points: ['템플릿은 장표 구조를 고정', '이미지는 근거와 분위기 제공', '결론은 본문이 아니라 제목에 배치'],
       visuals: [
         {
-          source: 'mobbin',
+          source: 'refero',
           title: 'KYC verification screen',
           url: 'https://framerusercontent.com/images/JVUac5pbNNM6iJYJShMDHhTUPUc.png?height=2556&width=1180'
         },
         {
-          source: 'mobbin',
+          source: 'refero',
           title: 'Plan selection screen',
           url: 'https://framerusercontent.com/images/xX0wjzJWFUGCJkCfpsH9KNuhIk.png?height=2436&width=1125'
         }
@@ -117,7 +112,7 @@ const richBrief = {
         { label: 'Templates', value: '슬라이드 구조', body: 'Open Design 템플릿 카탈로그에서 장표 장르를 선택합니다.' },
         { label: 'Skills', value: '작업 방식', body: '디자인 브리프, 정교화, export 같은 실행 규칙을 적용합니다.' },
         { label: 'Systems', value: '시각 언어', body: 'Premium, Enterprise, Publication 계열을 보고서 성격에 맞게 조합합니다.' },
-        { label: 'References', value: '실제 화면', body: 'Lazyweb/Mobbin 자료는 이미지 레일과 근거 라벨로만 사용합니다.' }
+        { label: 'References', value: 'Refero 레퍼런스', body: 'Refero 화면은 이미지 레일과 근거 라벨로만 사용합니다.' }
       ]
     },
     {
@@ -135,8 +130,7 @@ const richBrief = {
       title: '레퍼런스는 화면 복제가 아니라 구조 추출 근거로만 씁니다',
       pattern: 'appendix',
       notes: [
-        { label: 'Lazyweb', value: '맥락과 자료 탐색' },
-        { label: 'Mobbin', value: 'UI 패턴과 도형 구조 참고' },
+        { label: 'Refero', value: '시각 언어와 화면 패턴 조사' },
         { label: '적용 원칙', value: '한국어 임원보고 문법으로 재구성' }
       ]
     }
@@ -158,8 +152,7 @@ assertIncludes(generatedHtml, '<img src="https://framerusercontent.com/images/JV
 assertIncludes(generatedHtml, 'class="bento-synthesis', 'bento-synthesis pattern should render a bento layout');
 assertIncludes(generatedHtml, 'class="risk-grid', 'risk-control pattern should render a dedicated risk grid layout');
 assertIncludes(generatedHtml, 'class="appendix-grid', 'appendix pattern should render a dedicated appendix layout');
-assertExcludes(generatedHtml, 'source-label source-lazyweb', 'Source labels should be hidden on slides by default');
-assertExcludes(generatedHtml, 'source-label source-mobbin', 'Source labels should be hidden on slides by default');
+assertExcludes(generatedHtml, 'source-label source-refero', 'Source labels should be hidden on slides by default');
 
 const sourcedBriefPath = path.join(tmpRoot, 'sourced-brief.json');
 const sourcedOutDir = path.join(tmpRoot, 'sourced-report');
@@ -167,8 +160,7 @@ writeJson(sourcedBriefPath, { ...richBrief, showSourcesOnSlide: true });
 const sourcedResult = run(['scripts/create-report.mjs', sourcedBriefPath, sourcedOutDir]);
 assert.equal(sourcedResult.status, 0, sourcedResult.stderr || sourcedResult.stdout);
 const sourcedHtml = fs.readFileSync(path.join(sourcedOutDir, 'index.html'), 'utf-8');
-assertIncludes(sourcedHtml, 'source-label source-lazyweb', 'Explicit source-label opt-in should render Lazyweb references');
-assertIncludes(sourcedHtml, 'source-label source-mobbin', 'Explicit source-label opt-in should render Mobbin references');
+assertIncludes(sourcedHtml, 'source-label source-refero', 'Explicit source-label opt-in should render Refero references');
 assertCenteredControlRule(generatedHtml, '.title-meta span');
 assertCenteredControlRule(generatedHtml, '.owner');
 
@@ -178,8 +170,8 @@ const designTokens = fs.readFileSync(
 );
 assertCenteredControlRule(designTokens, '.badge');
 
-const lazywebRawPath = path.join(tmpRoot, 'lazyweb-results.json');
-writeJson(lazywebRawPath, {
+const referoRawPath = path.join(tmpRoot, 'refero-results.json');
+writeJson(referoRawPath, {
   query: 'AI 구매 자동화 도입 검토',
   results: [
     {
@@ -200,45 +192,45 @@ writeJson(lazywebRawPath, {
   ]
 });
 
-const lazywebBaseBriefPath = path.join(tmpRoot, 'lazyweb-base-brief.json');
-writeJson(lazywebBaseBriefPath, {
-  title: 'Lazyweb 레퍼런스 적용 검증',
+const referoBaseBriefPath = path.join(tmpRoot, 'refero-base-brief.json');
+writeJson(referoBaseBriefPath, {
+  title: 'Refero 레퍼런스 적용 검증',
   slides: [
     {
       title: '외부 레퍼런스는 구조화된 근거로만 사용합니다',
       pattern: 'visual-hero',
-      points: ['맥락은 Lazyweb에서 확인', '이미지는 근거 레일로만 배치', '결론은 제목에 유지'],
+      points: ['시각 언어는 Refero에서 확인', '이미지는 근거 레일로만 배치', '결론은 제목에 유지'],
       visuals: []
     }
   ]
 });
 
-const lazywebMergedBriefPath = path.join(tmpRoot, 'lazyweb-merged-brief.json');
-const lazywebApplyResult = run([
+const referoMergedBriefPath = path.join(tmpRoot, 'refero-merged-brief.json');
+const referoApplyResult = run([
   'scripts/apply-reference-results.mjs',
-  lazywebBaseBriefPath,
-  lazywebRawPath,
-  lazywebMergedBriefPath,
+  referoBaseBriefPath,
+  referoRawPath,
+  referoMergedBriefPath,
   '--source',
-  'lazyweb'
+  'refero'
 ]);
-assert.equal(lazywebApplyResult.status, 0, lazywebApplyResult.stderr || lazywebApplyResult.stdout);
+assert.equal(referoApplyResult.status, 0, referoApplyResult.stderr || referoApplyResult.stdout);
 
-const lazywebMergedBrief = JSON.parse(fs.readFileSync(lazywebMergedBriefPath, 'utf-8'));
-assert.equal(lazywebMergedBrief.references.length, 2, 'Lazyweb results should become report references');
-assert.equal(lazywebMergedBrief.references[0].source, 'lazyweb', 'references should preserve the Lazyweb source');
-assert.equal(lazywebMergedBrief.references[0].images[0].url, 'https://example.com/procurement-flow.png', 'imageUrl should be normalized into reference images');
-assert.equal(lazywebMergedBrief.references[1].images[0].url, 'https://example.com/supplier-risk.png', 'nested images should be preserved');
-assert.equal(lazywebMergedBrief.slides[0].visuals.length, 2, 'Lazyweb images should populate an existing visual-hero rail');
-assert.equal(lazywebMergedBrief.slides[0].visuals[0].source, 'lazyweb', 'visual rail entries should keep their source label');
+const referoMergedBrief = JSON.parse(fs.readFileSync(referoMergedBriefPath, 'utf-8'));
+assert.equal(referoMergedBrief.references.length, 2, 'Refero results should become report references');
+assert.equal(referoMergedBrief.references[0].source, 'refero', 'references should preserve the Refero source');
+assert.equal(referoMergedBrief.references[0].images[0].url, 'https://example.com/procurement-flow.png', 'imageUrl should be normalized into reference images');
+assert.equal(referoMergedBrief.references[1].images[0].url, 'https://example.com/supplier-risk.png', 'nested images should be preserved');
+assert.equal(referoMergedBrief.slides[0].visuals.length, 2, 'Refero images should populate an existing visual-hero rail');
+assert.equal(referoMergedBrief.slides[0].visuals[0].source, 'refero', 'visual rail entries should keep their source label');
 
-const lazywebValidateResult = run(['scripts/validate-workspace.mjs', '--brief', lazywebMergedBriefPath]);
-assert.equal(lazywebValidateResult.status, 0, lazywebValidateResult.stderr || lazywebValidateResult.stdout);
+const referoValidateResult = run(['scripts/validate-workspace.mjs', '--brief', referoMergedBriefPath]);
+assert.equal(referoValidateResult.status, 0, referoValidateResult.stderr || referoValidateResult.stdout);
 
 const referenceAdapter = await import('./apply-reference-results.mjs');
 assert.deepEqual(
-  referenceAdapter.normalizeReferenceResults({ results: [{ title: 'Import-safe reference' }] }, { source: 'lazyweb' }),
-  [{ source: 'lazyweb', title: 'Import-safe reference', takeaways: [] }],
+  referenceAdapter.normalizeReferenceResults({ results: [{ title: 'Import-safe reference' }] }, { source: 'refero' }),
+  [{ source: 'refero', title: 'Import-safe reference', takeaways: [] }],
   'reference adapter should be importable without running the CLI'
 );
 
